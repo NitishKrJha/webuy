@@ -13,17 +13,17 @@
 <ion-searchbar show-cancel-button cancel-button-text="Product Name/Code" color="dark">
 </ion-searchbar>  	
 	
-<div class="" padding>
+<div class="" padding *ngIf="bannerList.length > 0">
 	<!-- <h2 class="fs-14">Slide with slogan</h2> -->
 	
 	<ion-slides pager="false" class="slide-slogan" [options]="slideSloganOpts">
-		<ion-slide>
+		<ion-slide *ngFor="let banner of bannerList | keyvalue; let i = index;">
 			<div class="elmt-slide">
 				<div padding class="slogan">
 					<div padding class="main-txt" text-left>
-						<h2 no-margin class="fs-30 fw-900">Buzz!!!</h2>
+						<h2 no-margin class="fs-30 fw-900">{{banner.value.title}}</h2>
 						<hr/>
-						<h5 no-margin class="txt-light fw-600 fs-20">Lorem Ipsum</h5>
+						<h5 no-margin class="txt-light fw-600 fs-20">{{banner.value.title}}</h5>
 						<p no-margin class="txt-light fs-12 ellipsis">Various versions have evolved</p>
 						<hr/>
 						<ion-button expand="round" size="small" fill="outline" color="light" class="txt-light">
@@ -33,47 +33,7 @@
 					</div>
 				</div>
 				<div class="bg-img">
-					<img src="assets/images/lemon18.jpg">
-				</div>
-			</div>
-		</ion-slide>
-		<ion-slide>
-			<div class="elmt-slide">
-				<div padding class="slogan">
-					<div padding class="main-txt" text-left>
-						<h2 no-margin class="txt-light fs-30 fw-900">Buzz!!!</h2>
-						<hr/>
-						<h5 no-margin class="txt-light fw-600 fs-20">Lorem Ipsum</h5>
-						<p no-margin class="txt-light fs-12 ellipsis">Various versions have evolved</p>
-						<hr/>
-						<ion-button expand="round" size="small" fill="outline" color="light" class="txt-light">
-							Detail
-							<ion-icon slot="end" name="arrow-dropright-circle"></ion-icon>
-						</ion-button>
-					</div>
-				</div>
-				<div class="bg-img">
-						<img src="assets/images/lemon18.jpg">
-				</div>
-			</div>
-		</ion-slide>
-		<ion-slide>
-			<div class="elmt-slide">
-				<div padding class="slogan">
-					<div padding class="main-txt" text-left>
-						<h2 no-margin class="txt-light fs-30 fw-900">Buzz!!!</h2>
-						<hr/>
-						<h5 no-margin class="txt-light fw-600 fs-20">Lorem Ipsum</h5>
-						<p no-margin class="txt-light fs-12 ellipsis">Various versions have evolved</p>
-						<hr/>
-						<ion-button expand="round" size="small" fill="outline" color="light" class="txt-light">
-							Detail
-							<ion-icon slot="end" name="arrow-dropright-circle"></ion-icon>
-						</ion-button>
-					</div>
-				</div>
-				<div class="bg-img">
-						<img src="assets/images/lemon18.jpg">
+					<img src="{{banner.value.icon_app_path}}">
 				</div>
 			</div>
 		</ion-slide>
@@ -82,154 +42,82 @@
 
 
 
-<div class="" padding>
+<div class="" padding *ngIf="featureProductList.length > 0">
 	
 	<ion-list>
 		<ion-item lines="none">
 			<ion-label>
-			<h2 class="fs-20">Top Most Item</h2>
+			<h2 class="fs-20">Feature Product List</h2>
 			</ion-label>
 			<ion-label text-right>
-					<a (click)="viewAll()">(View All)</a>
+					<a (click)="viewAll('featureProductList')">(View All)</a>
 			</ion-label>
 		</ion-item>
 	</ion-list>
 	<ion-slides pager="false" class="slide-perview" [options]="slidePerViewOpts">
-		<ion-slide>
+		<ion-slide *ngFor="let fProduct of featureProductList | keyvalue; let i = index;">
 			<div class="elmt-slide">
 				<div class="thumb-img">
-						<img src="assets/images/groce/1.jpg">
+						<img src="{{fProduct.value.image_path + fProduct.value.img_list[0].path_sm}}">
 				</div>
 				<div class="main-txt" text-left>
 					<hr>
-					<h4 no-margin class="txt2 fw-600 fs-12 ellipsis uppercase">Lorem Ipsum</h4>
-					<p no-margin class="txt3 fs-12 ellipsis">Various versions have evolved</p>
-				</div>
-			</div>
-		</ion-slide>
-		<ion-slide>
-			<div class="elmt-slide">
-				<div class="thumb-img">
-						<img src="assets/images/groce/2.jpg">
-				</div>
-				<div class="main-txt" text-left>
-					<hr>
-					<h4 no-margin class="txt2 fw-600 fs-12 ellipsis uppercase">Lorem Ipsum</h4>
-					<p no-margin class="txt3 fs-12 ellipsis">Various versions have evolved</p>
-				</div>
-			</div>
-		</ion-slide>
-		<ion-slide>
-			<div class="elmt-slide">
-				<div class="thumb-img">
-						<img src="assets/images/groce/3.jpg">
-				</div>
-				<div class="main-txt" text-left>
-					<hr>
-					<h4 no-margin class="txt2 fw-600 fs-12 ellipsis uppercase">Lorem Ipsum</h4>
-					<p no-margin class="txt3 fs-12 ellipsis">Various versions have evolved</p>
+					<h4 no-margin class="txt2 fw-600 fs-12 ellipsis uppercase">{{fProduct.value.title}}</h4>
+					<p no-margin class="txt3 fs-12 ellipsis">Rs. {{fProduct.value.sale_price}}</p>
 				</div>
 			</div>
 		</ion-slide>
 	</ion-slides>
 </div>
 
-<div class="" padding>
+<div class="" padding *ngIf="recentViewProductList.length > 0">
 	<ion-list>
 		<ion-item lines="none">
 			<ion-label>
-			<h2 class="fs-20">Best Rated Product</h2>
+			<h2 class="fs-20">Recent View Product</h2>
 			</ion-label>
 			<ion-label text-right>
-				<a (click)="viewAll()">(View All)</a>
+				<a (click)="viewAll('recentViewProductList')">(View All)</a>
 			</ion-label>
 		</ion-item>
 	</ion-list>
 	<ion-slides pager="false" class="slide-perview" [options]="slidePerViewOpts">
-		<ion-slide>
+		<ion-slide *ngFor="let item of recentViewProductList | keyvalue; let i = index;">
 			<div class="elmt-slide">
 				<div class="thumb-img">
-						<img src="assets/images/groce/9.jpg">
+					<img src="{{item.value.image_path + item.value.img_list[0].path_sm}}">
 				</div>
 				<div class="main-txt" text-left>
 					<hr>
-					<h4 no-margin class="txt2 fw-600 fs-12 ellipsis uppercase">Lorem Ipsum</h4>
-					<p no-margin class="txt3 fs-12 ellipsis">Various versions have evolved</p>
-				</div>
-			</div>
-		</ion-slide>
-		<ion-slide>
-			<div class="elmt-slide">
-				<div class="thumb-img">
-						<img src="assets/images/groce/1.jpg">
-				</div>
-				<div class="main-txt" text-left>
-					<hr>
-					<h4 no-margin class="txt2 fw-600 fs-12 ellipsis uppercase">Lorem Ipsum</h4>
-					<p no-margin class="txt3 fs-12 ellipsis">Various versions have evolved</p>
-				</div>
-			</div>
-		</ion-slide>
-		<ion-slide>
-			<div class="elmt-slide">
-				<div class="thumb-img">
-						<img src="assets/images/groce/4.jpeg">
-				</div>
-				<div class="main-txt" text-left>
-					<hr>
-					<h4 no-margin class="txt2 fw-600 fs-12 ellipsis uppercase">Lorem Ipsum</h4>
-					<p no-margin class="txt3 fs-12 ellipsis">Various versions have evolved</p>
+					<h4 no-margin class="txt2 fw-600 fs-12 ellipsis uppercase">{{item.value.title}}</h4>
+					<p no-margin class="txt3 fs-12 ellipsis">Rs. {{item.value.sale_price}}</p>
 				</div>
 			</div>
 		</ion-slide>
 	</ion-slides>
 </div>
 
-<div class="" padding>
+<div class="" padding *ngIf="trendsProductList.length > 0">
 	<ion-list>
 		<ion-item lines="none">
 			<ion-label>
-			<h2 class="fs-20">Latest Product</h2>
+			<h2 class="fs-20">Trend Product</h2>
 			</ion-label>
 			<ion-label text-right>
-					<a (click)="viewAll()">(View All)</a>
+					<a (click)="viewAll('trendsProductList')">(View All)</a>
 			</ion-label>
 		</ion-item>
 	</ion-list>
 	<ion-slides pager="false" class="slide-perview" [options]="slidePerViewOpts">
-		<ion-slide>
+		<ion-slide *ngFor="let item of trendsProductList | keyvalue; let i = index;">
 			<div class="elmt-slide">
 				<div class="thumb-img">
-						<img src="assets/images/groce/5.jpeg">
+					<img src="{{item.value.image_path + item.value.img_list[0].path_sm}}">
 				</div>
 				<div class="main-txt" text-left>
 					<hr>
-					<h4 no-margin class="txt2 fw-600 fs-12 ellipsis uppercase">Lorem Ipsum</h4>
-					<p no-margin class="txt3 fs-12 ellipsis">Various versions have evolved</p>
-				</div>
-			</div>
-		</ion-slide>
-		<ion-slide>
-			<div class="elmt-slide">
-				<div class="thumb-img">
-						<img src="assets/images/groce/6.jpeg">
-				</div>
-				<div class="main-txt" text-left>
-					<hr>
-					<h4 no-margin class="txt2 fw-600 fs-12 ellipsis uppercase">Lorem Ipsum</h4>
-					<p no-margin class="txt3 fs-12 ellipsis">Various versions have evolved</p>
-				</div>
-			</div>
-		</ion-slide>
-		<ion-slide>
-			<div class="elmt-slide">
-				<div class="thumb-img">
-						<img src="assets/images/groce/7.jpeg">
-				</div>
-				<div class="main-txt" text-left>
-					<hr>
-					<h4 no-margin class="txt2 fw-600 fs-12 ellipsis uppercase">Lorem Ipsum</h4>
-					<p no-margin class="txt3 fs-12 ellipsis">Various versions have evolved</p>
+					<h4 no-margin class="txt2 fw-600 fs-12 ellipsis uppercase">{{item.value.title}}</h4>
+					<p no-margin class="txt3 fs-12 ellipsis">Rs. {{item.value.sale_price}}</p>
 				</div>
 			</div>
 		</ion-slide>
@@ -237,51 +125,27 @@
 </div>
 
 
-<div class="" padding>
+<div class="" padding *ngIf="productList.length > 0">
 	<ion-list>
 		<ion-item lines="none">
 			<ion-label>
-			<h2 class="fs-20">Electronic Item</h2>
+			<h2 class="fs-20">Product List</h2>
 			</ion-label>
 			<ion-label text-right>
-					<a (click)="viewAll()">(View All)</a>
+					<a (click)="viewAll('productList')">(View All)</a>
 			</ion-label>
 		</ion-item>
 	</ion-list>
 	<ion-slides pager="false" class="slide-perview" [options]="slidePerViewOpts">
-		<ion-slide>
+		<ion-slide *ngFor="let item of productList | keyvalue; let i = index;">
 			<div class="elmt-slide">
 				<div class="thumb-img">
-						<img src="assets/images/groce/9.jpg">
+					<img src="{{item.value.image_path + item.value.img_list[0].path_sm}}">
 				</div>
 				<div class="main-txt" text-left>
 					<hr>
-					<h4 no-margin class="txt2 fw-600 fs-12 ellipsis uppercase">Lorem Ipsum</h4>
-					<p no-margin class="txt3 fs-12 ellipsis">Various versions have evolved</p>
-				</div>
-			</div>
-		</ion-slide>
-		<ion-slide>
-			<div class="elmt-slide">
-				<div class="thumb-img">
-						<img src="assets/images/groce/2.jpg">
-				</div>
-				<div class="main-txt" text-left>
-					<hr>
-					<h4 no-margin class="txt2 fw-600 fs-12 ellipsis uppercase">Lorem Ipsum</h4>
-					<p no-margin class="txt3 fs-12 ellipsis">Various versions have evolved</p>
-				</div>
-			</div>
-		</ion-slide>
-		<ion-slide>
-			<div class="elmt-slide">
-				<div class="thumb-img">
-						<img src="assets/images/groce/4.jpeg">
-				</div>
-				<div class="main-txt" text-left>
-					<hr>
-					<h4 no-margin class="txt2 fw-600 fs-12 ellipsis uppercase">Lorem Ipsum</h4>
-					<p no-margin class="txt3 fs-12 ellipsis">Various versions have evolved</p>
+					<h4 no-margin class="txt2 fw-600 fs-12 ellipsis uppercase">{{item.value.title}}</h4>
+					<p no-margin class="txt3 fs-12 ellipsis">Rs. {{item.value.sale_price}}</p>
 				</div>
 			</div>
 		</ion-slide>

@@ -70,7 +70,7 @@ export class LoginPage extends BaseComponent implements OnInit  {
     if (this.phoneNumber !== null && this.phoneNumber !== '') {
       if (this.phoneNumber.length === 10) {
         this.loading.present();
-        this.base.api.otpSend({phone_number: this.phoneNumber});
+        this.base.api.otpSendForLogin({phone_number: this.phoneNumber});
       } else {
         this.base.shared.Alert.show_alert('Failed!', ' Please enter 10 digit mobile number');
       }

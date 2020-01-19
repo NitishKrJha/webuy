@@ -1,0 +1,294 @@
+
+<ion-header class="parallax-obj parallax-translate-obj header-transparent">
+<ion-toolbar>
+	<ion-buttons slot="start">
+			<ion-menu-button></ion-menu-button>
+	<ion-back-button text="" icon="ios-arrow-round-back"></ion-back-button>
+	</ion-buttons>
+	<ion-title>Home</ion-title>
+</ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen common-parallax [scrollEvents]="true">
+<ion-searchbar show-cancel-button cancel-button-text="Product Name/Code" color="dark">
+</ion-searchbar>  	
+	
+<div class="" padding>
+	<!-- <h2 class="fs-14">Slide with slogan</h2> -->
+	
+	<ion-slides pager="false" class="slide-slogan" [options]="slideSloganOpts">
+		<ion-slide>
+			<div class="elmt-slide">
+				<div padding class="slogan">
+					<div padding class="main-txt" text-left>
+						<h2 no-margin class="fs-30 fw-900">Buzz!!!</h2>
+						<hr/>
+						<h5 no-margin class="txt-light fw-600 fs-20">Lorem Ipsum</h5>
+						<p no-margin class="txt-light fs-12 ellipsis">Various versions have evolved</p>
+						<hr/>
+						<ion-button expand="round" size="small" fill="outline" color="light" class="txt-light">
+							Detail
+							<ion-icon slot="end" name="arrow-dropright-circle"></ion-icon>
+						</ion-button>
+					</div>
+				</div>
+				<div class="bg-img">
+					<img src="assets/images/lemon18.jpg">
+				</div>
+			</div>
+		</ion-slide>
+		<ion-slide>
+			<div class="elmt-slide">
+				<div padding class="slogan">
+					<div padding class="main-txt" text-left>
+						<h2 no-margin class="txt-light fs-30 fw-900">Buzz!!!</h2>
+						<hr/>
+						<h5 no-margin class="txt-light fw-600 fs-20">Lorem Ipsum</h5>
+						<p no-margin class="txt-light fs-12 ellipsis">Various versions have evolved</p>
+						<hr/>
+						<ion-button expand="round" size="small" fill="outline" color="light" class="txt-light">
+							Detail
+							<ion-icon slot="end" name="arrow-dropright-circle"></ion-icon>
+						</ion-button>
+					</div>
+				</div>
+				<div class="bg-img">
+						<img src="assets/images/lemon18.jpg">
+				</div>
+			</div>
+		</ion-slide>
+		<ion-slide>
+			<div class="elmt-slide">
+				<div padding class="slogan">
+					<div padding class="main-txt" text-left>
+						<h2 no-margin class="txt-light fs-30 fw-900">Buzz!!!</h2>
+						<hr/>
+						<h5 no-margin class="txt-light fw-600 fs-20">Lorem Ipsum</h5>
+						<p no-margin class="txt-light fs-12 ellipsis">Various versions have evolved</p>
+						<hr/>
+						<ion-button expand="round" size="small" fill="outline" color="light" class="txt-light">
+							Detail
+							<ion-icon slot="end" name="arrow-dropright-circle"></ion-icon>
+						</ion-button>
+					</div>
+				</div>
+				<div class="bg-img">
+						<img src="assets/images/lemon18.jpg">
+				</div>
+			</div>
+		</ion-slide>
+	</ion-slides>
+</div>
+
+
+
+<div class="" padding>
+	
+	<ion-list>
+		<ion-item lines="none">
+			<ion-label>
+			<h2 class="fs-20">Top Most Item</h2>
+			</ion-label>
+			<ion-label text-right>
+					<a (click)="viewAll()">(View All)</a>
+			</ion-label>
+		</ion-item>
+	</ion-list>
+	<ion-slides pager="false" class="slide-perview" [options]="slidePerViewOpts">
+		<ion-slide>
+			<div class="elmt-slide">
+				<div class="thumb-img">
+						<img src="assets/images/groce/1.jpg">
+				</div>
+				<div class="main-txt" text-left>
+					<hr>
+					<h4 no-margin class="txt2 fw-600 fs-12 ellipsis uppercase">Lorem Ipsum</h4>
+					<p no-margin class="txt3 fs-12 ellipsis">Various versions have evolved</p>
+				</div>
+			</div>
+		</ion-slide>
+		<ion-slide>
+			<div class="elmt-slide">
+				<div class="thumb-img">
+						<img src="assets/images/groce/2.jpg">
+				</div>
+				<div class="main-txt" text-left>
+					<hr>
+					<h4 no-margin class="txt2 fw-600 fs-12 ellipsis uppercase">Lorem Ipsum</h4>
+					<p no-margin class="txt3 fs-12 ellipsis">Various versions have evolved</p>
+				</div>
+			</div>
+		</ion-slide>
+		<ion-slide>
+			<div class="elmt-slide">
+				<div class="thumb-img">
+						<img src="assets/images/groce/3.jpg">
+				</div>
+				<div class="main-txt" text-left>
+					<hr>
+					<h4 no-margin class="txt2 fw-600 fs-12 ellipsis uppercase">Lorem Ipsum</h4>
+					<p no-margin class="txt3 fs-12 ellipsis">Various versions have evolved</p>
+				</div>
+			</div>
+		</ion-slide>
+	</ion-slides>
+</div>
+
+<div class="" padding>
+	<ion-list>
+		<ion-item lines="none">
+			<ion-label>
+			<h2 class="fs-20">Best Rated Product</h2>
+			</ion-label>
+			<ion-label text-right>
+				<a (click)="viewAll()">(View All)</a>
+			</ion-label>
+		</ion-item>
+	</ion-list>
+	<ion-slides pager="false" class="slide-perview" [options]="slidePerViewOpts">
+		<ion-slide>
+			<div class="elmt-slide">
+				<div class="thumb-img">
+						<img src="assets/images/groce/9.jpg">
+				</div>
+				<div class="main-txt" text-left>
+					<hr>
+					<h4 no-margin class="txt2 fw-600 fs-12 ellipsis uppercase">Lorem Ipsum</h4>
+					<p no-margin class="txt3 fs-12 ellipsis">Various versions have evolved</p>
+				</div>
+			</div>
+		</ion-slide>
+		<ion-slide>
+			<div class="elmt-slide">
+				<div class="thumb-img">
+						<img src="assets/images/groce/1.jpg">
+				</div>
+				<div class="main-txt" text-left>
+					<hr>
+					<h4 no-margin class="txt2 fw-600 fs-12 ellipsis uppercase">Lorem Ipsum</h4>
+					<p no-margin class="txt3 fs-12 ellipsis">Various versions have evolved</p>
+				</div>
+			</div>
+		</ion-slide>
+		<ion-slide>
+			<div class="elmt-slide">
+				<div class="thumb-img">
+						<img src="assets/images/groce/4.jpeg">
+				</div>
+				<div class="main-txt" text-left>
+					<hr>
+					<h4 no-margin class="txt2 fw-600 fs-12 ellipsis uppercase">Lorem Ipsum</h4>
+					<p no-margin class="txt3 fs-12 ellipsis">Various versions have evolved</p>
+				</div>
+			</div>
+		</ion-slide>
+	</ion-slides>
+</div>
+
+<div class="" padding>
+	<ion-list>
+		<ion-item lines="none">
+			<ion-label>
+			<h2 class="fs-20">Latest Product</h2>
+			</ion-label>
+			<ion-label text-right>
+					<a (click)="viewAll()">(View All)</a>
+			</ion-label>
+		</ion-item>
+	</ion-list>
+	<ion-slides pager="false" class="slide-perview" [options]="slidePerViewOpts">
+		<ion-slide>
+			<div class="elmt-slide">
+				<div class="thumb-img">
+						<img src="assets/images/groce/5.jpeg">
+				</div>
+				<div class="main-txt" text-left>
+					<hr>
+					<h4 no-margin class="txt2 fw-600 fs-12 ellipsis uppercase">Lorem Ipsum</h4>
+					<p no-margin class="txt3 fs-12 ellipsis">Various versions have evolved</p>
+				</div>
+			</div>
+		</ion-slide>
+		<ion-slide>
+			<div class="elmt-slide">
+				<div class="thumb-img">
+						<img src="assets/images/groce/6.jpeg">
+				</div>
+				<div class="main-txt" text-left>
+					<hr>
+					<h4 no-margin class="txt2 fw-600 fs-12 ellipsis uppercase">Lorem Ipsum</h4>
+					<p no-margin class="txt3 fs-12 ellipsis">Various versions have evolved</p>
+				</div>
+			</div>
+		</ion-slide>
+		<ion-slide>
+			<div class="elmt-slide">
+				<div class="thumb-img">
+						<img src="assets/images/groce/7.jpeg">
+				</div>
+				<div class="main-txt" text-left>
+					<hr>
+					<h4 no-margin class="txt2 fw-600 fs-12 ellipsis uppercase">Lorem Ipsum</h4>
+					<p no-margin class="txt3 fs-12 ellipsis">Various versions have evolved</p>
+				</div>
+			</div>
+		</ion-slide>
+	</ion-slides>
+</div>
+
+
+<div class="" padding>
+	<ion-list>
+		<ion-item lines="none">
+			<ion-label>
+			<h2 class="fs-20">Electronic Item</h2>
+			</ion-label>
+			<ion-label text-right>
+					<a (click)="viewAll()">(View All)</a>
+			</ion-label>
+		</ion-item>
+	</ion-list>
+	<ion-slides pager="false" class="slide-perview" [options]="slidePerViewOpts">
+		<ion-slide>
+			<div class="elmt-slide">
+				<div class="thumb-img">
+						<img src="assets/images/groce/9.jpg">
+				</div>
+				<div class="main-txt" text-left>
+					<hr>
+					<h4 no-margin class="txt2 fw-600 fs-12 ellipsis uppercase">Lorem Ipsum</h4>
+					<p no-margin class="txt3 fs-12 ellipsis">Various versions have evolved</p>
+				</div>
+			</div>
+		</ion-slide>
+		<ion-slide>
+			<div class="elmt-slide">
+				<div class="thumb-img">
+						<img src="assets/images/groce/2.jpg">
+				</div>
+				<div class="main-txt" text-left>
+					<hr>
+					<h4 no-margin class="txt2 fw-600 fs-12 ellipsis uppercase">Lorem Ipsum</h4>
+					<p no-margin class="txt3 fs-12 ellipsis">Various versions have evolved</p>
+				</div>
+			</div>
+		</ion-slide>
+		<ion-slide>
+			<div class="elmt-slide">
+				<div class="thumb-img">
+						<img src="assets/images/groce/4.jpeg">
+				</div>
+				<div class="main-txt" text-left>
+					<hr>
+					<h4 no-margin class="txt2 fw-600 fs-12 ellipsis uppercase">Lorem Ipsum</h4>
+					<p no-margin class="txt3 fs-12 ellipsis">Various versions have evolved</p>
+				</div>
+			</div>
+		</ion-slide>
+	</ion-slides>
+</div>
+
+
+<br/>
+
+</ion-content>
