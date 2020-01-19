@@ -1,0 +1,155 @@
+<ion-content padding class="ion-justify-content-center animated fadeIn login auth-page">
+  <div class="theme-bg"></div>
+  <div class="auth-content ion-justify-content-center ion-align-items-center">
+
+    <!-- Logo -->
+    <div padding-horizontal text-center class="animated fadeInDown">
+      <!-- <div class="logo"></div> -->
+      <h4 no-margin>
+        <ion-text color="dark" class="fw700">
+          Register
+        </ion-text>
+      </h4>
+    </div>
+
+    <!-- Login form -->
+    <form [formGroup]="signupForm" class="list-form">
+      <ion-item no-padding class="animated fadeInUp">
+        <ion-label position="floating">Full name</ion-label>
+        <ion-input type="text" formControlName="name" [class.invalid]="!signupForm.controls.name.valid && signupForm.controls.name.dirty"></ion-input>
+      </ion-item>
+      <p ion-text class="text08" *ngIf="signupForm.get('name').touched && signupForm.get('name').hasError('required')">
+        <ion-text color="warning">
+          Required Field
+        </ion-text>
+      </p>
+      
+  
+      <ion-item no-padding class="animated fadeInUp">
+        <ion-label position="floating">Email</ion-label>
+        <ion-input formControlName="email" type="email"></ion-input>
+      </ion-item>
+      <p ion-text class="text08" *ngIf="signupForm.get('email').touched && signupForm.get('email').hasError('required')">
+        <ion-text color="warning">
+          Required Field
+        </ion-text>
+      </p>
+  
+      <ion-item no-padding class="animated fadeInUp">
+        <ion-label position="floating">Gender</ion-label>
+        <ion-select formControlName="gender" placeholder="Select Gender">
+          <ion-select-option value="female">Female</ion-select-option>
+          <ion-select-option value="male">Male</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <p ion-text class="text08" *ngIf="signupForm.get('gender').touched && signupForm.get('gender').hasError('required')">
+        <ion-text color="warning">
+          Required Field
+        </ion-text>
+      </p>
+  
+      <ion-item no-padding class="animated fadeInUp">
+        <ion-label position="floating">DOB</ion-label>
+        <ion-input type="date" formControlName="dob"></ion-input>
+      </ion-item>
+      <p ion-text class="text08" *ngIf="signupForm.get('dob').touched && signupForm.get('dob').hasError('required')">
+        <ion-text color="warning">
+          Required Field
+        </ion-text>
+      </p>
+  
+      <ion-item no-padding class="animated fadeInUp">
+        <ion-label position="floating">Address 1</ion-label>
+        <ion-input type="text" formControlName="address"></ion-input>
+      </ion-item>
+      <p ion-text class="text08" *ngIf="signupForm.get('address').touched && signupForm.get('address').hasError('required')">
+        <ion-text color="warning">
+          Required Field
+        </ion-text>
+      </p>
+  
+      <ion-item no-padding class="animated fadeInUp">
+        <ion-label position="floating">Address 2</ion-label>
+        <ion-input type="number" formControlName="address2"></ion-input>
+      </ion-item>
+  
+      <ion-item no-padding class="animated fadeInUp">
+        <ion-label position="floating">State</ion-label>
+        <ion-input type="text" formControlName="state"></ion-input>
+      </ion-item>
+      <p ion-text class="text08" *ngIf="signupForm.get('state').touched && signupForm.get('state').hasError('required')">
+        <ion-text color="warning">
+          Required Field
+        </ion-text>
+      </p>
+  
+      <ion-item no-padding class="animated fadeInUp">
+        <ion-label position="floating">City</ion-label>
+        <ion-input type="text" formControlName="city"></ion-input>
+      </ion-item>
+      <p ion-text class="text08" *ngIf="signupForm.get('city').touched && signupForm.get('city').hasError('required')">
+        <ion-text color="warning">
+          Required Field
+        </ion-text>
+      </p>
+  
+      <ion-item no-padding class="animated fadeInUp">
+        <ion-label position="floating">Pin Code</ion-label>
+        <ion-input type="number" formControlName="pinCode"></ion-input>
+      </ion-item>
+      <p ion-text class="text08" *ngIf="signupForm.get('pinCode').touched && signupForm.get('pinCode').hasError('required')">
+        <ion-text color="warning">
+          Required Field
+        </ion-text>
+      </p>
+  
+      <ion-item no-padding class="animated fadeInUp">
+        <ion-label position="floating">Profession</ion-label>
+        <ion-input type="text" formControlName="profession"></ion-input>
+      </ion-item>
+      <p ion-text class="text08" *ngIf="signupForm.get('profession').touched && signupForm.get('profession').hasError('required')">
+        <ion-text color="warning">
+          Required Field
+        </ion-text>
+      </p>
+
+      <ion-item no-padding class="animated fadeInUp">
+        <ion-label position="floating">Mobile Number</ion-label>
+        <ion-input formControlName="mobileNumber" type="number"></ion-input>
+      </ion-item>
+      <p ion-text class="text08" *ngIf="signupForm.get('mobileNumber').touched && signupForm.get('mobileNumber').hasError('required')">
+        <ion-text color="warning">
+          Required Field
+        </ion-text>
+      </p>
+      
+
+      <ion-item no-padding class="animated fadeInUp" *ngIf="otpSend=='1'">
+        <ion-label position="floating">OTP</ion-label>
+        <ion-input formControlName="otp" type="number"></ion-input>
+      </ion-item>
+
+      <p text-right tappable class="paz">
+        <ion-text color="dark" (click)="getOtp()">
+          <strong>({{otpSendName}})</strong>
+        </ion-text>
+      </p>
+  
+      <ion-row>
+        <ion-col siz="6">
+          <ion-button icon-left size="medium" expand="full" shape="round" color="dark" (click)="doRegister()" [disabled]="!signupForm.valid" tappable>
+            
+            SignUp
+          </ion-button>
+        </ion-col>
+        <ion-col siz="6">
+          <ion-button icon-left size="medium" expand="full" shape="round" color="dark" (click)="login()">
+            <ion-icon name="log-in"></ion-icon>
+            Login
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+
+  </div>
+</ion-content>

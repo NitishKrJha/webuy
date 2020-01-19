@@ -1,0 +1,7 @@
+{
+  "name": "webuy",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

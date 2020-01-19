@@ -1,0 +1,42 @@
+
+<ion-header class="parallax-obj parallax-translate-obj header-transparent">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button text="" icon="ios-arrow-round-back"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Login</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+<ion-content fullscreen common-parallax [scrollEvents]="true">
+    <div class="wrap-login-v6 offset-top-obj">
+        <div class="wrap-interval">
+            <div text-center class="brand">
+                <div class="pdt-50">
+                    <img class="parallax-obj parallax-down-obj" src="assets/images/webuy.jpeg">
+                    <h2 no-margin class="txt-light fs-24 fw-700 uppercase">WeBuy</h2>
+                    <h2 no-margin class="txt-light fs-46 fw-800"></h2>
+                </div>
+            </div>
+            <div text-center class="main-form">
+                
+                <ion-item lines="none" class="bg-white bdra-30 shadow-1 bg-light">
+                    <ion-input type="number" [(ngModel)]="otp" maxlength="10" placeholder="Enter OTP"></ion-input>
+                </ion-item>
+                <br/>
+                <ion-button expand="block" shape="round" color="primary" class="txt1 mgt-10 spacing2 fw-600" type="button" (click)="verifyOtp()">
+                    Submit
+                </ion-button>
+                <hr/>
+                <ion-button  mode="ios"size="small" fill="clear" class="txt-light fs-12" type="button">
+                    Login
+                </ion-button>
+                
+                
+            </div>
+        </div>
+        <div class="bg-img">
+            <img src="assets/images/lemon25.jpg">
+        </div>
+    </div>
+</ion-content>
