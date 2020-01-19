@@ -45,10 +45,11 @@ export class ProductlistPage extends BaseComponent implements OnInit {
           this.base.api.featureProductList({});
         } else if (this.pageType === 'productList') {
           this.base.api.productList({});
+        } else {
+          this.base.api.productList({});
         }
       } else {
-        this.base.shared.Alert.show_alert('Failed!', 'Data Not Found');
-        this.router.navigate(['/home']);
+        this.base.api.productList({});
       }
     });
   }
@@ -62,6 +63,9 @@ export class ProductlistPage extends BaseComponent implements OnInit {
       this.productList = data.result && data.result.data.detail ? data.result.data.detail : [];
     } else if (data.resultType === con.productList) {
       this.productList = data.result && data.result.data.detail ? data.result.data.detail : [];
+    } else if (data.resultType === con.addToCart) {
+      const successMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
+      this.base.shared.Alert.show_alert('Success', successMessage);
     }
   }
 
@@ -74,11 +78,34 @@ export class ProductlistPage extends BaseComponent implements OnInit {
       this.productList = [];
     } else if (data.resultType === con.productList) {
       this.productList = [];
+    } else if (data.resultType === con.addToCart) {
+      const errorMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
+      this.base.shared.Alert.show_alert('Failed!', errorMessage);
     }
   }
 
-  addToCart(id: any = 0) {
-    alert(id);
+  addToCart(id: any = 0, title: any = '', price: any = '') {
+    this.base.shared.Lstorage.fetchData('customerId').then(data => {
+      if (data) {
+        this.base.shared.Lstorage.delData('cartLogin');
+        this.base.shared.Lstorage.delData('cartItemId');
+        this.base.shared.Lstorage.delData('cartItemTitle');
+        this.base.shared.Lstorage.delData('cartItemPrice');
+        this.base.api.addToCart({
+          customer_id: data,
+          product_id: id,
+          product_price: price,
+          product_title: title,
+          ip_address: '192.168.0.1'
+        });
+      } else {
+        this.base.shared.Lstorage.setData('cartLogin', 1);
+        this.base.shared.Lstorage.setData('cartItemId', id);
+        this.base.shared.Lstorage.setData('cartItemTitle', title);
+        this.base.shared.Lstorage.setData('cartItemPrice', price);
+        this.navCtrl.navigateRoot('/login');
+      }
+    });
   }
 
 }

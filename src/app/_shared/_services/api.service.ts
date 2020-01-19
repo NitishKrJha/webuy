@@ -17,6 +17,7 @@ export class ApiService extends BaseApiService {
   public recentViewProductUrl = con.API_URL + 'recentViewProductList';
   public addToCartUrl = con.API_URL + 'add_to_cart';
   public cartListURL = con.API_URL + 'getCartList';
+  public categoryListURL = con.API_URL + 'allcategories';
 
   public otpSend(params: any = {}) {
     this.genericApiCall(this.otpSendUrlForRegister, con.sendOTP, params, con.requestPost, true);
@@ -60,5 +61,9 @@ export class ApiService extends BaseApiService {
 
   public cartList(params: any = {}) {
     this.genericApiCall(this.cartListURL, con.cartList, params, con.requestPost, true);
+  }
+
+  public categoryList(params: any = {}) {
+    this.genericApiCall(this.categoryListURL, con.categoryList, params, con.requestPost, true);
   }
 }

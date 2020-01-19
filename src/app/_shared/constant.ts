@@ -28,3 +28,4 @@ export const recentViewProductList = 'recentViewProductList';
 export const addToCart = 'addToCart';
 export const cartList = 'cartList';
 export const addToWishList = 'addToWishList';
+export const categoryList = 'categoryList';

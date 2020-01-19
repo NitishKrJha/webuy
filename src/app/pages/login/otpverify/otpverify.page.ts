@@ -18,6 +18,10 @@ export class OtpverifyPage extends BaseComponent implements OnInit {
   otp: any = '';
   tagHide: any = true;
   qParams: any;
+  cartLogin: any;
+  cartItemId: any;
+  cartItemTitle: any;
+  cartItemPrice: any;
   constructor(
     public navCtrl: NavController,
     public loadingCtrl: LoadingController,
@@ -54,7 +58,45 @@ export class OtpverifyPage extends BaseComponent implements OnInit {
       const successMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
       this.base.shared.Lstorage.setData('isLogged', 1);
       this.base.shared.Lstorage.setData('phoneNumber', data.result.data.phone);
-      this.base.shared.Lstorage.setData('customer_id', data.result.data.phone);
+      this.base.shared.Lstorage.setData('customerId', data.result.data.customer_id);
+      this.base.shared.Lstorage.fetchData('cartLogin').then(cartLogin => {
+        if (cartLogin) {
+         this.cartLogin = cartLogin;
+        }
+      });
+      this.base.shared.Lstorage.fetchData('cartItemId').then(cartItemId => {
+        if (cartItemId) {
+         this.cartItemId = cartItemId;
+        }
+      });
+      this.base.shared.Lstorage.fetchData('cartItemTitle').then(cartItemTitle => {
+        if (cartItemTitle) {
+         this.cartItemTitle = cartItemTitle;
+        }
+      });
+      this.base.shared.Lstorage.fetchData('cartItemPrice').then(cartItemPrice => {
+        if (cartItemPrice) {
+         this.cartItemPrice = cartItemPrice;
+        }
+      });
+      if (this.cartLogin === 1) {
+        this.base.shared.Lstorage.delData('cartLogin');
+        this.base.shared.Lstorage.delData('cartItemId');
+        this.base.shared.Lstorage.delData('cartItemTitle');
+        this.base.shared.Lstorage.delData('cartItemPrice');
+        this.base.api.addToCart({
+          customer_id: data.result.data.customer_id,
+          product_id: this.cartItemId,
+          product_price: this.cartItemPrice,
+          product_title: this.cartItemTitle,
+          ip_address: '192.168.0.1'
+        });
+      } else {
+        this.router.navigateByUrl('/home', { replaceUrl: true }) ;
+      }
+    } else if (data.resultType === con.addToCart) {
+      const successMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
+      this.base.shared.Alert.show_alert('Success', successMessage);
       this.router.navigateByUrl('/home', { replaceUrl: true }) ;
     }
   }
@@ -62,8 +104,14 @@ export class OtpverifyPage extends BaseComponent implements OnInit {
   handleApiResponseError(data) {
     console.log('data', data);
     this.loading.dismiss();
-    const errorMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
-    this.base.shared.Alert.show_alert('Failed!', errorMessage);
+    if (data.resultType === con.login) {
+      const errorMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
+      this.base.shared.Alert.show_alert('Failed!', errorMessage);
+    } else if (data.resultType === con.addToCart) {
+      const errorMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
+      this.base.shared.Alert.show_alert('Failed!', errorMessage);
+      this.router.navigateByUrl('/home', { replaceUrl: true }) ;
+    }
   }
 
   verifyOtp() {
