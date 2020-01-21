@@ -29,6 +29,11 @@ export class AppComponent {
       icon: 'list'
     },
     {
+      title: 'Cart',
+      url: '/cart',
+      icon: 'list'
+    },
+    {
       title: 'Logout',
       url: '/login',
       icon: 'log-out'

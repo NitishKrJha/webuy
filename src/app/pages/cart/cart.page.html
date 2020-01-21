@@ -1,0 +1,83 @@
+<ion-header class="parallax-obj parallax-translate-obj header-transparent">
+  <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+      <ion-back-button text="" icon="ios-arrow-round-back"></ion-back-button>
+      </ion-buttons>
+    <ion-title>
+      Cart List
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button text="" icon="arrow-back"></ion-back-button>
+    </ion-buttons>
+    <!-- <ion-buttons slot="end">
+      <button ion-button small>
+        <ion-icon name="cart" class="cart-number"><ion-badge color="danger">3</ion-badge></ion-icon>
+      </button>
+      <button ion-button (click)="openFilters()">
+        <ion-icon name="funnel">
+        </ion-icon>
+      </button>
+    </ion-buttons> -->
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+  <div class="ion-padding" *ngIf="cartList">
+
+    <ion-list>
+      <ion-item *ngFor="let p of cartList" class="ion-text-wrap">
+        <ion-grid>
+          <ion-row class="ion-align-items-center">
+            <ion-col size="2" class="ion-align-self-center">
+              <ion-button color="medium" fill="clear" (click) = "quantityDecreased(p.id,p.qty)">
+                <ion-icon name="remove-circle" slot="icon-only"></ion-icon>
+              </ion-button>
+            </ion-col>
+
+            <ion-col size="2" class="ion-align-self-center">
+              {{p.qty}}
+            </ion-col>
+
+            <ion-col size="2" class="ion-align-self-center">
+              <ion-button color="medium" fill="clear" (click) = "quantityIncreased(p.id,p.qty)">
+                <ion-icon name="add-circle" slot="icon-only"></ion-icon>
+              </ion-button>
+            </ion-col>
+
+            <ion-col size="2" offset="4">
+              <ion-button color="medium" fill="clear" (click) = "removeCart(p.id)">
+                <ion-icon name="close-circle" slot="icon-only"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="9">
+              <b>{{ p.name }}</b>
+            </ion-col>
+            <ion-col size="3" class="ion-text-end">
+              Rs. {{p.sale_price }}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+      <ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6">
+              Total :
+            </ion-col>
+            <ion-col size="6" class="ion-text-end">
+             Rs. {{ getTotal() }}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-list>
+
+    <ion-button expand="full" (click)="placeOrder('cartId')">
+      Checkout
+    </ion-button>
+  </div>
+
+
+</ion-content>
