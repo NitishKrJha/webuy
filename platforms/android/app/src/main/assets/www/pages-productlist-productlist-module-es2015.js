@@ -7,7 +7,155 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<ion-header class=\"parallax-obj parallax-translate-obj header-transparent\">\n\t<ion-toolbar>\n\t  <ion-buttons slot=\"start\">\n\t\t\t\t<ion-menu-button></ion-menu-button>\n\t\t<ion-back-button text=\"\" icon=\"ios-arrow-round-back\"></ion-back-button>\n\t  </ion-buttons>\n\t  <ion-title>Product List</ion-title>\n\t</ion-toolbar>\n  </ion-header>\n  \n  <ion-content fullscreen common-parallax [scrollEvents]=\"true\">\n\t\t\n\t\n\t<div class=\"wrap-gallery-info pd-10\">\n\t   <ion-searchbar show-cancel-button cancel-button-text=\"Really Long Cancel\" color=\"danger\">\n\t\t</ion-searchbar>\n\t  <div class=\"element-gallery pd-5\">\n\t\t<div (click)=\"viewImg('lemon1.png')\" class=\"wrap-element shadow-2\">\n\t\t  <div class=\"thumb-view\">\n\t\t\t<img src=\"assets/images/groce/1.jpg\">\n\t\t  </div>\n\t\t  <div class=\"pd-10 txt-info txt-danger\">\n\t\t\t<h4 no-margin class=\"ellipsis fs-12 fw-600 spacing1 pdb-2 uppercase\" text-center>Rs. 8500</h4>\n\t\t\t<p no-margin class=\"ellipsis fs-12\" text-center>Shirt</p>\n\t\t</div>\n\t\t</div>\n\t\t<div  class=\"wrap-element shadow-2\">\n\t\t\t<ion-button expand=\"block\" color=\"danger\">Buy Now</ion-button>\n\t\t</div>\n\t  </div>\n\t  <div class=\"element-gallery pd-5\">\n\t\t<div (click)=\"viewImg('lemon2.png')\" class=\"wrap-element shadow-2\">\n\t\t  <div class=\"thumb-view\">\n\t\t\t<img src=\"assets/images/groce/2.jpg\">\n\t\t  </div>\n\t\t  <div class=\"pd-10 txt-info txt-danger\">\n\t\t\t<h4 no-margin class=\"ellipsis fs-12 fw-600 spacing1 pdb-2 uppercase\">Rs. 15800</h4>\n\t\t\t<p no-margin class=\"ellipsis fs-12\">Contrary to popular belief, Lorem Ipsum is not simply random text</p>\n\t\t  </div>\n\t\t</div>\n\t\t<div  class=\"wrap-element shadow-2\">\n\t\t\t<ion-button expand=\"block\" color=\"danger\">Buy Now</ion-button>\n\t\t</div>\n\t  </div>\n\t  <div class=\"element-gallery pd-5\">\n\t\t<div (click)=\"viewImg('lemon3.png')\" class=\"wrap-element shadow-2\">\n\t\t  <div class=\"thumb-view\">\n\t\t\t<img src=\"assets/images/groce/3.jpg\">\n\t\t  </div>\n\t\t  <div class=\"pd-10 txt-info txt-danger\">\n\t\t\t<h4 no-margin class=\"ellipsis fs-12 fw-600 spacing1 pdb-2 uppercase\">Rs. 17800</h4>\n\t\t\t<p no-margin class=\"ellipsis fs-12\">Contrary to popular belief, Lorem Ipsum is not simply random text</p>\n\t\t  </div>\n\t\t</div>\n\t\t<div  class=\"wrap-element shadow-2\">\n\t\t\t<ion-button expand=\"block\" color=\"danger\">Buy Now</ion-button>\n\t\t</div>\n\t  </div>\n\t  <div class=\"element-gallery pd-5\">\n\t\t<div (click)=\"viewImg('lemon4.png')\" class=\"wrap-element shadow-2\">\n\t\t  <div class=\"thumb-view\">\n\t\t\t<img src=\"assets/images/groce/8.jpg\">\n\t\t  </div>\n\t\t  <div class=\"pd-10 txt-info txt-danger\">\n\t\t\t<h4 no-margin class=\"ellipsis fs-12 fw-600 spacing1 pdb-2 uppercase\">Rs. 1800</h4>\n\t\t\t<p no-margin class=\"ellipsis fs-12\">Contrary to popular belief, Lorem Ipsum is not simply random text</p>\n\t\t  </div>\n\t\t</div>\n\t\t<div  class=\"wrap-element shadow-2\">\n\t\t\t<ion-button expand=\"block\" color=\"danger\">Buy Now</ion-button>\n\t\t</div>\n\t  </div>\n\t  <div class=\"element-gallery pd-5\">\n\t\t<div (click)=\"viewImg('lemon5.png')\" class=\"wrap-element shadow-2\">\n\t\t  <div class=\"thumb-view\">\n\t\t\t<img src=\"assets/images/groce/9.jpg\">\n\t\t  </div>\n\t\t  <div class=\"pd-10 txt-info txt-danger\">\n\t\t\t<h4 no-margin class=\"ellipsis fs-12 fw-600 spacing1 pdb-2 uppercase\">Rs. 11800</h4>\n\t\t\t<p no-margin class=\"ellipsis fs-12\">Contrary to popular belief, Lorem Ipsum is not simply random text</p>\n\t\t  </div>\n\t\t</div>\n\t\t<div  class=\"wrap-element shadow-2\">\n\t\t\t<ion-button expand=\"block\" color=\"danger\">Buy Now</ion-button>\n\t\t</div>\n\t  </div>\n\t  <div class=\"element-gallery pd-5\">\n\t\t<div (click)=\"viewImg('lemon6.png')\" class=\"wrap-element shadow-2\">\n\t\t  <div class=\"thumb-view\">\n\t\t\t<img src=\"assets/images/groce/4.jpeg\">\n\t\t  </div>\n\t\t  <div class=\"pd-10 txt-info txt-danger\">\n\t\t\t<h4 no-margin class=\"ellipsis fs-12 fw-600 spacing1 pdb-2 uppercase\">Rs. 15800</h4>\n\t\t\t<p no-margin class=\"ellipsis fs-12\">Contrary to popular belief, Lorem Ipsum is not simply random text</p>\n\t\t  </div>\n\t\t</div>\n\t\t<div  class=\"wrap-element shadow-2\">\n\t\t\t<ion-button expand=\"block\" color=\"danger\">Buy Now</ion-button>\n\t\t</div>\n\t  </div>\n\t  <div class=\"element-gallery pd-5\">\n\t\t<div (click)=\"viewImg('lemon7.png')\" class=\"wrap-element shadow-2\">\n\t\t  <div class=\"thumb-view\">\n\t\t\t<img src=\"assets/images/groce/5.jpeg\">\n\t\t  </div>\n\t\t  <div class=\"pd-10 txt-info txt-danger\">\n\t\t\t<h4 no-margin class=\"ellipsis fs-12 fw-600 spacing1 pdb-2 uppercase\">Rs. 15800</h4>\n\t\t\t<p no-margin class=\"ellipsis fs-12\">Contrary to popular belief, Lorem Ipsum is not simply random text</p>\n\t\t  </div>\n\t\t</div>\n\t\t<div  class=\"wrap-element shadow-2\">\n\t\t\t<ion-button expand=\"block\" color=\"danger\">Buy Now</ion-button>\n\t\t</div>\n\t  </div>\n\t  <div class=\"element-gallery pd-5\">\n\t\t<div (click)=\"viewImg('lemon8.png')\" class=\"wrap-element shadow-2\">\n\t\t  <div class=\"thumb-view\">\n\t\t\t<img src=\"assets/images/groce/6.jpeg\">\n\t\t  </div>\n\t\t  <div class=\"pd-10 txt-info txt-danger\">\n\t\t\t<h4 no-margin class=\"ellipsis fs-12 fw-600 spacing1 pdb-2 uppercase\">Rs. 15800</h4>\n\t\t\t<p no-margin class=\"ellipsis fs-12\">Contrary to popular belief, Lorem Ipsum is not simply random text</p>\n\t\t  </div>\n\t\t</div>\n\t\t<div  class=\"wrap-element shadow-2\">\n\t\t\t<ion-button expand=\"block\" color=\"danger\">Buy Now</ion-button>\n\t\t</div>\n\t  </div>\n\t  <div class=\"element-gallery pd-5\">\n\t\t<div (click)=\"viewImg('lemon9.png')\" class=\"wrap-element shadow-2\">\n\t\t  <div class=\"thumb-view\">\n\t\t\t<img src=\"assets/images/groce/9.jpg\">\n\t\t  </div>\n\t\t  <div class=\"pd-10 txt-info txt-danger\">\n\t\t\t<h4 no-margin class=\"ellipsis fs-12 fw-600 spacing1 pdb-2 uppercase\">Rs. 15800</h4>\n\t\t\t<p no-margin class=\"ellipsis fs-12\">Contrary to popular belief, Lorem Ipsum is not simply random text</p>\n\t\t  </div>\n\t\t</div>\n\t\t<div  class=\"wrap-element shadow-2\">\n\t\t\t<ion-button expand=\"block\" color=\"danger\">Buy Now</ion-button>\n\t\t</div>\n\t  </div>\n\t  <div class=\"element-gallery pd-5\">\n\t\t<div (click)=\"viewImg('lemon10.png')\" class=\"wrap-element shadow-2\">\n\t\t  <div class=\"thumb-view\">\n\t\t\t<img src=\"assets/images/groce/9.jpg\">\n\t\t  </div>\n\t\t  <div class=\"pd-10 txt-info txt-danger\">\n\t\t\t<h4 no-margin class=\"ellipsis fs-12 fw-600 spacing1 pdb-2 uppercase\">Rs. 15800</h4>\n\t\t\t<p no-margin class=\"ellipsis fs-12\">Contrary to popular belief, Lorem Ipsum is not simply random text</p>\n\t\t  </div>\n\t\t</div>\n\t\t<div  class=\"wrap-element shadow-2\">\n\t\t\t\t<ion-button expand=\"block\" color=\"danger\">Buy Now</ion-button>\n\t\t\t</div>\n\t  </div>\n\t</div>\n  \n  </ion-content>\n  "
+module.exports = "\n<ion-header class=\"parallax-obj parallax-translate-obj header-transparent\">\n\t<ion-toolbar>\n\t  <ion-buttons slot=\"start\">\n\t\t\t\t<ion-menu-button></ion-menu-button>\n\t\t<ion-back-button text=\"\" icon=\"ios-arrow-round-back\"></ion-back-button>\n\t  </ion-buttons>\n\t  <ion-title>Product List</ion-title>\n\t</ion-toolbar>\n  </ion-header>\n  \n  <ion-content fullscreen common-parallax [scrollEvents]=\"true\">\n\t\t\n\t\n\t<div class=\"wrap-gallery-info pd-10\">\n\t  <ion-searchbar show-cancel-button cancel-button-text=\"Really Long Cancel\" color=\"danger\">\n\t\t</ion-searchbar>\n\t\t<div *ngIf=\"productList.length > 0\">\n\t\t<div class=\"element-gallery pd-5\" *ngFor=\"let item of productList | keyvalue; let i = index;\">\n\t\t\t<div (click)=\"viewImg('lemon1.png')\" class=\"wrap-element shadow-2\">\n\t\t\t\t<div class=\"thumb-view\">\n\t\t\t\t\t<img src=\"{{item.value.image_path + item.value.img_list[0].path_sm}}\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"pd-10 txt-info txt-danger\">\n\t\t\t\t\t<h4 no-margin class=\"ellipsis fs-12 fw-600 spacing1 pdb-2 uppercase\" text-center>Rs. {{item.value.sale_price}}</h4>\n\t\t\t\t\t<p no-margin class=\"ellipsis fs-12\" text-center>{{item.value.title}}</p>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div  class=\"wrap-element shadow-2\">\n\t\t\t\t<ion-button expand=\"block\" color=\"danger\" (click)=\"addToCart(item.value.product_id,item.value.title,item.value.sale_price)\">Add Cart</ion-button>\n\t\t\t</div>\n\t\t</div>\n\t\t</div>\n\t</div>\n  \n  </ion-content>\n  "
+
+/***/ }),
+
+/***/ "./src/app/_shared/_classes/base.component.ts":
+/*!****************************************************!*\
+  !*** ./src/app/_shared/_classes/base.component.ts ***!
+  \****************************************************/
+/*! exports provided: BaseComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BaseComponent", function() { return BaseComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _services_base_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../_services/base.service */ "./src/app/_shared/_services/base.service.ts");
+/* harmony import */ var _constant__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../constant */ "./src/app/_shared/constant.ts");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic-native/network/ngx */ "./node_modules/@ionic-native/network/ngx/index.js");
+/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/storage */ "./node_modules/@ionic/storage/fesm2015/ionic-storage.js");
+/* harmony import */ var _pages_app_update_app_update_page__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../pages/app-update/app-update.page */ "./src/app/pages/app-update/app-update.page.ts");
+/* harmony import */ var _services_router_storage_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../_services/router-storage.service */ "./src/app/_shared/_services/router-storage.service.ts");
+
+
+
+
+
+
+
+
+
+
+let BaseComponent = class BaseComponent {
+    constructor(injector) {
+        this.isUpdateNotofication = 0;
+        this.base = injector.get(_services_base_service__WEBPACK_IMPORTED_MODULE_1__["BaseService"]);
+        this.router = injector.get(_angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]);
+        this.actRoute = injector.get(_angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]);
+        this.mNetwork = injector.get(_ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_6__["Network"]);
+        this.storage = injector.get(_ionic_storage__WEBPACK_IMPORTED_MODULE_7__["Storage"]);
+        this.routStorage = injector.get(_services_router_storage_service__WEBPACK_IMPORTED_MODULE_9__["RouterStorageService"]);
+        this.platform = injector.get(_ionic_angular__WEBPACK_IMPORTED_MODULE_4__["Platform"]);
+    }
+    initBaseComponent() {
+        this.platform.backButton.subscribe(() => {
+            console.log('this.constructor.name', this.constructor.name);
+            if (this.constructor.name === 'HomePage') {
+                this.platform.exitApp();
+            }
+        });
+        this.apiSubscription = this.base.api.result.subscribe((data) => {
+            if (data.length !== 0) {
+                if (data.resultType === _constant__WEBPACK_IMPORTED_MODULE_2__["errorResult"]) {
+                    // If any issue produce due to network or unavailibility of host
+                    // const errorMessage = data.result.message ? data.result.message : 'something went wrong';
+                    const errorMessage = 'Something went wrong please contact with support team';
+                    this.base.shared.Alert.show_alert('Error!', errorMessage);
+                    return true;
+                }
+                else if (data.result === undefined || data.result === null) {
+                    // const errorMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
+                    const errorMessage = 'Something went wrong please contact with support team';
+                    this.base.shared.Alert.show_alert('Error!', errorMessage);
+                    return true;
+                }
+                else {
+                    if (data.result.app_version_details !== undefined && Object.keys(data.result.app_version_details).length > 0) {
+                        if (this.handleAppUpdate(data)) {
+                            return false;
+                        }
+                    }
+                    if ((data.result !== undefined && data.result.status !== true)) {
+                        // If any internal issue or error occour at API which return blank or non JSON value
+                        console.log('Msg Code', data.result);
+                        // if ( data.result.msg_code === 'msg_1008') {
+                        //   this.storage.clear();
+                        //   this.router.navigate(['/login']);
+                        // }
+                        this.handleApiResponseError(data);
+                    }
+                    else {
+                        // if ( data.result.msg_code === 'msg_1008') {
+                        //   this.storage.clear();
+                        //   this.router.navigate(['/login']);
+                        // }
+                        this.handleApiResponse(data);
+                    }
+                }
+            }
+        });
+    }
+    /**
+     * this will handel all api response, must be override on child component
+     *
+     * @param data any
+     */
+    handleApiResponse(data) {
+        console.log('Change Password Response333333333333333', data);
+    }
+    /**
+     * this will handel all api response error, must be override on child component
+     *
+     * @param data any
+     */
+    handleApiResponseError(data) { }
+    /**
+     * this will handel all app update notification
+     *
+     * @param data any
+     */
+    handleAppUpdate(data) {
+        this.routStorage.storage = {
+            app_version_details: data.result.app_version_details
+        };
+        if (data.result.app_version_details.is_force_update === '0') {
+            if (this.isUpdateNotofication === 0) {
+                this.routStorage.storage.is_modal = 1;
+                this.base.shared.Modal.showModal(_pages_app_update_app_update_page__WEBPACK_IMPORTED_MODULE_8__["AppUpdatePage"]);
+                // this.base.shared.Alert.show_alert('Warning!', data.result.app_version_details.update_message);
+                // this.isUpdateNotofication = 1;
+                return false;
+            }
+        }
+        else if (data.result.app_version_details.is_force_update === '1') {
+            this.router.navigate(['/app-update']);
+            return true;
+        }
+    }
+    handleValidationError(data) { }
+    /**
+     * unsubscribe api response subscriber on component destroy
+     */
+    ngOnDestroy() {
+        if (this.apiSubscription !== undefined) {
+            this.apiSubscription.unsubscribe();
+        }
+    }
+};
+BaseComponent.ctorParameters = () => [
+    { type: _angular_core__WEBPACK_IMPORTED_MODULE_3__["Injector"] }
+];
+BaseComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Injectable"])(),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_3__["Injector"]])
+], BaseComponent);
+
+
 
 /***/ }),
 
@@ -113,20 +261,150 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductlistPage", function() { return ProductlistPage; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _shared_classes_base_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../_shared/_classes/base.component */ "./src/app/_shared/_classes/base.component.ts");
+/* harmony import */ var _shared_constant__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../_shared/constant */ "./src/app/_shared/constant.ts");
+/* harmony import */ var _shared_loading_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../_shared/loading.service */ "./src/app/_shared/loading.service.ts");
 
 
-let ProductlistPage = class ProductlistPage {
-    constructor() { }
+
+
+
+
+
+let ProductlistPage = class ProductlistPage extends _shared_classes_base_component__WEBPACK_IMPORTED_MODULE_4__["BaseComponent"] {
+    constructor(navCtrl, loadingCtrl, alertCtrl, platform, events, menuCtrl, toastCtrl, route, loading, injector) {
+        super(injector);
+        this.navCtrl = navCtrl;
+        this.loadingCtrl = loadingCtrl;
+        this.alertCtrl = alertCtrl;
+        this.platform = platform;
+        this.events = events;
+        this.menuCtrl = menuCtrl;
+        this.toastCtrl = toastCtrl;
+        this.route = route;
+        this.loading = loading;
+        this.productList = [];
+        this.pageType = '';
+        this.initBaseComponent();
+    }
     ngOnInit() {
+        this.route.queryParams.subscribe(params => {
+            console.log('Params', this.router.getCurrentNavigation().extras.queryParams);
+            if (this.router.getCurrentNavigation().extras.queryParams) {
+                this.qParams = this.router.getCurrentNavigation().extras.queryParams;
+                this.pageType = this.qParams.pageType;
+                if (this.pageType === 'recentViewProductList') {
+                    this.base.api.recentViewProductList({});
+                }
+                else if (this.pageType === 'trendsProductList') {
+                    this.base.api.trendsProductList({});
+                }
+                else if (this.pageType === 'featureProductList') {
+                    this.base.api.featureProductList({});
+                }
+                else if (this.pageType === 'productList') {
+                    this.base.api.productList({});
+                }
+                else {
+                    this.base.api.productList({});
+                }
+            }
+            else {
+                this.base.api.productList({});
+            }
+        });
+    }
+    handleApiResponse(data) {
+        if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_5__["recentViewProductList"]) {
+            this.productList = data.result && data.result.data.detail ? data.result.data.detail : [];
+        }
+        else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_5__["trendsProductList"]) {
+            this.productList = data.result && data.result.data.detail ? data.result.data.detail : [];
+        }
+        else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_5__["featureProductList"]) {
+            this.productList = data.result && data.result.data.detail ? data.result.data.detail : [];
+        }
+        else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_5__["productList"]) {
+            this.productList = data.result && data.result.data.detail ? data.result.data.detail : [];
+        }
+        else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_5__["addToCart"]) {
+            const successMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
+            this.base.shared.Alert.show_alert('Success', successMessage);
+        }
+    }
+    handleApiResponseError(data) {
+        if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_5__["recentViewProductList"]) {
+            this.productList = [];
+        }
+        else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_5__["trendsProductList"]) {
+            this.productList = [];
+        }
+        else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_5__["featureProductList"]) {
+            this.productList = [];
+        }
+        else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_5__["productList"]) {
+            this.productList = [];
+        }
+        else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_5__["addToCart"]) {
+            const errorMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
+            this.base.shared.Alert.show_alert('Failed!', errorMessage);
+        }
+    }
+    addToCart(id = 0, title = '', price = '') {
+        this.base.shared.Lstorage.fetchData('customerId').then(data => {
+            if (data) {
+                this.base.shared.Lstorage.delData('cartLogin');
+                this.base.shared.Lstorage.delData('cartItemId');
+                this.base.shared.Lstorage.delData('cartItemTitle');
+                this.base.shared.Lstorage.delData('cartItemPrice');
+                this.base.api.addToCart({
+                    customer_id: data,
+                    product_id: id,
+                    product_price: price,
+                    product_title: title,
+                    ip_address: '192.168.0.1'
+                });
+            }
+            else {
+                this.base.shared.Lstorage.setData('cartLogin', 1);
+                this.base.shared.Lstorage.setData('cartItemId', id);
+                this.base.shared.Lstorage.setData('cartItemTitle', title);
+                this.base.shared.Lstorage.setData('cartItemPrice', price);
+                this.navCtrl.navigateRoot('/login');
+            }
+        });
     }
 };
+ProductlistPage.ctorParameters = () => [
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["LoadingController"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Platform"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Events"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["MenuController"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
+    { type: _shared_loading_service__WEBPACK_IMPORTED_MODULE_6__["LoadingService"] },
+    { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Injector"] }
+];
 ProductlistPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-productlist',
         template: __webpack_require__(/*! raw-loader!./productlist.page.html */ "./node_modules/raw-loader/index.js!./src/app/pages/productlist/productlist.page.html"),
         styles: [__webpack_require__(/*! ./productlist.page.scss */ "./src/app/pages/productlist/productlist.page.scss")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["LoadingController"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Platform"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Events"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["MenuController"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"],
+        _shared_loading_service__WEBPACK_IMPORTED_MODULE_6__["LoadingService"],
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["Injector"]])
 ], ProductlistPage);
 
 

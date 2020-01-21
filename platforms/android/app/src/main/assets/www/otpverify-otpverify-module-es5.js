@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<ion-header class=\"parallax-obj parallax-translate-obj header-transparent\">\n    <ion-toolbar>\n      <ion-buttons slot=\"start\">\n        <ion-back-button text=\"\" icon=\"ios-arrow-round-back\"></ion-back-button>\n      </ion-buttons>\n      <ion-title>Login</ion-title>\n    </ion-toolbar>\n  </ion-header>\n  \n<ion-content fullscreen common-parallax [scrollEvents]=\"true\">\n    <div class=\"wrap-login-v6 offset-top-obj\">\n        <div class=\"wrap-interval\">\n            <div text-center class=\"brand\">\n                <div class=\"pdt-50\">\n                    <img class=\"parallax-obj parallax-down-obj\" src=\"assets/images/webuy.jpeg\">\n                    <h2 no-margin class=\"txt-light fs-24 fw-700 uppercase\">WeBuy</h2>\n                    <h2 no-margin class=\"txt-light fs-46 fw-800\"></h2>\n                </div>\n            </div>\n            <div text-center class=\"main-form\">\n                <form class=\"\" novalidate>\n                    <ion-item lines=\"none\" class=\"bg-white bdra-30 shadow-1 bg-light\">\n                        <ion-input type=\"number\" placeholder=\"Enter OTP\"></ion-input>\n                    </ion-item>\n                    <br/>\n                    <ion-button expand=\"block\" shape=\"round\" color=\"primary\" class=\"txt1 mgt-10 spacing2 fw-600\" type=\"button\" (click)=\"verifyOtp()\">\n                        Submit\n                    </ion-button>\n                    <hr/>\n                    <ion-button  mode=\"ios\"size=\"small\" fill=\"clear\" class=\"txt-light fs-12\" type=\"button\">\n                        Login\n                    </ion-button>\n                </form>\n                <div class=\"bottom-form\">\n                    <ion-button mode=\"ios\" fill=\"clear\" size=\"small\" class=\"txt-light fs-12\" type=\"button\">Reset Password?</ion-button>\n                </div>\n            </div>\n        </div>\n        <div class=\"bg-img\">\n            <img src=\"assets/images/lemon25.jpg\">\n        </div>\n    </div>\n</ion-content>"
+module.exports = "\n<ion-header class=\"parallax-obj parallax-translate-obj header-transparent\">\n    <ion-toolbar>\n      <ion-buttons slot=\"start\">\n        <ion-back-button text=\"\" icon=\"ios-arrow-round-back\"></ion-back-button>\n      </ion-buttons>\n      <ion-title>Login</ion-title>\n    </ion-toolbar>\n  </ion-header>\n  \n<ion-content fullscreen common-parallax [scrollEvents]=\"true\">\n    <div class=\"wrap-login-v6 offset-top-obj\">\n        <div class=\"wrap-interval\">\n            <div text-center class=\"brand\">\n                <div class=\"pdt-50\">\n                    <img class=\"parallax-obj parallax-down-obj\" src=\"assets/images/webuy.jpeg\">\n                    <h2 no-margin class=\"txt-light fs-24 fw-700 uppercase\">WeBuy</h2>\n                    <h2 no-margin class=\"txt-light fs-46 fw-800\"></h2>\n                </div>\n            </div>\n            <div text-center class=\"main-form\">\n                \n                <ion-item lines=\"none\" class=\"bg-white bdra-30 shadow-1 bg-light\">\n                    <ion-input type=\"number\" [(ngModel)]=\"otp\" maxlength=\"10\" placeholder=\"Enter OTP\"></ion-input>\n                </ion-item>\n                <br/>\n                <ion-button expand=\"block\" shape=\"round\" color=\"primary\" class=\"txt1 mgt-10 spacing2 fw-600\" type=\"button\" (click)=\"verifyOtp()\">\n                    Submit\n                </ion-button>\n                <hr/>\n                <ion-button  mode=\"ios\"size=\"small\" fill=\"clear\" class=\"txt-light fs-12\" type=\"button\">\n                    Login\n                </ion-button>\n                \n                \n            </div>\n        </div>\n        <div class=\"bg-img\">\n            <img src=\"assets/images/lemon25.jpg\">\n        </div>\n    </div>\n</ion-content>"
 
 /***/ }),
 
@@ -119,33 +119,144 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OtpverifyPage", function() { return OtpverifyPage; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _shared_classes_base_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../_shared/_classes/base.component */ "./src/app/_shared/_classes/base.component.ts");
+/* harmony import */ var _shared_constant__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../_shared/constant */ "./src/app/_shared/constant.ts");
+/* harmony import */ var _shared_loading_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../_shared/loading.service */ "./src/app/_shared/loading.service.ts");
 
 
 
 
-var OtpverifyPage = /** @class */ (function () {
-    function OtpverifyPage(navCtrl, loadingCtrl, alertCtrl, platform, events, router) {
-        this.navCtrl = navCtrl;
-        this.loadingCtrl = loadingCtrl;
-        this.alertCtrl = alertCtrl;
-        this.platform = platform;
-        this.events = events;
-        this.router = router;
+
+
+
+
+var OtpverifyPage = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](OtpverifyPage, _super);
+    function OtpverifyPage(navCtrl, loadingCtrl, alertCtrl, platform, events, menuCtrl, toastCtrl, route, formBuilder, loading, injector) {
+        var _this = _super.call(this, injector) || this;
+        _this.navCtrl = navCtrl;
+        _this.loadingCtrl = loadingCtrl;
+        _this.alertCtrl = alertCtrl;
+        _this.platform = platform;
+        _this.events = events;
+        _this.menuCtrl = menuCtrl;
+        _this.toastCtrl = toastCtrl;
+        _this.route = route;
+        _this.formBuilder = formBuilder;
+        _this.loading = loading;
+        _this.phoneNumber = '';
+        _this.otp = '';
+        _this.tagHide = true;
+        _this.initBaseComponent();
+        return _this;
     }
     OtpverifyPage.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.queryParams.subscribe(function (params) {
+            console.log('Params', _this.router.getCurrentNavigation().extras.queryParams);
+            if (_this.router.getCurrentNavigation().extras.queryParams) {
+                _this.qParams = _this.router.getCurrentNavigation().extras.queryParams;
+                _this.phoneNumber = _this.qParams.phoneNumber;
+            }
+            else {
+                _this.base.shared.Alert.show_alert('Failed!', 'Data Not Found');
+                _this.router.navigate(['/login']);
+            }
+        });
+    };
+    OtpverifyPage.prototype.handleApiResponse = function (data) {
+        var _this = this;
+        this.loading.dismiss();
+        if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_6__["login"]) {
+            var successMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
+            this.base.shared.Lstorage.setData('isLogged', 1);
+            this.base.shared.Lstorage.setData('phoneNumber', data.result.data.phone);
+            this.base.shared.Lstorage.setData('customerId', data.result.data.customer_id);
+            this.base.shared.Lstorage.fetchData('cartLogin').then(function (cartLogin) {
+                if (cartLogin) {
+                    _this.cartLogin = cartLogin;
+                }
+            });
+            this.base.shared.Lstorage.fetchData('cartItemId').then(function (cartItemId) {
+                if (cartItemId) {
+                    _this.cartItemId = cartItemId;
+                }
+            });
+            this.base.shared.Lstorage.fetchData('cartItemTitle').then(function (cartItemTitle) {
+                if (cartItemTitle) {
+                    _this.cartItemTitle = cartItemTitle;
+                }
+            });
+            this.base.shared.Lstorage.fetchData('cartItemPrice').then(function (cartItemPrice) {
+                if (cartItemPrice) {
+                    _this.cartItemPrice = cartItemPrice;
+                }
+            });
+            if (this.cartLogin === 1) {
+                this.base.shared.Lstorage.delData('cartLogin');
+                this.base.shared.Lstorage.delData('cartItemId');
+                this.base.shared.Lstorage.delData('cartItemTitle');
+                this.base.shared.Lstorage.delData('cartItemPrice');
+                this.base.api.addToCart({
+                    customer_id: data.result.data.customer_id,
+                    product_id: this.cartItemId,
+                    product_price: this.cartItemPrice,
+                    product_title: this.cartItemTitle,
+                    ip_address: '192.168.0.1'
+                });
+            }
+            else {
+                this.router.navigateByUrl('/home', { replaceUrl: true });
+            }
+        }
+        else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_6__["addToCart"]) {
+            var successMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
+            this.base.shared.Alert.show_alert('Success', successMessage);
+            this.router.navigateByUrl('/home', { replaceUrl: true });
+        }
+    };
+    OtpverifyPage.prototype.handleApiResponseError = function (data) {
+        console.log('data', data);
+        this.loading.dismiss();
+        if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_6__["login"]) {
+            var errorMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
+            this.base.shared.Alert.show_alert('Failed!', errorMessage);
+        }
+        else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_6__["addToCart"]) {
+            var errorMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
+            this.base.shared.Alert.show_alert('Failed!', errorMessage);
+            this.router.navigateByUrl('/home', { replaceUrl: true });
+        }
     };
     OtpverifyPage.prototype.verifyOtp = function () {
-        this.router.navigateByUrl('/home');
+        if (this.phoneNumber !== null && this.phoneNumber !== '') {
+            if (this.phoneNumber.length === 10) {
+                this.loading.present();
+                this.base.api.login({ phone_number: this.phoneNumber, otp: this.otp });
+            }
+            else {
+                this.base.shared.Alert.show_alert('Failed!', ' Please enter 10 digit mobile number');
+            }
+        }
+        else {
+            this.base.shared.Alert.show_alert('Failed!', ' Please enter mobile number first ');
+        }
     };
     OtpverifyPage.ctorParameters = function () { return [
-        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"] },
-        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["LoadingController"] },
-        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"] },
-        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"] },
-        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Events"] },
-        { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] }
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["NavController"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["LoadingController"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["Platform"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["Events"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["MenuController"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ToastController"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
+        { type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"] },
+        { type: _shared_loading_service__WEBPACK_IMPORTED_MODULE_7__["LoadingService"] },
+        { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Injector"] }
     ]; };
     OtpverifyPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -153,15 +264,20 @@ var OtpverifyPage = /** @class */ (function () {
             template: __webpack_require__(/*! raw-loader!./otpverify.page.html */ "./node_modules/raw-loader/index.js!./src/app/pages/login/otpverify/otpverify.page.html"),
             styles: [__webpack_require__(/*! ./otpverify.page.scss */ "./src/app/pages/login/otpverify/otpverify.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["LoadingController"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Events"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_4__["NavController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["LoadingController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["Platform"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["Events"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["MenuController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ToastController"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"],
+            _shared_loading_service__WEBPACK_IMPORTED_MODULE_7__["LoadingService"],
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["Injector"]])
     ], OtpverifyPage);
     return OtpverifyPage;
-}());
+}(_shared_classes_base_component__WEBPACK_IMPORTED_MODULE_5__["BaseComponent"]));
 
 
 

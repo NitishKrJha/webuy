@@ -451,6 +451,964 @@ module.exports = "<ion-app>\n  <ion-split-pane contentId=\"main-content\">\n    
 
 /***/ }),
 
+/***/ "./node_modules/raw-loader/index.js!./src/app/pages/app-update/app-update.page.html":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/pages/app-update/app-update.page.html ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<ion-header translucent>\n  <ion-toolbar>\n    <ion-title color=\"medium\">Modal Content</ion-title>\n    <ion-buttons slot=\"end\" *ngIf=\"isModal==1\">\n      <ion-button (click)=\"dismissModal()\">Close</ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content fullscreen>\n  <ion-row class=\"ion-align-items-start\">\n    <ion-col>\n      <div class=\"update-icon-wraper\">\n        <span class=\"update-icon-container\"><ion-icon name=\"cloud-download\" class=\"update-icon\"></ion-icon></span>\n      </div>\n    </ion-col>\n  </ion-row>\n  <ion-row class=\"ion-align-items-center\">\n    <ion-col>\n      <div class=\"app-update-text\">\n        A newer version of mjTrack app is available\n      </div>\n    </ion-col>\n  </ion-row>\n  <ion-row class=\"ion-align-items-baseline\">\n    <ion-col size=\"12\">\n      <ion-button Expand=\"block\" fill=\"outline\" color=\"medium\" (click)=\"openmarket()\">\n        Update the App\n      </ion-button>\n    </ion-col>\n    <ion-col size=\"12\" *ngIf=\"isModal==0\">\n      <ion-button Expand=\"block\" fill=\"outline\" color=\"medium\" routerLink=\"/\">\n        Exit from App\n      </ion-button>\n    </ion-col>\n    <ion-col size=\"12\" *ngIf=\"isModal==1\" (click)=\"dismissModal()\">\n      <ion-button Expand=\"block\" fill=\"outline\" color=\"medium\" routerLink=\"/\">\n        Remind Latter\n      </ion-button>\n    </ion-col>\n  </ion-row>\n</ion-content>\n"
+
+/***/ }),
+
+/***/ "./src/app/_shared/_classes/base-api.service.ts":
+/*!******************************************************!*\
+  !*** ./src/app/_shared/_classes/base-api.service.ts ***!
+  \******************************************************/
+/*! exports provided: BaseApiService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BaseApiService", function() { return BaseApiService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var _ionic_native_device_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic-native/device/ngx */ "./node_modules/@ionic-native/device/ngx/index.js");
+/* harmony import */ var _constant__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../constant */ "./src/app/_shared/constant.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _shared_loading_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../_shared/loading.service */ "./src/app/_shared/loading.service.ts");
+/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic/storage */ "./node_modules/@ionic/storage/fesm5/ionic-storage.js");
+
+
+
+
+
+
+
+
+
+
+
+var BaseApiService = /** @class */ (function () {
+    function BaseApiService(http, platform, device, storage, router, loading) {
+        var _this = this;
+        this.http = http;
+        this.platform = platform;
+        this.device = device;
+        this.storage = storage;
+        this.router = router;
+        this.loading = loading;
+        /**
+         * contain api response
+         */
+        this.result = new rxjs__WEBPACK_IMPORTED_MODULE_4__["BehaviorSubject"]([]);
+        this.platform.ready().then(function () {
+            if (_this.platform.is('ios')) {
+                _this.apiKey = '3c99adad3c7d2847b81ea7d5a14604987dabb9b4';
+                _this.osType = 'ios';
+            }
+            else if (_this.platform.is('android')) {
+                _this.apiKey = '96e7f192383ef29f4ba042220aef873a098ba7ff';
+                _this.osType = 'android';
+            }
+            else {
+                _this.apiKey = '96e7f192383ef29f4ba042220aef873a098ba7ff';
+                _this.osType = 'android';
+            }
+            console.log('OS type here', _this.device);
+            if (_this.device.version !== undefined && _this.device.uuid !== undefined) {
+                _this.osVersion = _this.device.version;
+                _this.deviceId = _this.device.uuid;
+            }
+        });
+    }
+    /**
+     * manage all api calling
+     * @param url api endpoint
+     * @param rtype constant of unique request. you can identify a response by this
+     * @param bodydata optional, post data
+     * @param requesttype constat of GET, POST
+     */
+    BaseApiService.prototype.genericApiCall = function (url, rtype, bodydata, requesttype, json) {
+        var _this = this;
+        if (bodydata === void 0) { bodydata = null; }
+        if (requesttype === void 0) { requesttype = _constant__WEBPACK_IMPORTED_MODULE_6__["requestGet"]; }
+        if (json === void 0) { json = true; }
+        // const headers = {
+        //   headers: new HttpHeaders({
+        //     'Accept': 'application/json',
+        //     'Access-Control-Allow-Origin': '*',
+        //     'Content-Type': 'application/json'
+        //   })
+        // };
+        var headers;
+        if (rtype === 'dispatchItem') {
+            headers = this.getHeaderText(json);
+            bodydata = this.prepareRequestBodyText(bodydata);
+        }
+        else {
+            headers = this.getHeader(json);
+            bodydata = this.prepareRequestBody(bodydata);
+        }
+        switch (requesttype) {
+            case _constant__WEBPACK_IMPORTED_MODULE_6__["requestGet"]:
+                this.http.get(url, { headers: headers }).subscribe(function (data) {
+                    _this.result.next({ resultType: rtype, result: data });
+                }, function (error) {
+                    _this.handleError(error, rtype);
+                });
+                break;
+            case _constant__WEBPACK_IMPORTED_MODULE_6__["requestPost"]:
+                bodydata = bodydata ? bodydata : {};
+                this.http.post(url, bodydata, { headers: headers }).subscribe(function (data) {
+                    if (rtype === _constant__WEBPACK_IMPORTED_MODULE_6__["logout"]) {
+                        _this.finalLogout(data);
+                    }
+                    else {
+                        _this.result.next({ resultType: rtype, result: data });
+                    }
+                }, function (error) {
+                    _this.handleError(error, rtype);
+                });
+                break;
+            case _constant__WEBPACK_IMPORTED_MODULE_6__["requestPut"]:
+                bodydata = bodydata ? bodydata : {};
+                this.http.put(url, bodydata, { headers: headers }).subscribe(function (data) {
+                    _this.result.next({ resultType: rtype, result: data });
+                }, function (error) {
+                    _this.handleError(error, rtype);
+                });
+                break;
+            case _constant__WEBPACK_IMPORTED_MODULE_6__["requestDelete"]:
+                bodydata = bodydata ? bodydata : {};
+                this.http.delete(url, { headers: headers }).subscribe(function (data) {
+                    _this.result.next({ resultType: rtype, result: data });
+                }, function (error) {
+                    _this.handleError(error, rtype);
+                });
+                break;
+        }
+    };
+    /**
+     * handle http error response
+     * @param error error
+     * @param requestid requestid
+     */
+    BaseApiService.prototype.handleError = function (error, requestid) {
+        this.result.next({
+            resultType: requestid,
+            result: { status: 'failed', bstatus: 1, errorCode: 400, message: 'Bad Internet Connection' }
+        });
+    };
+    BaseApiService.prototype.setTodayDate = function (data) {
+        this.storage.set('todayDate', data.date);
+        console.log('date', data.date);
+        return true;
+    };
+    Object.defineProperty(BaseApiService.prototype, "apiResults", {
+        /**
+         * observer of api response
+         */
+        get: function () {
+            return this.result.asObservable();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * this will add header on each http request
+     */
+    BaseApiService.prototype.getHeader = function (json) {
+        if (json === void 0) { json = true; }
+        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]()
+            .set('Content-Type', 'application/x-www-form-urlencoded');
+        // {
+        //   // Accept: 'application/x-www-form-urlencoded',
+        //   // 'Access-Control-Allow-Origin': '*'
+        // };
+        // if (json) {
+        //   headers['Content-Type'] = 'application/json';
+        // }
+        return headers;
+    };
+    /**
+     * this will add header on each http request
+     */
+    BaseApiService.prototype.getHeaderText = function (json) {
+        if (json === void 0) { json = true; }
+        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]()
+            .set('Content-Type', 'text/plain');
+        // {
+        //   // Accept: 'application/x-www-form-urlencoded',
+        //   // 'Access-Control-Allow-Origin': '*'
+        // };
+        // if (json) {
+        //   headers['Content-Type'] = 'application/json';
+        // }
+        return headers;
+    };
+    /**
+     * This will add all other common parammeter to request body
+     */
+    BaseApiService.prototype.prepareRequestBody = function (bodydata) {
+        bodydata.os_type = this.osType;
+        bodydata.os_version = this.osVersion;
+        bodydata.orgId = _constant__WEBPACK_IMPORTED_MODULE_6__["ORG_ID"];
+        bodydata.contactHierId = _constant__WEBPACK_IMPORTED_MODULE_6__["CONTACT_HIER_ID"];
+        bodydata.programId = _constant__WEBPACK_IMPORTED_MODULE_6__["PROGRAM_ID"];
+        bodydata.app_ver = _constant__WEBPACK_IMPORTED_MODULE_6__["APP_VERSION"];
+        bodydata.APIkey = this.apiKey;
+        bodydata.deviceId = this.deviceId;
+        this.body = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
+        for (var key in bodydata) {
+            if (bodydata.hasOwnProperty(key)) {
+                this.body = this.body.set(key, bodydata[key]);
+            }
+        }
+        return this.body.toString();
+    };
+    BaseApiService.prototype.prepareRequestBodyText = function (bodydata) {
+        bodydata.os_type = this.osType;
+        bodydata.os_version = this.osVersion;
+        bodydata.orgId = _constant__WEBPACK_IMPORTED_MODULE_6__["ORG_ID"];
+        bodydata.contactHierId = _constant__WEBPACK_IMPORTED_MODULE_6__["CONTACT_HIER_ID"];
+        bodydata.programId = _constant__WEBPACK_IMPORTED_MODULE_6__["PROGRAM_ID"];
+        bodydata.app_ver = _constant__WEBPACK_IMPORTED_MODULE_6__["APP_VERSION"];
+        bodydata.APIkey = this.apiKey;
+        bodydata.deviceId = this.deviceId;
+        this.body = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
+        for (var key in bodydata) {
+            if (bodydata.hasOwnProperty(key)) {
+                this.body = this.body.set(key, bodydata[key]);
+            }
+        }
+        return JSON.stringify(bodydata);
+    };
+    BaseApiService.prototype.finalLogout = function (data) {
+        this.storage.clear();
+        this.loading.dismiss();
+        var navigationExtras = {
+            queryParams: {
+                pgRefresh: 1
+            }
+        };
+        this.router.navigate(['/login'], navigationExtras);
+    };
+    BaseApiService.prototype.clearAndFinalLogout = function () {
+        this.storage.clear();
+        this.router.navigate(['/login']);
+    };
+    BaseApiService.ctorParameters = function () { return [
+        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Platform"] },
+        { type: _ionic_native_device_ngx__WEBPACK_IMPORTED_MODULE_5__["Device"] },
+        { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_9__["Storage"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"] },
+        { type: _shared_loading_service__WEBPACK_IMPORTED_MODULE_8__["LoadingService"] }
+    ]; };
+    BaseApiService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Platform"],
+            _ionic_native_device_ngx__WEBPACK_IMPORTED_MODULE_5__["Device"],
+            _ionic_storage__WEBPACK_IMPORTED_MODULE_9__["Storage"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"],
+            _shared_loading_service__WEBPACK_IMPORTED_MODULE_8__["LoadingService"]])
+    ], BaseApiService);
+    return BaseApiService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/_shared/_classes/share.class.ts":
+/*!*************************************************!*\
+  !*** ./src/app/_shared/_classes/share.class.ts ***!
+  \*************************************************/
+/*! exports provided: Shared */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Shared", function() { return Shared; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/storage */ "./node_modules/@ionic/storage/fesm5/ionic-storage.js");
+/* harmony import */ var _constant__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../constant */ "./src/app/_shared/constant.ts");
+/* harmony import */ var _shared_services_datasharing_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../_shared/_services/datasharing.service */ "./src/app/_shared/_services/datasharing.service.ts");
+
+
+
+
+
+
+
+var Shared = /** @class */ (function () {
+    function Shared(alertCtrl, loadingCtrl, toastController, storage, http, modalController, dataService) {
+        var _this = this;
+        this.alertCtrl = alertCtrl;
+        this.loadingCtrl = loadingCtrl;
+        this.toastController = toastController;
+        this.storage = storage;
+        this.http = http;
+        this.modalController = modalController;
+        this.dataService = dataService;
+        this.Alert = {
+            show_alert: function (title, alertMessage) {
+                if (title === void 0) { title = 'Alert'; }
+                if (alertMessage === void 0) { alertMessage = ''; }
+                return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+                    var alert;
+                    return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                        switch (_a.label) {
+                            case 0: return [4 /*yield*/, this.alertCtrl.create({
+                                    header: title,
+                                    message: alertMessage,
+                                    buttons: ['OK']
+                                })];
+                            case 1:
+                                alert = _a.sent();
+                                return [4 /*yield*/, alert.present()];
+                            case 2: return [2 /*return*/, _a.sent()];
+                        }
+                    });
+                });
+            },
+            present_confirm: function (title, alertMessage, trueCallback, falseCallback) {
+                if (title === void 0) { title = 'Alert'; }
+                if (alertMessage === void 0) { alertMessage = ''; }
+                if (trueCallback === void 0) { trueCallback = Function; }
+                if (falseCallback === void 0) { falseCallback = Function; }
+                return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+                    var alert;
+                    return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                        switch (_a.label) {
+                            case 0: return [4 /*yield*/, this.alertCtrl.create({
+                                    header: title,
+                                    message: alertMessage,
+                                    buttons: [
+                                        {
+                                            text: 'NO',
+                                            role: 'cancel',
+                                            handler: function () {
+                                                trueCallback();
+                                            }
+                                        },
+                                        {
+                                            text: 'YES',
+                                            handler: function () {
+                                                falseCallback();
+                                            }
+                                        }
+                                    ]
+                                })];
+                            case 1:
+                                alert = _a.sent();
+                                return [4 /*yield*/, alert.present()];
+                            case 2: return [2 /*return*/, _a.sent()];
+                        }
+                    });
+                });
+            }
+        };
+        this.Modal = {
+            showModal: function (modalComponent, modalData) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+                var modal;
+                return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, this.modalController.create({
+                                component: modalComponent,
+                                componentProps: modalData
+                            })];
+                        case 1:
+                            modal = _a.sent();
+                            return [4 /*yield*/, modal.present()];
+                        case 2: return [2 /*return*/, _a.sent()];
+                    }
+                });
+            }); }
+        };
+        this.Toast = {
+            showToast: function (toastMessage, toastDuration, toastAnimated) {
+                if (toastAnimated === void 0) { toastAnimated = true; }
+                return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+                    var toast;
+                    return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                        switch (_a.label) {
+                            case 0: return [4 /*yield*/, this.toastController.create({
+                                    message: toastMessage,
+                                    duration: toastDuration,
+                                    animated: toastAnimated
+                                })];
+                            case 1:
+                                toast = _a.sent();
+                                return [4 /*yield*/, toast.present()];
+                            case 2: return [2 /*return*/, _a.sent()];
+                        }
+                    });
+                });
+            }
+        };
+        this.Lstorage = {
+            fetchData: function (key) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+                return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            if (key === 'itemList') {
+                                //console.log('1Local Item1 : ', this.storage.get(key));
+                            }
+                            return [4 /*yield*/, this.storage.get(key)];
+                        case 1: return [2 /*return*/, _a.sent()];
+                    }
+                });
+            }); },
+            setData: function (key, val) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+                return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, this.storage.set(key, val)];
+                        case 1: return [2 /*return*/, _a.sent()];
+                    }
+                });
+            }); },
+            delData: function (key) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+                return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, this.storage.remove(key)];
+                        case 1: return [2 /*return*/, _a.sent()];
+                    }
+                });
+            }); }
+        };
+        this.bgFn = {
+            syncData: function () { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+                var offKeyData;
+                var _this = this;
+                return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                    offKeyData = this.dataService.getofflineProKey();
+                    if (offKeyData !== undefined) {
+                        this.offlineProcessingKey = offKeyData;
+                    }
+                    else {
+                        this.offlineProcessingKey = [];
+                    }
+                    console.log('this.dataService.getofflineProKey()', this.dataService.getofflineProKey());
+                    this.Lstorage.fetchData('todaySyncItem').then(function (item) {
+                        console.log('item', item);
+                        if (item !== null && item !== undefined) {
+                            var localItemList = JSON.parse(item);
+                            _this.localItemListData = localItemList;
+                            console.log('localItemList', localItemList);
+                            var DISPATCH_URL = _constant__WEBPACK_IMPORTED_MODULE_5__["API_URL"] + 'v1/epod_req/dispatch';
+                            var headers = void 0;
+                            var bodydata = void 0;
+                            headers = _this.getHeaderText(true);
+                            var _loop_1 = function (key) {
+                                if (localItemList[key] !== undefined) {
+                                    console.log('Items Child ' + key, localItemList[key]);
+                                    var items = localItemList[key];
+                                    if (items.item_status === 'Dispatched' && items.postData && items.process === 0) {
+                                        bodydata = _this.prepareRequestBodyText(items.postData);
+                                        console.log('this.offlineProcessingKey', _this.offlineProcessingKey);
+                                        _this.offlineProcessingKey[key] = 1;
+                                        _this.dataService.setofflineProKey(_this.offlineProcessingKey);
+                                        var res1 = _this.http.post(DISPATCH_URL, bodydata, { headers: headers }).subscribe(function (response) {
+                                            console.log('response', response);
+                                            _this.responseCheck(response, key);
+                                        });
+                                    }
+                                    else {
+                                        console.log('Data not found', key);
+                                    }
+                                }
+                            };
+                            for (var key in localItemList) {
+                                _loop_1(key);
+                            }
+                        }
+                    });
+                    return [2 /*return*/];
+                });
+            }); }
+        };
+        this.isLoading = false;
+        this.Loader = {
+            present_loader: function () { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+                var _a;
+                var _this = this;
+                return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
+                    switch (_b.label) {
+                        case 0:
+                            _a = this;
+                            return [4 /*yield*/, this.loadingCtrl.create({
+                                    spinner: 'crescent',
+                                    message: 'Loading Please Wait...',
+                                    showBackdrop: false
+                                })];
+                        case 1:
+                            _a.loading = _b.sent();
+                            return [4 /*yield*/, this.loading.present()
+                                    .then(function () {
+                                    console.log('presented');
+                                    if (!_this.isLoading) {
+                                        _this.loading.dismiss().then(function () { return console.log('abort presenting'); });
+                                    }
+                                })];
+                        case 2: return [2 /*return*/, _b.sent()];
+                    }
+                });
+            }); },
+            dismiss_loader: function (loading) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+                return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            console.log('loader', this.loadingCtrl);
+                            this.isLoading = false;
+                            return [4 /*yield*/, this.loadingCtrl.dismiss()];
+                        case 1: return [2 /*return*/, _a.sent()];
+                    }
+                });
+            }); }
+        };
+    }
+    Shared.prototype.getHeaderText = function (json) {
+        if (json === void 0) { json = true; }
+        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]()
+            .set('Content-Type', 'text/plain');
+        return headers;
+    };
+    Shared.prototype.prepareRequestBodyText = function (bodydata) {
+        console.log('bodydata', bodydata);
+        bodydata.os_type = 'android';
+        bodydata.os_version = '';
+        bodydata.orgId = _constant__WEBPACK_IMPORTED_MODULE_5__["ORG_ID"];
+        bodydata.contactHierId = _constant__WEBPACK_IMPORTED_MODULE_5__["CONTACT_HIER_ID"];
+        bodydata.programId = _constant__WEBPACK_IMPORTED_MODULE_5__["PROGRAM_ID"];
+        bodydata.app_ver = _constant__WEBPACK_IMPORTED_MODULE_5__["APP_VERSION"];
+        bodydata.APIkey = '96e7f192383ef29f4ba042220aef873a098ba7ff';
+        bodydata.deviceId = '';
+        this.body = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpParams"]();
+        for (var key in bodydata) {
+            if (bodydata.hasOwnProperty(key)) {
+                this.body = this.body.set(key, bodydata[key]);
+            }
+        }
+        return JSON.stringify(bodydata);
+    };
+    Shared.prototype.responseCheck = function (data, key) {
+        var process = 0;
+        if (data.bstatus === 1) {
+            process = 1;
+        }
+        else {
+            if (data.msg_code === 'msg_1202') {
+                process = 1;
+            }
+            else {
+                process = 0;
+            }
+        }
+        console.log('process' + process, this.localItemListData[key]);
+        delete this.offlineProcessingKey[key];
+        this.dataService.setofflineProKey(this.offlineProcessingKey);
+        if (process === 1) {
+            delete this.localItemListData[key];
+            var saveData = {};
+            saveData = this.localItemListData;
+            this.Lstorage.setData('todaySyncItem', JSON.stringify(saveData));
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
+    Shared.ctorParameters = function () { return [
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["LoadingController"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"] },
+        { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_4__["Storage"] },
+        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"] },
+        { type: _shared_services_datasharing_service__WEBPACK_IMPORTED_MODULE_6__["DatasharingService"] }
+    ]; };
+    Shared = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["LoadingController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"],
+            _ionic_storage__WEBPACK_IMPORTED_MODULE_4__["Storage"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"],
+            _shared_services_datasharing_service__WEBPACK_IMPORTED_MODULE_6__["DatasharingService"]])
+    ], Shared);
+    return Shared;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/_shared/_services/api.service.ts":
+/*!**************************************************!*\
+  !*** ./src/app/_shared/_services/api.service.ts ***!
+  \**************************************************/
+/*! exports provided: ApiService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApiService", function() { return ApiService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _classes_base_api_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../_classes/base-api.service */ "./src/app/_shared/_classes/base-api.service.ts");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _constant__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../constant */ "./src/app/_shared/constant.ts");
+
+
+
+
+var ApiService = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](ApiService, _super);
+    function ApiService() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.otpSendUrlForRegister = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'otp_send/register';
+        _this.otpSendUrlForLogin = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'otp_send/login';
+        _this.registerUrl = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'register';
+        _this.loginWithOtpUrl = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'loginWithOtp';
+        _this.bannerUrl = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'bannerList';
+        _this.featureProductUrl = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'featureProductList';
+        _this.productUrl = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'productList';
+        _this.trendsProductUrl = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'trendsProductList';
+        _this.recentViewProductUrl = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'recentViewProductList';
+        _this.addToCartUrl = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'add_to_cart';
+        _this.cartListURL = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'getCartList';
+        _this.categoryListURL = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'allcategories';
+        _this.removeCartItemURL = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'removeCartItem';
+        _this.updateCartItemURL = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'updateCartItem';
+        return _this;
+    }
+    ApiService.prototype.otpSend = function (params) {
+        if (params === void 0) { params = {}; }
+        this.genericApiCall(this.otpSendUrlForRegister, _constant__WEBPACK_IMPORTED_MODULE_3__["sendOTP"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+    };
+    ApiService.prototype.otpSendForLogin = function (params) {
+        if (params === void 0) { params = {}; }
+        this.genericApiCall(this.otpSendUrlForLogin, _constant__WEBPACK_IMPORTED_MODULE_3__["sendOTP"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+    };
+    ApiService.prototype.register = function (params) {
+        if (params === void 0) { params = {}; }
+        this.genericApiCall(this.registerUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["register"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+    };
+    ApiService.prototype.login = function (params) {
+        if (params === void 0) { params = {}; }
+        this.genericApiCall(this.loginWithOtpUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["login"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+    };
+    ApiService.prototype.banner = function (params) {
+        if (params === void 0) { params = {}; }
+        this.genericApiCall(this.bannerUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["banner"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+    };
+    ApiService.prototype.featureProductList = function (params) {
+        if (params === void 0) { params = {}; }
+        this.genericApiCall(this.featureProductUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["featureProductList"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+    };
+    ApiService.prototype.productList = function (params) {
+        if (params === void 0) { params = {}; }
+        this.genericApiCall(this.productUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["productList"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+    };
+    ApiService.prototype.trendsProductList = function (params) {
+        if (params === void 0) { params = {}; }
+        this.genericApiCall(this.trendsProductUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["trendsProductList"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+    };
+    ApiService.prototype.recentViewProductList = function (params) {
+        if (params === void 0) { params = {}; }
+        this.genericApiCall(this.recentViewProductUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["recentViewProductList"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+    };
+    ApiService.prototype.addToCart = function (params) {
+        if (params === void 0) { params = {}; }
+        this.genericApiCall(this.addToCartUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["addToCart"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+    };
+    ApiService.prototype.cartList = function (params) {
+        if (params === void 0) { params = {}; }
+        this.genericApiCall(this.cartListURL, _constant__WEBPACK_IMPORTED_MODULE_3__["cartList"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+    };
+    ApiService.prototype.categoryList = function (params) {
+        if (params === void 0) { params = {}; }
+        this.genericApiCall(this.categoryListURL, _constant__WEBPACK_IMPORTED_MODULE_3__["categoryList"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+    };
+    ApiService.prototype.removeCartItem = function (params) {
+        if (params === void 0) { params = {}; }
+        this.genericApiCall(this.removeCartItemURL, _constant__WEBPACK_IMPORTED_MODULE_3__["removeCartItem"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+    };
+    ApiService.prototype.updateCartItem = function (params) {
+        if (params === void 0) { params = {}; }
+        this.genericApiCall(this.updateCartItemURL, _constant__WEBPACK_IMPORTED_MODULE_3__["updateCartItem"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+    };
+    ApiService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])()
+    ], ApiService);
+    return ApiService;
+}(_classes_base_api_service__WEBPACK_IMPORTED_MODULE_1__["BaseApiService"]));
+
+
+
+/***/ }),
+
+/***/ "./src/app/_shared/_services/base.service.ts":
+/*!***************************************************!*\
+  !*** ./src/app/_shared/_services/base.service.ts ***!
+  \***************************************************/
+/*! exports provided: BaseService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BaseService", function() { return BaseService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _classes_share_class__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../_classes/share.class */ "./src/app/_shared/_classes/share.class.ts");
+/* harmony import */ var _api_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./api.service */ "./src/app/_shared/_services/api.service.ts");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+
+
+var BaseService = /** @class */ (function () {
+    function BaseService(api, shared) {
+        this.api = api;
+        this.shared = shared;
+    }
+    BaseService.ctorParameters = function () { return [
+        { type: _api_service__WEBPACK_IMPORTED_MODULE_2__["ApiService"] },
+        { type: _classes_share_class__WEBPACK_IMPORTED_MODULE_1__["Shared"] }
+    ]; };
+    BaseService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Injectable"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_api_service__WEBPACK_IMPORTED_MODULE_2__["ApiService"],
+            _classes_share_class__WEBPACK_IMPORTED_MODULE_1__["Shared"]])
+    ], BaseService);
+    return BaseService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/_shared/_services/datasharing.service.ts":
+/*!**********************************************************!*\
+  !*** ./src/app/_shared/_services/datasharing.service.ts ***!
+  \**********************************************************/
+/*! exports provided: DatasharingService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DatasharingService", function() { return DatasharingService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var DatasharingService = /** @class */ (function () {
+    function DatasharingService() {
+    }
+    DatasharingService.prototype.setofflineProKey = function (offlineProKey) {
+        this.offlineProKey = offlineProKey;
+    };
+    DatasharingService.prototype.getofflineProKey = function () {
+        return this.offlineProKey;
+    };
+    DatasharingService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], DatasharingService);
+    return DatasharingService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/_shared/_services/router-storage.service.ts":
+/*!*************************************************************!*\
+  !*** ./src/app/_shared/_services/router-storage.service.ts ***!
+  \*************************************************************/
+/*! exports provided: RouterStorageService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RouterStorageService", function() { return RouterStorageService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var RouterStorageService = /** @class */ (function () {
+    function RouterStorageService() {
+    }
+    RouterStorageService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], RouterStorageService);
+    return RouterStorageService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/_shared/constant.ts":
+/*!*************************************!*\
+  !*** ./src/app/_shared/constant.ts ***!
+  \*************************************/
+/*! exports provided: API_URL, ORG_ID, CONTACT_HIER_ID, OS_TYPE, PROGRAM_ID, OS_VERSION, APP_VERSION, DEVICE_ID, API_KEY, requestGet, requestPost, requestPut, requestDelete, errorResult, loginResponse, DMS_BASE_URL, sendOTP, logout, register, login, banner, featureProductList, productList, trendsProductList, recentViewProductList, addToCart, cartList, addToWishList, categoryList, removeCartItem, updateCartItem */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "API_URL", function() { return API_URL; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ORG_ID", function() { return ORG_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CONTACT_HIER_ID", function() { return CONTACT_HIER_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OS_TYPE", function() { return OS_TYPE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PROGRAM_ID", function() { return PROGRAM_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OS_VERSION", function() { return OS_VERSION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "APP_VERSION", function() { return APP_VERSION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DEVICE_ID", function() { return DEVICE_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "API_KEY", function() { return API_KEY; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "requestGet", function() { return requestGet; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "requestPost", function() { return requestPost; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "requestPut", function() { return requestPut; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "requestDelete", function() { return requestDelete; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "errorResult", function() { return errorResult; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loginResponse", function() { return loginResponse; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DMS_BASE_URL", function() { return DMS_BASE_URL; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendOTP", function() { return sendOTP; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logout", function() { return logout; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "register", function() { return register; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "login", function() { return login; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "banner", function() { return banner; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "featureProductList", function() { return featureProductList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "productList", function() { return productList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "trendsProductList", function() { return trendsProductList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recentViewProductList", function() { return recentViewProductList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addToCart", function() { return addToCart; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cartList", function() { return cartList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addToWishList", function() { return addToWishList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "categoryList", function() { return categoryList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeCartItem", function() { return removeCartItem; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateCartItem", function() { return updateCartItem; });
+var API_URL = 'http://minisoftsolution.com/webuy/api/api/';
+var ORG_ID = '1';
+var CONTACT_HIER_ID = '183';
+var OS_TYPE = 'android';
+var PROGRAM_ID = '61';
+var OS_VERSION = '0';
+var APP_VERSION = '1.0.0';
+var DEVICE_ID = '';
+var API_KEY = '';
+var requestGet = 'getRequest';
+var requestPost = 'postRequest';
+var requestPut = 'requestPut';
+var requestDelete = 'requestDelete';
+var errorResult = 'errorResponse';
+var loginResponse = 'loginResponse';
+var DMS_BASE_URL = 'http://minisoftsolution.com/webuy/';
+var sendOTP = 'sendOTP';
+var logout = 'logout';
+var register = 'regsiter';
+var login = 'login';
+var banner = 'banner';
+var featureProductList = 'featureProductList';
+var productList = 'productList';
+var trendsProductList = 'trendsProductList';
+var recentViewProductList = 'recentViewProductList';
+var addToCart = 'addToCart';
+var cartList = 'cartList';
+var addToWishList = 'addToWishList';
+var categoryList = 'categoryList';
+var removeCartItem = 'removeCartItem';
+var updateCartItem = 'updateCartItem';
+
+
+/***/ }),
+
+/***/ "./src/app/_shared/loading.service.ts":
+/*!********************************************!*\
+  !*** ./src/app/_shared/loading.service.ts ***!
+  \********************************************/
+/*! exports provided: LoadingService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoadingService", function() { return LoadingService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+
+
+
+var LoadingService = /** @class */ (function () {
+    function LoadingService(loadingController) {
+        this.loadingController = loadingController;
+        this.isLoading = false;
+    }
+    LoadingService.prototype.present = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        this.isLoading = true;
+                        return [4 /*yield*/, this.loadingController.create({
+                                spinner: 'lines',
+                                message: 'Please wait...',
+                                duration: 5000,
+                            }).then(function (a) {
+                                a.present().then(function () {
+                                    console.log('presented');
+                                    if (!_this.isLoading) {
+                                        a.dismiss().then(function () { return console.log('abort presenting'); });
+                                    }
+                                });
+                            })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    LoadingService.prototype.dismiss = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        this.isLoading = false;
+                        return [4 /*yield*/, this.loadingController.dismiss().then(function () { return console.log('dismissed'); })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    LoadingService.ctorParameters = function () { return [
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["LoadingController"] }
+    ]; };
+    LoadingService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["LoadingController"]])
+    ], LoadingService);
+    return LoadingService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/app-routing.module.ts":
 /*!***************************************!*\
   !*** ./src/app/app-routing.module.ts ***!
@@ -470,7 +1428,7 @@ __webpack_require__.r(__webpack_exports__);
 var routes = [
     {
         path: '',
-        redirectTo: 'login',
+        redirectTo: 'home',
         pathMatch: 'full'
     },
     {
@@ -483,7 +1441,7 @@ var routes = [
     },
     {
         path: 'login',
-        loadChildren: function () { return __webpack_require__.e(/*! import() | pages-login-login-module */ "pages-login-login-module").then(__webpack_require__.bind(null, /*! ./pages/login/login.module */ "./src/app/pages/login/login.module.ts")).then(function (m) { return m.LoginPageModule; }); }
+        loadChildren: function () { return Promise.all(/*! import() | pages-login-login-module */[__webpack_require__.e("default~pages-login-login-module~pages-register-register-module"), __webpack_require__.e("pages-login-login-module")]).then(__webpack_require__.bind(null, /*! ./pages/login/login.module */ "./src/app/pages/login/login.module.ts")).then(function (m) { return m.LoginPageModule; }); }
     },
     {
         path: 'profile',
@@ -500,6 +1458,14 @@ var routes = [
     {
         path: 'productlist',
         loadChildren: function () { return __webpack_require__.e(/*! import() | pages-productlist-productlist-module */ "pages-productlist-productlist-module").then(__webpack_require__.bind(null, /*! ./pages/productlist/productlist.module */ "./src/app/pages/productlist/productlist.module.ts")).then(function (m) { return m.ProductlistPageModule; }); }
+    },
+    {
+        path: 'register',
+        loadChildren: function () { return Promise.all(/*! import() | pages-register-register-module */[__webpack_require__.e("default~pages-login-login-module~pages-register-register-module"), __webpack_require__.e("pages-register-register-module")]).then(__webpack_require__.bind(null, /*! ./pages/register/register.module */ "./src/app/pages/register/register.module.ts")).then(function (m) { return m.RegisterPageModule; }); }
+    },
+    {
+        path: 'cart',
+        loadChildren: function () { return __webpack_require__.e(/*! import() | pages-cart-cart-module */ "pages-cart-cart-module").then(__webpack_require__.bind(null, /*! ./pages/cart/cart.module */ "./src/app/pages/cart/cart.module.ts")).then(function (m) { return m.CartPageModule; }); }
     }
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -546,14 +1512,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
 /* harmony import */ var _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic-native/splash-screen/ngx */ "./node_modules/@ionic-native/splash-screen/ngx/index.js");
 /* harmony import */ var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/status-bar/ngx */ "./node_modules/@ionic-native/status-bar/ngx/index.js");
+/* harmony import */ var _shared_services_base_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./_shared/_services/base.service */ "./src/app/_shared/_services/base.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
+
 
 
 
 
 
 var AppComponent = /** @class */ (function () {
-    function AppComponent(platform, splashScreen, statusBar) {
+    function AppComponent(platform, base, router, splashScreen, statusBar) {
         this.platform = platform;
+        this.base = base;
+        this.router = router;
         this.splashScreen = splashScreen;
         this.statusBar = statusBar;
         this.appPages = [
@@ -573,6 +1545,11 @@ var AppComponent = /** @class */ (function () {
                 icon: 'list'
             },
             {
+                title: 'Cart',
+                url: '/cart',
+                icon: 'list'
+            },
+            {
                 title: 'Logout',
                 url: '/login',
                 icon: 'log-out'
@@ -589,6 +1566,8 @@ var AppComponent = /** @class */ (function () {
     };
     AppComponent.ctorParameters = function () { return [
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"] },
+        { type: _shared_services_base_service__WEBPACK_IMPORTED_MODULE_5__["BaseService"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"] },
         { type: _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__["SplashScreen"] },
         { type: _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"] }
     ]; };
@@ -599,6 +1578,8 @@ var AppComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./app.component.scss */ "./src/app/app.component.scss")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"],
+            _shared_services_base_service__WEBPACK_IMPORTED_MODULE_5__["BaseService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"],
             _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__["SplashScreen"],
             _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"]])
     ], AppComponent);
@@ -623,15 +1604,44 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
-/* harmony import */ var _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic-native/splash-screen/ngx */ "./node_modules/@ionic-native/splash-screen/ngx/index.js");
-/* harmony import */ var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic-native/status-bar/ngx */ "./node_modules/@ionic-native/status-bar/ngx/index.js");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
+/* harmony import */ var _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic-native/network/ngx */ "./node_modules/@ionic-native/network/ngx/index.js");
+/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/storage */ "./node_modules/@ionic/storage/fesm5/ionic-storage.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic-native/splash-screen/ngx */ "./node_modules/@ionic-native/splash-screen/ngx/index.js");
+/* harmony import */ var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ionic-native/status-bar/ngx */ "./node_modules/@ionic-native/status-bar/ngx/index.js");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _pages_app_update_app_update_page__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./pages/app-update/app-update.page */ "./src/app/pages/app-update/app-update.page.ts");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _ionic_native_device_ngx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @ionic-native/device/ngx */ "./node_modules/@ionic-native/device/ngx/index.js");
+/* harmony import */ var _ionic_native_market_ngx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @ionic-native/market/ngx */ "./node_modules/@ionic-native/market/ngx/index.js");
+/* harmony import */ var _shared_services_base_service__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./_shared/_services/base.service */ "./src/app/_shared/_services/base.service.ts");
+/* harmony import */ var _shared_services_api_service__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./_shared/_services/api.service */ "./src/app/_shared/_services/api.service.ts");
+/* harmony import */ var _shared_services_datasharing_service__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./_shared/_services/datasharing.service */ "./src/app/_shared/_services/datasharing.service.ts");
+/* harmony import */ var _shared_classes_share_class__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./_shared/_classes/share.class */ "./src/app/_shared/_classes/share.class.ts");
+/* harmony import */ var _shared_services_router_storage_service__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./_shared/_services/router-storage.service */ "./src/app/_shared/_services/router-storage.service.ts");
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Shared Module
 
 
 
@@ -642,22 +1652,123 @@ var AppModule = /** @class */ (function () {
     }
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-            declarations: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]],
-            entryComponents: [],
+            declarations: [_app_component__WEBPACK_IMPORTED_MODULE_11__["AppComponent"], _pages_app_update_app_update_page__WEBPACK_IMPORTED_MODULE_13__["AppUpdatePage"]],
+            entryComponents: [_pages_app_update_app_update_page__WEBPACK_IMPORTED_MODULE_13__["AppUpdatePage"]],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"],
-                _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot(),
-                _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"]
+                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_5__["BrowserAnimationsModule"],
+                _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["IonicModule"].forRoot(),
+                _ionic_storage__WEBPACK_IMPORTED_MODULE_7__["IonicStorageModule"].forRoot({
+                    name: '__epod',
+                    driverOrder: ['indexeddb', 'sqlite', 'websql']
+                }),
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_12__["AppRoutingModule"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClientModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_15__["FormsModule"],
+                _angular_common__WEBPACK_IMPORTED_MODULE_14__["CommonModule"],
             ],
             providers: [
-                _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"],
-                _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"],
-                { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"] }
+                _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_10__["StatusBar"],
+                _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_9__["SplashScreen"],
+                { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["IonicRouteStrategy"] },
+                _shared_services_api_service__WEBPACK_IMPORTED_MODULE_19__["ApiService"],
+                _shared_services_base_service__WEBPACK_IMPORTED_MODULE_18__["BaseService"],
+                _shared_services_datasharing_service__WEBPACK_IMPORTED_MODULE_20__["DatasharingService"],
+                _shared_classes_share_class__WEBPACK_IMPORTED_MODULE_21__["Shared"],
+                _ionic_native_device_ngx__WEBPACK_IMPORTED_MODULE_16__["Device"],
+                _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_6__["Network"],
+                _shared_services_router_storage_service__WEBPACK_IMPORTED_MODULE_22__["RouterStorageService"],
+                _ionic_native_market_ngx__WEBPACK_IMPORTED_MODULE_17__["Market"]
             ],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_11__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/pages/app-update/app-update.page.scss":
+/*!*******************************************************!*\
+  !*** ./src/app/pages/app-update/app-update.page.scss ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ":host .update-icon-wraper {\n  text-align: center;\n  padding: 16px 0px;\n}\n:host .update-icon-wraper .update-icon-container {\n  padding: 16px;\n  display: inline-block;\n  border: #ccc 1px solid;\n  border-radius: 50%;\n}\n:host .update-icon-wraper .update-icon {\n  color: #ccc;\n  font-size: 10rem;\n  margin: 0 auto;\n}\n:host .app-update-text {\n  padding: 16px;\n  font-size: 0.9rem;\n  color: #777;\n  font-weight: 500;\n  text-align: center;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi92YXIvaW9uaWMvd2VidXkvc3JjL2FwcC9wYWdlcy9hcHAtdXBkYXRlL2FwcC11cGRhdGUucGFnZS5zY3NzIiwic3JjL2FwcC9wYWdlcy9hcHAtdXBkYXRlL2FwcC11cGRhdGUucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNFO0VBQ0Usa0JBQUE7RUFDQSxpQkFBQTtBQ0FKO0FEQ0k7RUFDRSxhQUFBO0VBQ0EscUJBQUE7RUFDQSxzQkFBQTtFQUNBLGtCQUFBO0FDQ047QURDSTtFQUNFLFdBQUE7RUFDQSxnQkFBQTtFQUNBLGNBQUE7QUNDTjtBREVFO0VBQ0UsYUFBQTtFQUNBLGlCQUFBO0VBQ0EsV0FBQTtFQUNBLGdCQUFBO0VBQ0Esa0JBQUE7QUNBSiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL2FwcC11cGRhdGUvYXBwLXVwZGF0ZS5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdHtcbiAgLnVwZGF0ZS1pY29uLXdyYXBlcntcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgcGFkZGluZzogMTZweCAwcHg7XG4gICAgLnVwZGF0ZS1pY29uLWNvbnRhaW5lcntcbiAgICAgIHBhZGRpbmc6IDE2cHg7XG4gICAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gICAgICBib3JkZXI6ICNjY2MgMXB4IHNvbGlkO1xuICAgICAgYm9yZGVyLXJhZGl1czogNTAlO1xuICAgIH1cbiAgICAudXBkYXRlLWljb257XG4gICAgICBjb2xvcjogI2NjYztcbiAgICAgIGZvbnQtc2l6ZTogMTByZW07XG4gICAgICBtYXJnaW46IDAgYXV0bztcbiAgICB9XG4gIH1cbiAgLmFwcC11cGRhdGUtdGV4dCB7XG4gICAgcGFkZGluZzogMTZweDtcbiAgICBmb250LXNpemU6IC45cmVtO1xuICAgIGNvbG9yOiAjNzc3O1xuICAgIGZvbnQtd2VpZ2h0OiA1MDA7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICB9XG4gIFxufSIsIjpob3N0IC51cGRhdGUtaWNvbi13cmFwZXIge1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gIHBhZGRpbmc6IDE2cHggMHB4O1xufVxuOmhvc3QgLnVwZGF0ZS1pY29uLXdyYXBlciAudXBkYXRlLWljb24tY29udGFpbmVyIHtcbiAgcGFkZGluZzogMTZweDtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICBib3JkZXI6ICNjY2MgMXB4IHNvbGlkO1xuICBib3JkZXItcmFkaXVzOiA1MCU7XG59XG46aG9zdCAudXBkYXRlLWljb24td3JhcGVyIC51cGRhdGUtaWNvbiB7XG4gIGNvbG9yOiAjY2NjO1xuICBmb250LXNpemU6IDEwcmVtO1xuICBtYXJnaW46IDAgYXV0bztcbn1cbjpob3N0IC5hcHAtdXBkYXRlLXRleHQge1xuICBwYWRkaW5nOiAxNnB4O1xuICBmb250LXNpemU6IDAuOXJlbTtcbiAgY29sb3I6ICM3Nzc7XG4gIGZvbnQtd2VpZ2h0OiA1MDA7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn0iXX0= */"
+
+/***/ }),
+
+/***/ "./src/app/pages/app-update/app-update.page.ts":
+/*!*****************************************************!*\
+  !*** ./src/app/pages/app-update/app-update.page.ts ***!
+  \*****************************************************/
+/*! exports provided: AppUpdatePage */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppUpdatePage", function() { return AppUpdatePage; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _ionic_native_market_ngx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic-native/market/ngx */ "./node_modules/@ionic-native/market/ngx/index.js");
+/* harmony import */ var _shared_services_router_storage_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../_shared/_services/router-storage.service */ "./src/app/_shared/_services/router-storage.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
+
+
+
+
+
+var AppUpdatePage = /** @class */ (function () {
+    function AppUpdatePage(mdlCtrl, routStorage, route, market) {
+        this.mdlCtrl = mdlCtrl;
+        this.routStorage = routStorage;
+        this.route = route;
+        this.market = market;
+        // // Data passed in by componentProps
+        // @Input() appVersionDetails: any;
+        this.isModal = 0;
+        console.log('Route data', this.routStorage.storage);
+        if (this.routStorage.storage === undefined) {
+            this.route.navigate(['/']);
+        }
+        else {
+            this.isModal = (this.routStorage.storage.is_modal === undefined) ? 0 : 1;
+            this.appVersionDetails = this.routStorage.storage.app_version_details;
+        }
+    }
+    AppUpdatePage.prototype.dismissModal = function () {
+        this.mdlCtrl.dismiss();
+    };
+    AppUpdatePage.prototype.openmarket = function () {
+        if (this.appVersionDetails.package_name !== undefined) {
+            this.market.open(this.appVersionDetails.package_name);
+        }
+    };
+    AppUpdatePage.prototype.ngOnInit = function () {
+    };
+    AppUpdatePage.ctorParameters = function () { return [
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"] },
+        { type: _shared_services_router_storage_service__WEBPACK_IMPORTED_MODULE_4__["RouterStorageService"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] },
+        { type: _ionic_native_market_ngx__WEBPACK_IMPORTED_MODULE_3__["Market"] }
+    ]; };
+    AppUpdatePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-app-update',
+            template: __webpack_require__(/*! raw-loader!./app-update.page.html */ "./node_modules/raw-loader/index.js!./src/app/pages/app-update/app-update.page.html"),
+            styles: [__webpack_require__(/*! ./app-update.page.scss */ "./src/app/pages/app-update/app-update.page.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"],
+            _shared_services_router_storage_service__WEBPACK_IMPORTED_MODULE_4__["RouterStorageService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"],
+            _ionic_native_market_ngx__WEBPACK_IMPORTED_MODULE_3__["Market"]])
+    ], AppUpdatePage);
+    return AppUpdatePage;
 }());
 
 

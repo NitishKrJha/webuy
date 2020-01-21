@@ -7,7 +7,157 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<ion-header class=\"parallax-obj parallax-translate-obj header-transparent\">\n<ion-toolbar>\n\t<ion-buttons slot=\"start\">\n\t\t\t<ion-menu-button></ion-menu-button>\n\t<ion-back-button text=\"\" icon=\"ios-arrow-round-back\"></ion-back-button>\n\t</ion-buttons>\n\t<ion-title>Home</ion-title>\n</ion-toolbar>\n</ion-header>\n\n<ion-content fullscreen common-parallax [scrollEvents]=\"true\">\n<ion-searchbar show-cancel-button cancel-button-text=\"Product Name/Code\" color=\"dark\">\n</ion-searchbar>  \t\n\t\n<div class=\"\" padding>\n\t<!-- <h2 class=\"fs-14\">Slide with slogan</h2> -->\n\t\n\t<ion-slides pager=\"false\" class=\"slide-slogan\" [options]=\"slideSloganOpts\">\n\t\t<ion-slide>\n\t\t\t<div class=\"elmt-slide\">\n\t\t\t\t<div padding class=\"slogan\">\n\t\t\t\t\t<div padding class=\"main-txt\" text-left>\n\t\t\t\t\t\t<h2 no-margin class=\"fs-30 fw-900\">Buzz!!!</h2>\n\t\t\t\t\t\t<hr/>\n\t\t\t\t\t\t<h5 no-margin class=\"txt-light fw-600 fs-20\">Lorem Ipsum</h5>\n\t\t\t\t\t\t<p no-margin class=\"txt-light fs-12 ellipsis\">Various versions have evolved</p>\n\t\t\t\t\t\t<hr/>\n\t\t\t\t\t\t<ion-button expand=\"round\" size=\"small\" fill=\"outline\" color=\"light\" class=\"txt-light\">\n\t\t\t\t\t\t\tDetail\n\t\t\t\t\t\t\t<ion-icon slot=\"end\" name=\"arrow-dropright-circle\"></ion-icon>\n\t\t\t\t\t\t</ion-button>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"bg-img\">\n\t\t\t\t\t<img src=\"assets/images/lemon18.jpg\">\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</ion-slide>\n\t\t<ion-slide>\n\t\t\t<div class=\"elmt-slide\">\n\t\t\t\t<div padding class=\"slogan\">\n\t\t\t\t\t<div padding class=\"main-txt\" text-left>\n\t\t\t\t\t\t<h2 no-margin class=\"txt-light fs-30 fw-900\">Buzz!!!</h2>\n\t\t\t\t\t\t<hr/>\n\t\t\t\t\t\t<h5 no-margin class=\"txt-light fw-600 fs-20\">Lorem Ipsum</h5>\n\t\t\t\t\t\t<p no-margin class=\"txt-light fs-12 ellipsis\">Various versions have evolved</p>\n\t\t\t\t\t\t<hr/>\n\t\t\t\t\t\t<ion-button expand=\"round\" size=\"small\" fill=\"outline\" color=\"light\" class=\"txt-light\">\n\t\t\t\t\t\t\tDetail\n\t\t\t\t\t\t\t<ion-icon slot=\"end\" name=\"arrow-dropright-circle\"></ion-icon>\n\t\t\t\t\t\t</ion-button>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"bg-img\">\n\t\t\t\t\t\t<img src=\"assets/images/lemon18.jpg\">\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</ion-slide>\n\t\t<ion-slide>\n\t\t\t<div class=\"elmt-slide\">\n\t\t\t\t<div padding class=\"slogan\">\n\t\t\t\t\t<div padding class=\"main-txt\" text-left>\n\t\t\t\t\t\t<h2 no-margin class=\"txt-light fs-30 fw-900\">Buzz!!!</h2>\n\t\t\t\t\t\t<hr/>\n\t\t\t\t\t\t<h5 no-margin class=\"txt-light fw-600 fs-20\">Lorem Ipsum</h5>\n\t\t\t\t\t\t<p no-margin class=\"txt-light fs-12 ellipsis\">Various versions have evolved</p>\n\t\t\t\t\t\t<hr/>\n\t\t\t\t\t\t<ion-button expand=\"round\" size=\"small\" fill=\"outline\" color=\"light\" class=\"txt-light\">\n\t\t\t\t\t\t\tDetail\n\t\t\t\t\t\t\t<ion-icon slot=\"end\" name=\"arrow-dropright-circle\"></ion-icon>\n\t\t\t\t\t\t</ion-button>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"bg-img\">\n\t\t\t\t\t\t<img src=\"assets/images/lemon18.jpg\">\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</ion-slide>\n\t</ion-slides>\n</div>\n\n\n\n<div class=\"\" padding>\n\t\n\t<ion-list>\n\t\t<ion-item lines=\"none\">\n\t\t\t<ion-label>\n\t\t\t<h2 class=\"fs-20\">Top Most Item</h2>\n\t\t\t</ion-label>\n\t\t\t<ion-label text-right>\n\t\t\t\t\t<a (click)=\"viewAll()\">(View All)</a>\n\t\t\t</ion-label>\n\t\t</ion-item>\n\t</ion-list>\n\t<ion-slides pager=\"false\" class=\"slide-perview\" [options]=\"slidePerViewOpts\">\n\t\t<ion-slide>\n\t\t\t<div class=\"elmt-slide\">\n\t\t\t\t<div class=\"thumb-img\">\n\t\t\t\t\t\t<img src=\"assets/images/groce/1.jpg\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"main-txt\" text-left>\n\t\t\t\t\t<hr>\n\t\t\t\t\t<h4 no-margin class=\"txt2 fw-600 fs-12 ellipsis uppercase\">Lorem Ipsum</h4>\n\t\t\t\t\t<p no-margin class=\"txt3 fs-12 ellipsis\">Various versions have evolved</p>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</ion-slide>\n\t\t<ion-slide>\n\t\t\t<div class=\"elmt-slide\">\n\t\t\t\t<div class=\"thumb-img\">\n\t\t\t\t\t\t<img src=\"assets/images/groce/2.jpg\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"main-txt\" text-left>\n\t\t\t\t\t<hr>\n\t\t\t\t\t<h4 no-margin class=\"txt2 fw-600 fs-12 ellipsis uppercase\">Lorem Ipsum</h4>\n\t\t\t\t\t<p no-margin class=\"txt3 fs-12 ellipsis\">Various versions have evolved</p>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</ion-slide>\n\t\t<ion-slide>\n\t\t\t<div class=\"elmt-slide\">\n\t\t\t\t<div class=\"thumb-img\">\n\t\t\t\t\t\t<img src=\"assets/images/groce/3.jpg\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"main-txt\" text-left>\n\t\t\t\t\t<hr>\n\t\t\t\t\t<h4 no-margin class=\"txt2 fw-600 fs-12 ellipsis uppercase\">Lorem Ipsum</h4>\n\t\t\t\t\t<p no-margin class=\"txt3 fs-12 ellipsis\">Various versions have evolved</p>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</ion-slide>\n\t</ion-slides>\n</div>\n\n<div class=\"\" padding>\n\t<ion-list>\n\t\t<ion-item lines=\"none\">\n\t\t\t<ion-label>\n\t\t\t<h2 class=\"fs-20\">Best Rated Product</h2>\n\t\t\t</ion-label>\n\t\t\t<ion-label text-right>\n\t\t\t\t<a (click)=\"viewAll()\">(View All)</a>\n\t\t\t</ion-label>\n\t\t</ion-item>\n\t</ion-list>\n\t<ion-slides pager=\"false\" class=\"slide-perview\" [options]=\"slidePerViewOpts\">\n\t\t<ion-slide>\n\t\t\t<div class=\"elmt-slide\">\n\t\t\t\t<div class=\"thumb-img\">\n\t\t\t\t\t\t<img src=\"assets/images/groce/9.jpg\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"main-txt\" text-left>\n\t\t\t\t\t<hr>\n\t\t\t\t\t<h4 no-margin class=\"txt2 fw-600 fs-12 ellipsis uppercase\">Lorem Ipsum</h4>\n\t\t\t\t\t<p no-margin class=\"txt3 fs-12 ellipsis\">Various versions have evolved</p>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</ion-slide>\n\t\t<ion-slide>\n\t\t\t<div class=\"elmt-slide\">\n\t\t\t\t<div class=\"thumb-img\">\n\t\t\t\t\t\t<img src=\"assets/images/groce/1.jpg\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"main-txt\" text-left>\n\t\t\t\t\t<hr>\n\t\t\t\t\t<h4 no-margin class=\"txt2 fw-600 fs-12 ellipsis uppercase\">Lorem Ipsum</h4>\n\t\t\t\t\t<p no-margin class=\"txt3 fs-12 ellipsis\">Various versions have evolved</p>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</ion-slide>\n\t\t<ion-slide>\n\t\t\t<div class=\"elmt-slide\">\n\t\t\t\t<div class=\"thumb-img\">\n\t\t\t\t\t\t<img src=\"assets/images/groce/4.jpeg\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"main-txt\" text-left>\n\t\t\t\t\t<hr>\n\t\t\t\t\t<h4 no-margin class=\"txt2 fw-600 fs-12 ellipsis uppercase\">Lorem Ipsum</h4>\n\t\t\t\t\t<p no-margin class=\"txt3 fs-12 ellipsis\">Various versions have evolved</p>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</ion-slide>\n\t</ion-slides>\n</div>\n\n<div class=\"\" padding>\n\t<ion-list>\n\t\t<ion-item lines=\"none\">\n\t\t\t<ion-label>\n\t\t\t<h2 class=\"fs-20\">Latest Product</h2>\n\t\t\t</ion-label>\n\t\t\t<ion-label text-right>\n\t\t\t\t\t<a (click)=\"viewAll()\">(View All)</a>\n\t\t\t</ion-label>\n\t\t</ion-item>\n\t</ion-list>\n\t<ion-slides pager=\"false\" class=\"slide-perview\" [options]=\"slidePerViewOpts\">\n\t\t<ion-slide>\n\t\t\t<div class=\"elmt-slide\">\n\t\t\t\t<div class=\"thumb-img\">\n\t\t\t\t\t\t<img src=\"assets/images/groce/5.jpeg\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"main-txt\" text-left>\n\t\t\t\t\t<hr>\n\t\t\t\t\t<h4 no-margin class=\"txt2 fw-600 fs-12 ellipsis uppercase\">Lorem Ipsum</h4>\n\t\t\t\t\t<p no-margin class=\"txt3 fs-12 ellipsis\">Various versions have evolved</p>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</ion-slide>\n\t\t<ion-slide>\n\t\t\t<div class=\"elmt-slide\">\n\t\t\t\t<div class=\"thumb-img\">\n\t\t\t\t\t\t<img src=\"assets/images/groce/6.jpeg\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"main-txt\" text-left>\n\t\t\t\t\t<hr>\n\t\t\t\t\t<h4 no-margin class=\"txt2 fw-600 fs-12 ellipsis uppercase\">Lorem Ipsum</h4>\n\t\t\t\t\t<p no-margin class=\"txt3 fs-12 ellipsis\">Various versions have evolved</p>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</ion-slide>\n\t\t<ion-slide>\n\t\t\t<div class=\"elmt-slide\">\n\t\t\t\t<div class=\"thumb-img\">\n\t\t\t\t\t\t<img src=\"assets/images/groce/7.jpeg\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"main-txt\" text-left>\n\t\t\t\t\t<hr>\n\t\t\t\t\t<h4 no-margin class=\"txt2 fw-600 fs-12 ellipsis uppercase\">Lorem Ipsum</h4>\n\t\t\t\t\t<p no-margin class=\"txt3 fs-12 ellipsis\">Various versions have evolved</p>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</ion-slide>\n\t</ion-slides>\n</div>\n\n\n<div class=\"\" padding>\n\t<ion-list>\n\t\t<ion-item lines=\"none\">\n\t\t\t<ion-label>\n\t\t\t<h2 class=\"fs-20\">Electronic Item</h2>\n\t\t\t</ion-label>\n\t\t\t<ion-label text-right>\n\t\t\t\t\t<a (click)=\"viewAll()\">(View All)</a>\n\t\t\t</ion-label>\n\t\t</ion-item>\n\t</ion-list>\n\t<ion-slides pager=\"false\" class=\"slide-perview\" [options]=\"slidePerViewOpts\">\n\t\t<ion-slide>\n\t\t\t<div class=\"elmt-slide\">\n\t\t\t\t<div class=\"thumb-img\">\n\t\t\t\t\t\t<img src=\"assets/images/groce/9.jpg\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"main-txt\" text-left>\n\t\t\t\t\t<hr>\n\t\t\t\t\t<h4 no-margin class=\"txt2 fw-600 fs-12 ellipsis uppercase\">Lorem Ipsum</h4>\n\t\t\t\t\t<p no-margin class=\"txt3 fs-12 ellipsis\">Various versions have evolved</p>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</ion-slide>\n\t\t<ion-slide>\n\t\t\t<div class=\"elmt-slide\">\n\t\t\t\t<div class=\"thumb-img\">\n\t\t\t\t\t\t<img src=\"assets/images/groce/2.jpg\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"main-txt\" text-left>\n\t\t\t\t\t<hr>\n\t\t\t\t\t<h4 no-margin class=\"txt2 fw-600 fs-12 ellipsis uppercase\">Lorem Ipsum</h4>\n\t\t\t\t\t<p no-margin class=\"txt3 fs-12 ellipsis\">Various versions have evolved</p>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</ion-slide>\n\t\t<ion-slide>\n\t\t\t<div class=\"elmt-slide\">\n\t\t\t\t<div class=\"thumb-img\">\n\t\t\t\t\t\t<img src=\"assets/images/groce/4.jpeg\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"main-txt\" text-left>\n\t\t\t\t\t<hr>\n\t\t\t\t\t<h4 no-margin class=\"txt2 fw-600 fs-12 ellipsis uppercase\">Lorem Ipsum</h4>\n\t\t\t\t\t<p no-margin class=\"txt3 fs-12 ellipsis\">Various versions have evolved</p>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</ion-slide>\n\t</ion-slides>\n</div>\n\n\n<br/>\n\n</ion-content>\n"
+module.exports = "\n<ion-header class=\"parallax-obj parallax-translate-obj header-transparent\">\n<ion-toolbar>\n\t<ion-buttons slot=\"start\">\n\t\t\t<ion-menu-button></ion-menu-button>\n\t<ion-back-button text=\"\" icon=\"ios-arrow-round-back\"></ion-back-button>\n\t</ion-buttons>\n\t<ion-title>Home</ion-title>\n</ion-toolbar>\n</ion-header>\n\n<ion-content fullscreen common-parallax [scrollEvents]=\"true\">\n<ion-searchbar show-cancel-button cancel-button-text=\"Product Name/Code\" color=\"dark\">\n</ion-searchbar>  \t\n\t\n<div class=\"\" padding *ngIf=\"bannerList.length > 0\">\n\t<!-- <h2 class=\"fs-14\">Slide with slogan</h2> -->\n\t\n\t<ion-slides pager=\"false\" class=\"slide-slogan\" [options]=\"slideSloganOpts\">\n\t\t<ion-slide *ngFor=\"let banner of bannerList | keyvalue; let i = index;\">\n\t\t\t<div class=\"elmt-slide\">\n\t\t\t\t<div padding class=\"slogan\">\n\t\t\t\t\t<div padding class=\"main-txt\" text-left>\n\t\t\t\t\t\t<h2 no-margin class=\"fs-30 fw-900\">{{banner.value.title}}</h2>\n\t\t\t\t\t\t<hr/>\n\t\t\t\t\t\t<h5 no-margin class=\"txt-light fw-600 fs-20\">{{banner.value.title}}</h5>\n\t\t\t\t\t\t<p no-margin class=\"txt-light fs-12 ellipsis\">Various versions have evolved</p>\n\t\t\t\t\t\t<hr/>\n\t\t\t\t\t\t<ion-button expand=\"round\" size=\"small\" fill=\"outline\" color=\"light\" class=\"txt-light\">\n\t\t\t\t\t\t\tDetail\n\t\t\t\t\t\t\t<ion-icon slot=\"end\" name=\"arrow-dropright-circle\"></ion-icon>\n\t\t\t\t\t\t</ion-button>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"bg-img\">\n\t\t\t\t\t<img src=\"{{banner.value.icon_app_path}}\">\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</ion-slide>\n\t</ion-slides>\n</div>\n\n\n\n<div class=\"\" padding *ngIf=\"featureProductList.length > 0\">\n\t\n\t<ion-list>\n\t\t<ion-item lines=\"none\">\n\t\t\t<ion-label>\n\t\t\t<h2 class=\"fs-20\">Feature Product List</h2>\n\t\t\t</ion-label>\n\t\t\t<ion-label text-right>\n\t\t\t\t\t<a (click)=\"viewAll('featureProductList')\">(View All)</a>\n\t\t\t</ion-label>\n\t\t</ion-item>\n\t</ion-list>\n\t<ion-slides pager=\"false\" class=\"slide-perview\" [options]=\"slidePerViewOpts\">\n\t\t<ion-slide *ngFor=\"let fProduct of featureProductList | keyvalue; let i = index;\">\n\t\t\t<div class=\"elmt-slide\">\n\t\t\t\t<div class=\"thumb-img\">\n\t\t\t\t\t\t<img src=\"{{fProduct.value.image_path + fProduct.value.img_list[0].path_sm}}\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"main-txt\" text-left>\n\t\t\t\t\t<hr>\n\t\t\t\t\t<h4 no-margin class=\"txt2 fw-600 fs-12 ellipsis uppercase\">{{fProduct.value.title}}</h4>\n\t\t\t\t\t<p no-margin class=\"txt3 fs-12 ellipsis\">Rs. {{fProduct.value.sale_price}}</p>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</ion-slide>\n\t</ion-slides>\n</div>\n\n<div class=\"\" padding *ngIf=\"recentViewProductList.length > 0\">\n\t<ion-list>\n\t\t<ion-item lines=\"none\">\n\t\t\t<ion-label>\n\t\t\t<h2 class=\"fs-20\">Recent View Product</h2>\n\t\t\t</ion-label>\n\t\t\t<ion-label text-right>\n\t\t\t\t<a (click)=\"viewAll('recentViewProductList')\">(View All)</a>\n\t\t\t</ion-label>\n\t\t</ion-item>\n\t</ion-list>\n\t<ion-slides pager=\"false\" class=\"slide-perview\" [options]=\"slidePerViewOpts\">\n\t\t<ion-slide *ngFor=\"let item of recentViewProductList | keyvalue; let i = index;\">\n\t\t\t<div class=\"elmt-slide\">\n\t\t\t\t<div class=\"thumb-img\">\n\t\t\t\t\t<img src=\"{{item.value.image_path + item.value.img_list[0].path_sm}}\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"main-txt\" text-left>\n\t\t\t\t\t<hr>\n\t\t\t\t\t<h4 no-margin class=\"txt2 fw-600 fs-12 ellipsis uppercase\">{{item.value.title}}</h4>\n\t\t\t\t\t<p no-margin class=\"txt3 fs-12 ellipsis\">Rs. {{item.value.sale_price}}</p>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</ion-slide>\n\t</ion-slides>\n</div>\n\n<div class=\"\" padding *ngIf=\"trendsProductList.length > 0\">\n\t<ion-list>\n\t\t<ion-item lines=\"none\">\n\t\t\t<ion-label>\n\t\t\t<h2 class=\"fs-20\">Trend Product</h2>\n\t\t\t</ion-label>\n\t\t\t<ion-label text-right>\n\t\t\t\t\t<a (click)=\"viewAll('trendsProductList')\">(View All)</a>\n\t\t\t</ion-label>\n\t\t</ion-item>\n\t</ion-list>\n\t<ion-slides pager=\"false\" class=\"slide-perview\" [options]=\"slidePerViewOpts\">\n\t\t<ion-slide *ngFor=\"let item of trendsProductList | keyvalue; let i = index;\">\n\t\t\t<div class=\"elmt-slide\">\n\t\t\t\t<div class=\"thumb-img\">\n\t\t\t\t\t<img src=\"{{item.value.image_path + item.value.img_list[0].path_sm}}\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"main-txt\" text-left>\n\t\t\t\t\t<hr>\n\t\t\t\t\t<h4 no-margin class=\"txt2 fw-600 fs-12 ellipsis uppercase\">{{item.value.title}}</h4>\n\t\t\t\t\t<p no-margin class=\"txt3 fs-12 ellipsis\">Rs. {{item.value.sale_price}}</p>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</ion-slide>\n\t</ion-slides>\n</div>\n\n\n<div class=\"\" padding *ngIf=\"productList.length > 0\">\n\t<ion-list>\n\t\t<ion-item lines=\"none\">\n\t\t\t<ion-label>\n\t\t\t<h2 class=\"fs-20\">Product List</h2>\n\t\t\t</ion-label>\n\t\t\t<ion-label text-right>\n\t\t\t\t\t<a (click)=\"viewAll('productList')\">(View All)</a>\n\t\t\t</ion-label>\n\t\t</ion-item>\n\t</ion-list>\n\t<ion-slides pager=\"false\" class=\"slide-perview\" [options]=\"slidePerViewOpts\">\n\t\t<ion-slide *ngFor=\"let item of productList | keyvalue; let i = index;\">\n\t\t\t<div class=\"elmt-slide\">\n\t\t\t\t<div class=\"thumb-img\">\n\t\t\t\t\t<img src=\"{{item.value.image_path + item.value.img_list[0].path_sm}}\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"main-txt\" text-left>\n\t\t\t\t\t<hr>\n\t\t\t\t\t<h4 no-margin class=\"txt2 fw-600 fs-12 ellipsis uppercase\">{{item.value.title}}</h4>\n\t\t\t\t\t<p no-margin class=\"txt3 fs-12 ellipsis\">Rs. {{item.value.sale_price}}</p>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</ion-slide>\n\t</ion-slides>\n</div>\n\n\n<br/>\n\n</ion-content>\n"
+
+/***/ }),
+
+/***/ "./src/app/_shared/_classes/base.component.ts":
+/*!****************************************************!*\
+  !*** ./src/app/_shared/_classes/base.component.ts ***!
+  \****************************************************/
+/*! exports provided: BaseComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BaseComponent", function() { return BaseComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _services_base_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../_services/base.service */ "./src/app/_shared/_services/base.service.ts");
+/* harmony import */ var _constant__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../constant */ "./src/app/_shared/constant.ts");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic-native/network/ngx */ "./node_modules/@ionic-native/network/ngx/index.js");
+/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/storage */ "./node_modules/@ionic/storage/fesm5/ionic-storage.js");
+/* harmony import */ var _pages_app_update_app_update_page__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../pages/app-update/app-update.page */ "./src/app/pages/app-update/app-update.page.ts");
+/* harmony import */ var _services_router_storage_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../_services/router-storage.service */ "./src/app/_shared/_services/router-storage.service.ts");
+
+
+
+
+
+
+
+
+
+
+var BaseComponent = /** @class */ (function () {
+    function BaseComponent(injector) {
+        this.isUpdateNotofication = 0;
+        this.base = injector.get(_services_base_service__WEBPACK_IMPORTED_MODULE_1__["BaseService"]);
+        this.router = injector.get(_angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]);
+        this.actRoute = injector.get(_angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]);
+        this.mNetwork = injector.get(_ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_6__["Network"]);
+        this.storage = injector.get(_ionic_storage__WEBPACK_IMPORTED_MODULE_7__["Storage"]);
+        this.routStorage = injector.get(_services_router_storage_service__WEBPACK_IMPORTED_MODULE_9__["RouterStorageService"]);
+        this.platform = injector.get(_ionic_angular__WEBPACK_IMPORTED_MODULE_4__["Platform"]);
+    }
+    BaseComponent.prototype.initBaseComponent = function () {
+        var _this = this;
+        this.platform.backButton.subscribe(function () {
+            console.log('this.constructor.name', _this.constructor.name);
+            if (_this.constructor.name === 'HomePage') {
+                _this.platform.exitApp();
+            }
+        });
+        this.apiSubscription = this.base.api.result.subscribe(function (data) {
+            if (data.length !== 0) {
+                if (data.resultType === _constant__WEBPACK_IMPORTED_MODULE_2__["errorResult"]) {
+                    // If any issue produce due to network or unavailibility of host
+                    // const errorMessage = data.result.message ? data.result.message : 'something went wrong';
+                    var errorMessage = 'Something went wrong please contact with support team';
+                    _this.base.shared.Alert.show_alert('Error!', errorMessage);
+                    return true;
+                }
+                else if (data.result === undefined || data.result === null) {
+                    // const errorMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
+                    var errorMessage = 'Something went wrong please contact with support team';
+                    _this.base.shared.Alert.show_alert('Error!', errorMessage);
+                    return true;
+                }
+                else {
+                    if (data.result.app_version_details !== undefined && Object.keys(data.result.app_version_details).length > 0) {
+                        if (_this.handleAppUpdate(data)) {
+                            return false;
+                        }
+                    }
+                    if ((data.result !== undefined && data.result.status !== true)) {
+                        // If any internal issue or error occour at API which return blank or non JSON value
+                        console.log('Msg Code', data.result);
+                        // if ( data.result.msg_code === 'msg_1008') {
+                        //   this.storage.clear();
+                        //   this.router.navigate(['/login']);
+                        // }
+                        _this.handleApiResponseError(data);
+                    }
+                    else {
+                        // if ( data.result.msg_code === 'msg_1008') {
+                        //   this.storage.clear();
+                        //   this.router.navigate(['/login']);
+                        // }
+                        _this.handleApiResponse(data);
+                    }
+                }
+            }
+        });
+    };
+    /**
+     * this will handel all api response, must be override on child component
+     *
+     * @param data any
+     */
+    BaseComponent.prototype.handleApiResponse = function (data) {
+        console.log('Change Password Response333333333333333', data);
+    };
+    /**
+     * this will handel all api response error, must be override on child component
+     *
+     * @param data any
+     */
+    BaseComponent.prototype.handleApiResponseError = function (data) { };
+    /**
+     * this will handel all app update notification
+     *
+     * @param data any
+     */
+    BaseComponent.prototype.handleAppUpdate = function (data) {
+        this.routStorage.storage = {
+            app_version_details: data.result.app_version_details
+        };
+        if (data.result.app_version_details.is_force_update === '0') {
+            if (this.isUpdateNotofication === 0) {
+                this.routStorage.storage.is_modal = 1;
+                this.base.shared.Modal.showModal(_pages_app_update_app_update_page__WEBPACK_IMPORTED_MODULE_8__["AppUpdatePage"]);
+                // this.base.shared.Alert.show_alert('Warning!', data.result.app_version_details.update_message);
+                // this.isUpdateNotofication = 1;
+                return false;
+            }
+        }
+        else if (data.result.app_version_details.is_force_update === '1') {
+            this.router.navigate(['/app-update']);
+            return true;
+        }
+    };
+    BaseComponent.prototype.handleValidationError = function (data) { };
+    /**
+     * unsubscribe api response subscriber on component destroy
+     */
+    BaseComponent.prototype.ngOnDestroy = function () {
+        if (this.apiSubscription !== undefined) {
+            this.apiSubscription.unsubscribe();
+        }
+    };
+    BaseComponent.ctorParameters = function () { return [
+        { type: _angular_core__WEBPACK_IMPORTED_MODULE_3__["Injector"] }
+    ]; };
+    BaseComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Injectable"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_3__["Injector"]])
+    ], BaseComponent);
+    return BaseComponent;
+}());
+
+
 
 /***/ }),
 
@@ -84,24 +234,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomePage", function() { return HomePage; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _shared_classes_base_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../_shared/_classes/base.component */ "./src/app/_shared/_classes/base.component.ts");
+/* harmony import */ var _shared_constant__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../_shared/constant */ "./src/app/_shared/constant.ts");
+/* harmony import */ var _shared_loading_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../_shared/loading.service */ "./src/app/_shared/loading.service.ts");
 
 
 
 
-var HomePage = /** @class */ (function () {
-    function HomePage(navCtrl, loadingCtrl, alertCtrl, platform, events, router) {
-        this.navCtrl = navCtrl;
-        this.loadingCtrl = loadingCtrl;
-        this.alertCtrl = alertCtrl;
-        this.platform = platform;
-        this.events = events;
-        this.router = router;
-        this.slideSloganOpts = {
+
+
+
+var HomePage = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](HomePage, _super);
+    function HomePage(navCtrl, loadingCtrl, alertCtrl, platform, events, menuCtrl, toastCtrl, route, loading, injector) {
+        var _this = _super.call(this, injector) || this;
+        _this.navCtrl = navCtrl;
+        _this.loadingCtrl = loadingCtrl;
+        _this.alertCtrl = alertCtrl;
+        _this.platform = platform;
+        _this.events = events;
+        _this.menuCtrl = menuCtrl;
+        _this.toastCtrl = toastCtrl;
+        _this.route = route;
+        _this.loading = loading;
+        _this.bannerList = [];
+        _this.featureProductList = [];
+        _this.productList = [];
+        _this.trendsProductList = [];
+        _this.recentViewProductList = [];
+        _this.slideSloganOpts = {
             initialSlide: 1,
         };
-        this.slidePerViewOpts = {
+        _this.slidePerViewOpts = {
             speed: 1000,
             spaceBetween: 16,
             loop: true,
@@ -110,45 +276,109 @@ var HomePage = /** @class */ (function () {
             },
             slidesPerView: 3,
         };
-        this.slideThumbOpts = {
+        _this.slideThumbOpts = {
             speed: 1000,
             spaceBetween: 16,
         };
-        this.slideThinOpts = {
+        _this.slideThinOpts = {
             speed: 1000,
             loop: true,
             slidesPerView: 4,
         };
-        this.slideFreedomOpts = {
+        _this.slideFreedomOpts = {
             speed: 1000,
             spaceBetween: 16,
             loop: true,
             centeredSlides: true,
             slidesPerView: 3,
         };
-        this.slideCenterOpts = {
+        _this.slideCenterOpts = {
             speed: 1000,
             spaceBetween: 16,
             loop: true,
             slidesPerView: 3,
         };
-        this.slideSideOpts = {
+        _this.slideSideOpts = {
             speed: 1000,
             spaceBetween: 16,
             loop: true,
             slidesPerView: 3,
         };
+        _this.initBaseComponent();
+        return _this;
     }
-    HomePage.prototype.viewAll = function () {
+    HomePage.prototype.ngOnInit = function () {
+        this.base.api.banner({});
+        this.base.api.recentViewProductList({});
+        this.base.api.trendsProductList({});
+        this.base.api.featureProductList({});
+        this.base.api.productList({});
+    };
+    HomePage.prototype.handleApiResponse = function (data) {
+        if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_5__["banner"]) {
+            this.bannerList = data.result && data.result.message ? data.result.data : [];
+            console.log('bannerList', this.bannerList);
+        }
+        else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_5__["recentViewProductList"]) {
+            this.recentViewProductList = data.result && data.result.data.detail ? data.result.data.detail : [];
+            console.log('recentViewProductList', this.recentViewProductList);
+        }
+        else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_5__["trendsProductList"]) {
+            this.trendsProductList = data.result && data.result.data.detail ? data.result.data.detail : [];
+            console.log('trendsProductList', this.trendsProductList);
+        }
+        else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_5__["featureProductList"]) {
+            this.featureProductList = data.result && data.result.data.detail ? data.result.data.detail : [];
+            console.log('featureProductList', this.featureProductList);
+        }
+        else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_5__["productList"]) {
+            this.productList = data.result && data.result.data.detail ? data.result.data.detail : [];
+            console.log('productList', this.productList);
+        }
+    };
+    HomePage.prototype.handleApiResponseError = function (data) {
+        console.log('data', data);
+        if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_5__["banner"]) {
+            this.bannerList = [];
+        }
+        else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_5__["recentViewProductList"]) {
+            this.recentViewProductList = [];
+            console.log('recentViewProductList', this.recentViewProductList);
+        }
+        else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_5__["trendsProductList"]) {
+            this.trendsProductList = [];
+            console.log('trendsProductList', this.trendsProductList);
+        }
+        else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_5__["featureProductList"]) {
+            this.featureProductList = [];
+            console.log('featureProductList', this.featureProductList);
+        }
+        else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_5__["productList"]) {
+            this.productList = [];
+            console.log('productList', this.productList);
+        }
+    };
+    HomePage.prototype.viewAll = function (type) {
+        if (type === void 0) { type = ''; }
         this.router.navigateByUrl('/productlist');
+        var navigationExtras = {
+            queryParams: {
+                pageType: type
+            }
+        };
+        this.router.navigate(['/productlist'], navigationExtras);
     };
     HomePage.ctorParameters = function () { return [
-        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"] },
-        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["LoadingController"] },
-        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"] },
-        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"] },
-        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Events"] },
-        { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] }
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["LoadingController"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Platform"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Events"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["MenuController"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
+        { type: _shared_loading_service__WEBPACK_IMPORTED_MODULE_6__["LoadingService"] },
+        { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Injector"] }
     ]; };
     HomePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -156,15 +386,19 @@ var HomePage = /** @class */ (function () {
             template: __webpack_require__(/*! raw-loader!./home.page.html */ "./node_modules/raw-loader/index.js!./src/app/pages/home/home.page.html"),
             styles: [__webpack_require__(/*! ./home.page.scss */ "./src/app/pages/home/home.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["LoadingController"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Events"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["LoadingController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Platform"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Events"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["MenuController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"],
+            _shared_loading_service__WEBPACK_IMPORTED_MODULE_6__["LoadingService"],
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["Injector"]])
     ], HomePage);
     return HomePage;
-}());
+}(_shared_classes_base_component__WEBPACK_IMPORTED_MODULE_4__["BaseComponent"]));
 
 
 

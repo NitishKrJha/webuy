@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<ion-header class=\"parallax-obj parallax-translate-obj header-transparent\">\n    <ion-toolbar>\n      <ion-buttons slot=\"start\">\n        <ion-back-button text=\"\" icon=\"ios-arrow-round-back\"></ion-back-button>\n      </ion-buttons>\n      <ion-title>Login</ion-title>\n    </ion-toolbar>\n  </ion-header>\n  \n<ion-content fullscreen common-parallax [scrollEvents]=\"true\">\n    <div class=\"wrap-login-v6 offset-top-obj\">\n        <div class=\"wrap-interval\">\n            <div text-center class=\"brand\">\n                <div class=\"pdt-50\">\n                    <img class=\"parallax-obj parallax-down-obj\" src=\"assets/images/webuy.jpeg\">\n                    <h2 no-margin class=\"txt-light fs-24 fw-700 uppercase\">WeBuy</h2>\n                    <h2 no-margin class=\"txt-light fs-46 fw-800\">Login</h2>\n                </div>\n            </div>\n            <div text-center class=\"main-form\">\n                <form class=\"\" novalidate>\n                    <ion-item lines=\"none\" class=\"bg-white bdra-30 shadow-1 bg-light\">\n                        <ion-input type=\"number\" placeholder=\"Enter Mobile No.\"></ion-input>\n                    </ion-item>\n                    <br/>\n                    <ion-button expand=\"block\" shape=\"round\" color=\"primary\" class=\"txt1 mgt-10 spacing2 fw-600\" type=\"button\" (click)=\"sendOtp()\">\n                        Send OTP\n                    </ion-button>\n                    <hr/>\n                    <ion-button  mode=\"ios\"size=\"small\" fill=\"clear\" class=\"txt-light fs-12\" type=\"button\">\n                        Createte an new account?\n                    </ion-button>\n                </form>\n                <div class=\"bottom-form\">\n                    <ion-button mode=\"ios\" fill=\"clear\" size=\"small\" class=\"txt-light fs-12\" type=\"button\">Reset Password?</ion-button>\n                </div>\n            </div>\n        </div>\n        <div class=\"bg-img\">\n            <img src=\"assets/images/lemon25.jpg\">\n        </div>\n    </div>\n</ion-content>"
+module.exports = "\n<ion-header class=\"parallax-obj parallax-translate-obj header-transparent\">\n    <ion-toolbar>\n      <ion-buttons slot=\"start\">\n        <ion-back-button text=\"\" icon=\"ios-arrow-round-back\"></ion-back-button>\n      </ion-buttons>\n      <ion-title>Login</ion-title>\n    </ion-toolbar>\n  </ion-header>\n  \n<ion-content fullscreen common-parallax [scrollEvents]=\"true\">\n    <div class=\"wrap-login-v6 offset-top-obj\">\n        <div class=\"wrap-interval\">\n            <div text-center class=\"brand\">\n                <div class=\"pdt-50\">\n                    <img class=\"parallax-obj parallax-down-obj\" src=\"assets/images/webuy.jpeg\">\n                    <h2 no-margin class=\"txt-light fs-24 fw-700 uppercase\">WeBuy</h2>\n                    <h2 no-margin class=\"txt-light fs-46 fw-800\">Login</h2>\n                </div>\n            </div>\n            <div text-center class=\"main-form\">\n                \n                <ion-item lines=\"none\" class=\"bg-white bdra-30 shadow-1 bg-light\">\n                    <ion-input type=\"tel\" [(ngModel)]=\"phoneNumber\" maxlength=\"10\" placeholder=\"Enter Mobile No.\"></ion-input>\n                </ion-item>\n                <br/>\n                <ion-button expand=\"block\" shape=\"round\" color=\"primary\" class=\"txt1 mgt-10 spacing2 fw-600\" type=\"button\" (click)=\"sendOtp()\">\n                    Send OTP\n                </ion-button>\n                <hr/>\n                <ion-button  mode=\"ios\"size=\"small\" fill=\"clear\" class=\"txt-light fs-12\" type=\"button\" (click)=\"register()\">\n                    Createte an new account?\n                </ion-button>\n                \n            </div>\n        </div>\n        <div class=\"bg-img\">\n            <img src=\"assets/images/lemon25.jpg\">\n        </div>\n    </div>\n</ion-content>"
 
 /***/ }),
 
@@ -68,7 +68,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
 /* harmony import */ var _login_routing_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./login-routing.module */ "./src/app/pages/login/login-routing.module.ts");
-/* harmony import */ var _login_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./login.page */ "./src/app/pages/login/login.page.ts");
+/* harmony import */ var _shared_shared_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../_shared/shared.module */ "./src/app/_shared/shared.module.ts");
+/* harmony import */ var _login_page__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./login.page */ "./src/app/pages/login/login.page.ts");
+
 
 
 
@@ -83,10 +85,12 @@ LoginPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         imports: [
             _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"],
+            _shared_shared_module__WEBPACK_IMPORTED_MODULE_6__["SharedModule"],
             _login_routing_module__WEBPACK_IMPORTED_MODULE_5__["LoginPageRoutingModule"]
         ],
-        declarations: [_login_page__WEBPACK_IMPORTED_MODULE_6__["LoginPage"]]
+        declarations: [_login_page__WEBPACK_IMPORTED_MODULE_7__["LoginPage"]]
     })
 ], LoginPageModule);
 
@@ -117,35 +121,92 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginPage", function() { return LoginPage; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _shared_classes_base_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../_shared/_classes/base.component */ "./src/app/_shared/_classes/base.component.ts");
+/* harmony import */ var _shared_constant__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../_shared/constant */ "./src/app/_shared/constant.ts");
+/* harmony import */ var _shared_loading_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../_shared/loading.service */ "./src/app/_shared/loading.service.ts");
 
 
 
-let LoginPage = class LoginPage {
-    constructor(navCtrl, loadingCtrl, alertCtrl, platform, events) {
+
+
+
+
+
+let LoginPage = class LoginPage extends _shared_classes_base_component__WEBPACK_IMPORTED_MODULE_5__["BaseComponent"] {
+    constructor(navCtrl, loadingCtrl, alertCtrl, platform, events, menuCtrl, toastCtrl, route, formBuilder, loading, injector) {
+        super(injector);
         this.navCtrl = navCtrl;
         this.loadingCtrl = loadingCtrl;
         this.alertCtrl = alertCtrl;
         this.platform = platform;
         this.events = events;
+        this.menuCtrl = menuCtrl;
+        this.toastCtrl = toastCtrl;
+        this.route = route;
+        this.formBuilder = formBuilder;
+        this.loading = loading;
+        this.phoneNumber = '';
         this.tagHide = true;
+        this.initBaseComponent();
     }
     ngOnInit() {
     }
-    Register() {
+    register() {
+        this.navCtrl.navigateRoot('/register');
     }
     onClickForgotPassword() {
     }
+    handleApiResponse(data) {
+        this.loading.dismiss();
+        if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_6__["sendOTP"]) {
+            const successMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
+            const navigationExtras = {
+                queryParams: {
+                    phoneNumber: this.phoneNumber
+                }
+            };
+            console.log('navigationExtras', navigationExtras);
+            this.router.navigate(['/login/otpverify'], navigationExtras);
+        }
+    }
+    handleApiResponseError(data) {
+        console.log('data', data);
+        this.loading.dismiss();
+        if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_6__["sendOTP"]) {
+            const errorMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
+            this.base.shared.Alert.show_alert('Failed!', errorMessage);
+        }
+    }
     sendOtp() {
-        this.navCtrl.navigateRoot('/login/otpverify');
+        if (this.phoneNumber !== null && this.phoneNumber !== '') {
+            if (this.phoneNumber.length === 10) {
+                this.loading.present();
+                this.base.api.otpSendForLogin({ phone_number: this.phoneNumber });
+            }
+            else {
+                this.base.shared.Alert.show_alert('Failed!', ' Please enter 10 digit mobile number');
+            }
+        }
+        else {
+            this.base.shared.Alert.show_alert('Failed!', ' Please enter mobile number first ');
+        }
     }
 };
 LoginPage.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["LoadingController"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Events"] }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["NavController"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["LoadingController"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["Platform"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["Events"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["MenuController"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ToastController"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
+    { type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"] },
+    { type: _shared_loading_service__WEBPACK_IMPORTED_MODULE_7__["LoadingService"] },
+    { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Injector"] }
 ];
 LoginPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -153,11 +214,17 @@ LoginPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: __webpack_require__(/*! raw-loader!./login.page.html */ "./node_modules/raw-loader/index.js!./src/app/pages/login/login.page.html"),
         styles: [__webpack_require__(/*! ./login.page.scss */ "./src/app/pages/login/login.page.scss")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"],
-        _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["LoadingController"],
-        _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"],
-        _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"],
-        _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Events"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_4__["NavController"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["LoadingController"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["Platform"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["Events"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["MenuController"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ToastController"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"],
+        _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"],
+        _shared_loading_service__WEBPACK_IMPORTED_MODULE_7__["LoadingService"],
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["Injector"]])
 ], LoginPage);
 
 
