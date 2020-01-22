@@ -1,16 +1,37 @@
+<ion-header class="parallax-obj parallax-translate-obj header-transparent">
+  <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+      <ion-back-button text="" icon="ios-arrow-round-back"></ion-back-button>
+      </ion-buttons>
+    <ion-title>
+      Register
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button text="" icon="arrow-back"></ion-back-button>
+    </ion-buttons>
+    <!-- <ion-buttons slot="end">
+      <button ion-button small>
+        <ion-icon name="cart" class="cart-number"><ion-badge color="danger">3</ion-badge></ion-icon>
+      </button>
+      <button ion-button (click)="openFilters()">
+        <ion-icon name="funnel">
+        </ion-icon>
+      </button>
+    </ion-buttons> -->
+  </ion-toolbar>
+</ion-header>
 <ion-content padding class="ion-justify-content-center animated fadeIn login auth-page">
   <div class="theme-bg"></div>
   <div class="auth-content ion-justify-content-center ion-align-items-center">
 
-    <!-- Logo -->
-    <div padding-horizontal text-center class="animated fadeInDown">
-      <!-- <div class="logo"></div> -->
+    <!-- <div padding-horizontal text-center class="animated fadeInDown">
       <h4 no-margin>
         <ion-text color="dark" class="fw700">
-          Register
+          
         </ion-text>
       </h4>
-    </div>
+    </div> -->
 
     <!-- Login form -->
     <form [formGroup]="signupForm" class="list-form">
@@ -60,9 +81,9 @@
   
       <ion-item no-padding class="animated fadeInUp">
         <ion-label position="floating">Address 1</ion-label>
-        <ion-input type="text" formControlName="address"></ion-input>
+        <ion-input type="text" formControlName="address1"></ion-input>
       </ion-item>
-      <p ion-text class="text08" *ngIf="signupForm.get('address').touched && signupForm.get('address').hasError('required')">
+      <p ion-text class="text08" *ngIf="signupForm.get('address1').touched && signupForm.get('address1').hasError('required')">
         <ion-text color="warning">
           Required Field
         </ion-text>
@@ -72,10 +93,12 @@
         <ion-label position="floating">Address 2</ion-label>
         <ion-input type="number" formControlName="address2"></ion-input>
       </ion-item>
-  
+
       <ion-item no-padding class="animated fadeInUp">
         <ion-label position="floating">State</ion-label>
-        <ion-input type="text" formControlName="state"></ion-input>
+        <ion-select formControlName="state" placeholder="Select State" (ionChange)="selectState($event)">
+          <ion-select-option *ngFor="let v of stateList"  value="{{v.id}}">{{v.name}}</ion-select-option>
+        </ion-select>
       </ion-item>
       <p ion-text class="text08" *ngIf="signupForm.get('state').touched && signupForm.get('state').hasError('required')">
         <ion-text color="warning">
@@ -85,7 +108,9 @@
   
       <ion-item no-padding class="animated fadeInUp">
         <ion-label position="floating">City</ion-label>
-        <ion-input type="text" formControlName="city"></ion-input>
+        <ion-select formControlName="city" placeholder="Select city">
+          <ion-select-option *ngFor="let v of cityList" value="{{v.id}}">{{v.name}}</ion-select-option>
+        </ion-select>
       </ion-item>
       <p ion-text class="text08" *ngIf="signupForm.get('city').touched && signupForm.get('city').hasError('required')">
         <ion-text color="warning">
@@ -95,9 +120,9 @@
   
       <ion-item no-padding class="animated fadeInUp">
         <ion-label position="floating">Pin Code</ion-label>
-        <ion-input type="number" formControlName="pinCode"></ion-input>
+        <ion-input type="number" formControlName="pincode"></ion-input>
       </ion-item>
-      <p ion-text class="text08" *ngIf="signupForm.get('pinCode').touched && signupForm.get('pinCode').hasError('required')">
+      <p ion-text class="text08" *ngIf="signupForm.get('pincode').touched && signupForm.get('pincode').hasError('required')">
         <ion-text color="warning">
           Required Field
         </ion-text>
@@ -115,9 +140,9 @@
 
       <ion-item no-padding class="animated fadeInUp">
         <ion-label position="floating">Mobile Number</ion-label>
-        <ion-input formControlName="mobileNumber" type="number"></ion-input>
+        <ion-input formControlName="phoneNumber" type="number"></ion-input>
       </ion-item>
-      <p ion-text class="text08" *ngIf="signupForm.get('mobileNumber').touched && signupForm.get('mobileNumber').hasError('required')">
+      <p ion-text class="text08" *ngIf="signupForm.get('phoneNumber').touched && signupForm.get('phoneNumber').hasError('required')">
         <ion-text color="warning">
           Required Field
         </ion-text>
@@ -136,16 +161,17 @@
       </p>
   
       <ion-row>
-        <ion-col siz="6">
-          <ion-button icon-left size="medium" expand="full" shape="round" color="dark" (click)="doRegister()" [disabled]="!signupForm.valid" tappable>
-            
-            SignUp
-          </ion-button>
-        </ion-col>
+        
         <ion-col siz="6">
           <ion-button icon-left size="medium" expand="full" shape="round" color="dark" (click)="login()">
             <ion-icon name="log-in"></ion-icon>
             Login
+          </ion-button>
+        </ion-col>
+        <ion-col siz="6">
+          <ion-button icon-left size="medium" expand="full" shape="round" color="dark" (click)="doRegister()" [disabled]="!signupForm.valid" tappable>
+            
+            SignUp
           </ion-button>
         </ion-col>
       </ion-row>

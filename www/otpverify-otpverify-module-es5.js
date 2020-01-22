@@ -150,7 +150,22 @@ var OtpverifyPage = /** @class */ (function (_super) {
         _this.phoneNumber = '';
         _this.otp = '';
         _this.tagHide = true;
+        _this.cartLogin = 0;
         _this.initBaseComponent();
+        _this.base.shared.Lstorage.fetchData('cartLogin').then(function (datas) {
+            console.log('this.cartLogin', datas);
+            _this.cartLogin = datas;
+        });
+        _this.base.shared.Lstorage.fetchData('cartItemId').then(function (datas) {
+            _this.cartItemId = datas;
+        });
+        _this.base.shared.Lstorage.fetchData('cartItemTitle').then(function (datas) {
+            _this.cartItemTitle = datas;
+        });
+        _this.base.shared.Lstorage.fetchData('cartItemPrice').then(function (datas) {
+            _this.cartItemPrice = datas;
+        });
+        console.log('this.cartLogin3', _this.cartLogin);
         return _this;
     }
     OtpverifyPage.prototype.ngOnInit = function () {
@@ -168,33 +183,12 @@ var OtpverifyPage = /** @class */ (function (_super) {
         });
     };
     OtpverifyPage.prototype.handleApiResponse = function (data) {
-        var _this = this;
         this.loading.dismiss();
         if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_6__["login"]) {
             var successMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
             this.base.shared.Lstorage.setData('isLogged', 1);
             this.base.shared.Lstorage.setData('phoneNumber', data.result.data.phone);
             this.base.shared.Lstorage.setData('customerId', data.result.data.customer_id);
-            this.base.shared.Lstorage.fetchData('cartLogin').then(function (cartLogin) {
-                if (cartLogin) {
-                    _this.cartLogin = cartLogin;
-                }
-            });
-            this.base.shared.Lstorage.fetchData('cartItemId').then(function (cartItemId) {
-                if (cartItemId) {
-                    _this.cartItemId = cartItemId;
-                }
-            });
-            this.base.shared.Lstorage.fetchData('cartItemTitle').then(function (cartItemTitle) {
-                if (cartItemTitle) {
-                    _this.cartItemTitle = cartItemTitle;
-                }
-            });
-            this.base.shared.Lstorage.fetchData('cartItemPrice').then(function (cartItemPrice) {
-                if (cartItemPrice) {
-                    _this.cartItemPrice = cartItemPrice;
-                }
-            });
             if (this.cartLogin === 1) {
                 this.base.shared.Lstorage.delData('cartLogin');
                 this.base.shared.Lstorage.delData('cartItemId');
@@ -215,7 +209,7 @@ var OtpverifyPage = /** @class */ (function (_super) {
         else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_6__["addToCart"]) {
             var successMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
             this.base.shared.Alert.show_alert('Success', successMessage);
-            this.router.navigateByUrl('/home', { replaceUrl: true });
+            this.router.navigateByUrl('/cart', { replaceUrl: true });
         }
     };
     OtpverifyPage.prototype.handleApiResponseError = function (data) {

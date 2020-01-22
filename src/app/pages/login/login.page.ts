@@ -44,8 +44,8 @@ export class LoginPage extends BaseComponent implements OnInit  {
   }
 
   handleApiResponse(data) {
-    this.loading.dismiss();
     if (data.resultType === con.sendOTP) {
+      this.loading.dismiss();
       const successMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
       const navigationExtras: NavigationExtras = {
         queryParams: {
@@ -59,8 +59,8 @@ export class LoginPage extends BaseComponent implements OnInit  {
 
   handleApiResponseError(data) {
     console.log('data', data);
-    this.loading.dismiss();
     if (data.resultType === con.sendOTP) {
+      this.loading.dismiss();
       const errorMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
       this.base.shared.Alert.show_alert('Failed!', errorMessage);
     }

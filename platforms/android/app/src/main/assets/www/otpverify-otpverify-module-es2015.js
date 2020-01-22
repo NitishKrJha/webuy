@@ -143,7 +143,22 @@ let OtpverifyPage = class OtpverifyPage extends _shared_classes_base_component__
         this.phoneNumber = '';
         this.otp = '';
         this.tagHide = true;
+        this.cartLogin = 0;
         this.initBaseComponent();
+        this.base.shared.Lstorage.fetchData('cartLogin').then(datas => {
+            console.log('this.cartLogin', datas);
+            this.cartLogin = datas;
+        });
+        this.base.shared.Lstorage.fetchData('cartItemId').then(datas => {
+            this.cartItemId = datas;
+        });
+        this.base.shared.Lstorage.fetchData('cartItemTitle').then(datas => {
+            this.cartItemTitle = datas;
+        });
+        this.base.shared.Lstorage.fetchData('cartItemPrice').then(datas => {
+            this.cartItemPrice = datas;
+        });
+        console.log('this.cartLogin3', this.cartLogin);
     }
     ngOnInit() {
         this.route.queryParams.subscribe(params => {
@@ -165,26 +180,6 @@ let OtpverifyPage = class OtpverifyPage extends _shared_classes_base_component__
             this.base.shared.Lstorage.setData('isLogged', 1);
             this.base.shared.Lstorage.setData('phoneNumber', data.result.data.phone);
             this.base.shared.Lstorage.setData('customerId', data.result.data.customer_id);
-            this.base.shared.Lstorage.fetchData('cartLogin').then(cartLogin => {
-                if (cartLogin) {
-                    this.cartLogin = cartLogin;
-                }
-            });
-            this.base.shared.Lstorage.fetchData('cartItemId').then(cartItemId => {
-                if (cartItemId) {
-                    this.cartItemId = cartItemId;
-                }
-            });
-            this.base.shared.Lstorage.fetchData('cartItemTitle').then(cartItemTitle => {
-                if (cartItemTitle) {
-                    this.cartItemTitle = cartItemTitle;
-                }
-            });
-            this.base.shared.Lstorage.fetchData('cartItemPrice').then(cartItemPrice => {
-                if (cartItemPrice) {
-                    this.cartItemPrice = cartItemPrice;
-                }
-            });
             if (this.cartLogin === 1) {
                 this.base.shared.Lstorage.delData('cartLogin');
                 this.base.shared.Lstorage.delData('cartItemId');
@@ -205,7 +200,7 @@ let OtpverifyPage = class OtpverifyPage extends _shared_classes_base_component__
         else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_6__["addToCart"]) {
             const successMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
             this.base.shared.Alert.show_alert('Success', successMessage);
-            this.router.navigateByUrl('/home', { replaceUrl: true });
+            this.router.navigateByUrl('/cart', { replaceUrl: true });
         }
     }
     handleApiResponseError(data) {

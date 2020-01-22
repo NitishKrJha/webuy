@@ -18,7 +18,7 @@ export class OtpverifyPage extends BaseComponent implements OnInit {
   otp: any = '';
   tagHide: any = true;
   qParams: any;
-  cartLogin: any;
+  cartLogin: any = 0;
   cartItemId: any;
   cartItemTitle: any;
   cartItemPrice: any;
@@ -37,6 +37,21 @@ export class OtpverifyPage extends BaseComponent implements OnInit {
   ) {
     super(injector);
     this.initBaseComponent();
+
+    this.base.shared.Lstorage.fetchData('cartLogin').then(datas => {
+      console.log('this.cartLogin', datas);
+      this.cartLogin = datas;
+    });
+    this.base.shared.Lstorage.fetchData('cartItemId').then(datas => {
+      this.cartItemId = datas;
+    });
+    this.base.shared.Lstorage.fetchData('cartItemTitle').then(datas => {
+      this.cartItemTitle = datas;
+    });
+    this.base.shared.Lstorage.fetchData('cartItemPrice').then(datas => {
+      this.cartItemPrice = datas;
+    });
+    console.log('this.cartLogin3', this.cartLogin);
   }
 
   ngOnInit() {
@@ -59,26 +74,6 @@ export class OtpverifyPage extends BaseComponent implements OnInit {
       this.base.shared.Lstorage.setData('isLogged', 1);
       this.base.shared.Lstorage.setData('phoneNumber', data.result.data.phone);
       this.base.shared.Lstorage.setData('customerId', data.result.data.customer_id);
-      this.base.shared.Lstorage.fetchData('cartLogin').then(cartLogin => {
-        if (cartLogin) {
-         this.cartLogin = cartLogin;
-        }
-      });
-      this.base.shared.Lstorage.fetchData('cartItemId').then(cartItemId => {
-        if (cartItemId) {
-         this.cartItemId = cartItemId;
-        }
-      });
-      this.base.shared.Lstorage.fetchData('cartItemTitle').then(cartItemTitle => {
-        if (cartItemTitle) {
-         this.cartItemTitle = cartItemTitle;
-        }
-      });
-      this.base.shared.Lstorage.fetchData('cartItemPrice').then(cartItemPrice => {
-        if (cartItemPrice) {
-         this.cartItemPrice = cartItemPrice;
-        }
-      });
       if (this.cartLogin === 1) {
         this.base.shared.Lstorage.delData('cartLogin');
         this.base.shared.Lstorage.delData('cartItemId');
@@ -97,7 +92,7 @@ export class OtpverifyPage extends BaseComponent implements OnInit {
     } else if (data.resultType === con.addToCart) {
       const successMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
       this.base.shared.Alert.show_alert('Success', successMessage);
-      this.router.navigateByUrl('/home', { replaceUrl: true }) ;
+      this.router.navigateByUrl('/cart', { replaceUrl: true }) ;
     }
   }
 
@@ -118,7 +113,7 @@ export class OtpverifyPage extends BaseComponent implements OnInit {
     if (this.phoneNumber !== null && this.phoneNumber !== '') {
       if (this.phoneNumber.length === 10) {
         this.loading.present();
-        this.base.api.login({phone_number: this.phoneNumber,otp: this.otp});
+        this.base.api.login({phone_number: this.phoneNumber, otp: this.otp});
       } else {
         this.base.shared.Alert.show_alert('Failed!', ' Please enter 10 digit mobile number');
       }

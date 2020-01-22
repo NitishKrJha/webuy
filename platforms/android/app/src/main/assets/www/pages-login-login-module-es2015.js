@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<ion-header class=\"parallax-obj parallax-translate-obj header-transparent\">\n    <ion-toolbar>\n      <ion-buttons slot=\"start\">\n        <ion-back-button text=\"\" icon=\"ios-arrow-round-back\"></ion-back-button>\n      </ion-buttons>\n      <ion-title>Login</ion-title>\n    </ion-toolbar>\n  </ion-header>\n  \n<ion-content fullscreen common-parallax [scrollEvents]=\"true\">\n    <div class=\"wrap-login-v6 offset-top-obj\">\n        <div class=\"wrap-interval\">\n            <div text-center class=\"brand\">\n                <div class=\"pdt-50\">\n                    <img class=\"parallax-obj parallax-down-obj\" src=\"assets/images/webuy.jpeg\">\n                    <h2 no-margin class=\"txt-light fs-24 fw-700 uppercase\">WeBuy</h2>\n                    <h2 no-margin class=\"txt-light fs-46 fw-800\">Login</h2>\n                </div>\n            </div>\n            <div text-center class=\"main-form\">\n                \n                <ion-item lines=\"none\" class=\"bg-white bdra-30 shadow-1 bg-light\">\n                    <ion-input type=\"tel\" [(ngModel)]=\"phoneNumber\" maxlength=\"10\" placeholder=\"Enter Mobile No.\"></ion-input>\n                </ion-item>\n                <br/>\n                <ion-button expand=\"block\" shape=\"round\" color=\"primary\" class=\"txt1 mgt-10 spacing2 fw-600\" type=\"button\" (click)=\"sendOtp()\">\n                    Send OTP\n                </ion-button>\n                <hr/>\n                <ion-button  mode=\"ios\"size=\"small\" fill=\"clear\" class=\"txt-light fs-12\" type=\"button\" (click)=\"register()\">\n                    Createte an new account?\n                </ion-button>\n                \n            </div>\n        </div>\n        <div class=\"bg-img\">\n            <img src=\"assets/images/lemon25.jpg\">\n        </div>\n    </div>\n</ion-content>"
+module.exports = "\n<ion-header class=\"parallax-obj parallax-translate-obj header-transparent\">\n    <ion-toolbar>\n      <ion-buttons slot=\"start\">\n        <ion-back-button text=\"\" icon=\"ios-arrow-round-back\"></ion-back-button>\n      </ion-buttons>\n      <ion-title></ion-title>\n    </ion-toolbar>\n  </ion-header>\n  \n<ion-content fullscreen common-parallax [scrollEvents]=\"true\">\n    <div class=\"wrap-login-v6 offset-top-obj\">\n        <div class=\"wrap-interval\">\n            <div text-center class=\"brand\">\n                <div class=\"pdt-50\">\n                    <img class=\"parallax-obj parallax-down-obj\" src=\"assets/images/webuy.jpeg\">\n                    <h2 no-margin class=\"txt-light fs-24 fw-700 uppercase\">WeBuy</h2>\n                    <h2 no-margin class=\"txt-light fs-46 fw-800\">Login</h2>\n                </div>\n            </div>\n            <div text-center class=\"main-form\">\n                \n                <ion-item lines=\"none\" class=\"bg-white bdra-30 shadow-1 bg-light\">\n                    <ion-input type=\"tel\" [(ngModel)]=\"phoneNumber\" maxlength=\"10\" placeholder=\"Enter Mobile No.\"></ion-input>\n                </ion-item>\n                <br/>\n                <ion-button expand=\"block\" shape=\"round\" color=\"primary\" class=\"txt1 mgt-10 spacing2 fw-600\" type=\"button\" (click)=\"sendOtp()\">\n                    Send OTP\n                </ion-button>\n                <hr/>\n                <ion-button  mode=\"ios\"size=\"small\" fill=\"clear\" class=\"txt-light fs-12\" type=\"button\" (click)=\"register()\">\n                    Createte an new account?\n                </ion-button>\n                \n            </div>\n        </div>\n        <div class=\"bg-img\">\n            <img src=\"assets/images/lemon25.jpg\">\n        </div>\n    </div>\n</ion-content>"
 
 /***/ }),
 
@@ -160,8 +160,8 @@ let LoginPage = class LoginPage extends _shared_classes_base_component__WEBPACK_
     onClickForgotPassword() {
     }
     handleApiResponse(data) {
-        this.loading.dismiss();
         if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_6__["sendOTP"]) {
+            this.loading.dismiss();
             const successMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
             const navigationExtras = {
                 queryParams: {
@@ -174,8 +174,8 @@ let LoginPage = class LoginPage extends _shared_classes_base_component__WEBPACK_
     }
     handleApiResponseError(data) {
         console.log('data', data);
-        this.loading.dismiss();
         if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_6__["sendOTP"]) {
+            this.loading.dismiss();
             const errorMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
             this.base.shared.Alert.show_alert('Failed!', errorMessage);
         }

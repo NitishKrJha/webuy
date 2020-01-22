@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-content padding class=\"ion-justify-content-center animated fadeIn login auth-page\">\n  <div class=\"theme-bg\"></div>\n  <div class=\"auth-content ion-justify-content-center ion-align-items-center\">\n\n    <!-- Logo -->\n    <div padding-horizontal text-center class=\"animated fadeInDown\">\n      <!-- <div class=\"logo\"></div> -->\n      <h4 no-margin>\n        <ion-text color=\"dark\" class=\"fw700\">\n          Register\n        </ion-text>\n      </h4>\n    </div>\n\n    <!-- Login form -->\n    <form [formGroup]=\"signupForm\" class=\"list-form\">\n      <ion-item no-padding class=\"animated fadeInUp\">\n        <ion-label position=\"floating\">Full name</ion-label>\n        <ion-input type=\"text\" formControlName=\"name\" [class.invalid]=\"!signupForm.controls.name.valid && signupForm.controls.name.dirty\"></ion-input>\n      </ion-item>\n      <p ion-text class=\"text08\" *ngIf=\"signupForm.get('name').touched && signupForm.get('name').hasError('required')\">\n        <ion-text color=\"warning\">\n          Required Field\n        </ion-text>\n      </p>\n      \n  \n      <ion-item no-padding class=\"animated fadeInUp\">\n        <ion-label position=\"floating\">Email</ion-label>\n        <ion-input formControlName=\"email\" type=\"email\"></ion-input>\n      </ion-item>\n      <p ion-text class=\"text08\" *ngIf=\"signupForm.get('email').touched && signupForm.get('email').hasError('required')\">\n        <ion-text color=\"warning\">\n          Required Field\n        </ion-text>\n      </p>\n  \n      <ion-item no-padding class=\"animated fadeInUp\">\n        <ion-label position=\"floating\">Gender</ion-label>\n        <ion-select formControlName=\"gender\" placeholder=\"Select Gender\">\n          <ion-select-option value=\"female\">Female</ion-select-option>\n          <ion-select-option value=\"male\">Male</ion-select-option>\n        </ion-select>\n      </ion-item>\n      <p ion-text class=\"text08\" *ngIf=\"signupForm.get('gender').touched && signupForm.get('gender').hasError('required')\">\n        <ion-text color=\"warning\">\n          Required Field\n        </ion-text>\n      </p>\n  \n      <ion-item no-padding class=\"animated fadeInUp\">\n        <ion-label position=\"floating\">DOB</ion-label>\n        <ion-input type=\"date\" formControlName=\"dob\"></ion-input>\n      </ion-item>\n      <p ion-text class=\"text08\" *ngIf=\"signupForm.get('dob').touched && signupForm.get('dob').hasError('required')\">\n        <ion-text color=\"warning\">\n          Required Field\n        </ion-text>\n      </p>\n  \n      <ion-item no-padding class=\"animated fadeInUp\">\n        <ion-label position=\"floating\">Address 1</ion-label>\n        <ion-input type=\"text\" formControlName=\"address\"></ion-input>\n      </ion-item>\n      <p ion-text class=\"text08\" *ngIf=\"signupForm.get('address').touched && signupForm.get('address').hasError('required')\">\n        <ion-text color=\"warning\">\n          Required Field\n        </ion-text>\n      </p>\n  \n      <ion-item no-padding class=\"animated fadeInUp\">\n        <ion-label position=\"floating\">Address 2</ion-label>\n        <ion-input type=\"number\" formControlName=\"address2\"></ion-input>\n      </ion-item>\n  \n      <ion-item no-padding class=\"animated fadeInUp\">\n        <ion-label position=\"floating\">State</ion-label>\n        <ion-input type=\"text\" formControlName=\"state\"></ion-input>\n      </ion-item>\n      <p ion-text class=\"text08\" *ngIf=\"signupForm.get('state').touched && signupForm.get('state').hasError('required')\">\n        <ion-text color=\"warning\">\n          Required Field\n        </ion-text>\n      </p>\n  \n      <ion-item no-padding class=\"animated fadeInUp\">\n        <ion-label position=\"floating\">City</ion-label>\n        <ion-input type=\"text\" formControlName=\"city\"></ion-input>\n      </ion-item>\n      <p ion-text class=\"text08\" *ngIf=\"signupForm.get('city').touched && signupForm.get('city').hasError('required')\">\n        <ion-text color=\"warning\">\n          Required Field\n        </ion-text>\n      </p>\n  \n      <ion-item no-padding class=\"animated fadeInUp\">\n        <ion-label position=\"floating\">Pin Code</ion-label>\n        <ion-input type=\"number\" formControlName=\"pinCode\"></ion-input>\n      </ion-item>\n      <p ion-text class=\"text08\" *ngIf=\"signupForm.get('pinCode').touched && signupForm.get('pinCode').hasError('required')\">\n        <ion-text color=\"warning\">\n          Required Field\n        </ion-text>\n      </p>\n  \n      <ion-item no-padding class=\"animated fadeInUp\">\n        <ion-label position=\"floating\">Profession</ion-label>\n        <ion-input type=\"text\" formControlName=\"profession\"></ion-input>\n      </ion-item>\n      <p ion-text class=\"text08\" *ngIf=\"signupForm.get('profession').touched && signupForm.get('profession').hasError('required')\">\n        <ion-text color=\"warning\">\n          Required Field\n        </ion-text>\n      </p>\n\n      <ion-item no-padding class=\"animated fadeInUp\">\n        <ion-label position=\"floating\">Mobile Number</ion-label>\n        <ion-input formControlName=\"mobileNumber\" type=\"number\"></ion-input>\n      </ion-item>\n      <p ion-text class=\"text08\" *ngIf=\"signupForm.get('mobileNumber').touched && signupForm.get('mobileNumber').hasError('required')\">\n        <ion-text color=\"warning\">\n          Required Field\n        </ion-text>\n      </p>\n      \n\n      <ion-item no-padding class=\"animated fadeInUp\" *ngIf=\"otpSend=='1'\">\n        <ion-label position=\"floating\">OTP</ion-label>\n        <ion-input formControlName=\"otp\" type=\"number\"></ion-input>\n      </ion-item>\n\n      <p text-right tappable class=\"paz\">\n        <ion-text color=\"dark\" (click)=\"getOtp()\">\n          <strong>({{otpSendName}})</strong>\n        </ion-text>\n      </p>\n  \n      <ion-row>\n        <ion-col siz=\"6\">\n          <ion-button icon-left size=\"medium\" expand=\"full\" shape=\"round\" color=\"dark\" (click)=\"doRegister()\" [disabled]=\"!signupForm.valid\" tappable>\n            \n            SignUp\n          </ion-button>\n        </ion-col>\n        <ion-col siz=\"6\">\n          <ion-button icon-left size=\"medium\" expand=\"full\" shape=\"round\" color=\"dark\" (click)=\"login()\">\n            <ion-icon name=\"log-in\"></ion-icon>\n            Login\n          </ion-button>\n        </ion-col>\n      </ion-row>\n    </form>\n\n  </div>\n</ion-content>"
+module.exports = "<ion-header class=\"parallax-obj parallax-translate-obj header-transparent\">\n  <ion-toolbar color=\"primary\">\n      <ion-buttons slot=\"start\">\n          <ion-menu-button></ion-menu-button>\n      <ion-back-button text=\"\" icon=\"ios-arrow-round-back\"></ion-back-button>\n      </ion-buttons>\n    <ion-title>\n      Register\n    </ion-title>\n    <ion-buttons slot=\"start\">\n      <ion-back-button text=\"\" icon=\"arrow-back\"></ion-back-button>\n    </ion-buttons>\n    <!-- <ion-buttons slot=\"end\">\n      <button ion-button small>\n        <ion-icon name=\"cart\" class=\"cart-number\"><ion-badge color=\"danger\">3</ion-badge></ion-icon>\n      </button>\n      <button ion-button (click)=\"openFilters()\">\n        <ion-icon name=\"funnel\">\n        </ion-icon>\n      </button>\n    </ion-buttons> -->\n  </ion-toolbar>\n</ion-header>\n<ion-content padding class=\"ion-justify-content-center animated fadeIn login auth-page\">\n  <div class=\"theme-bg\"></div>\n  <div class=\"auth-content ion-justify-content-center ion-align-items-center\">\n\n    <!-- <div padding-horizontal text-center class=\"animated fadeInDown\">\n      <h4 no-margin>\n        <ion-text color=\"dark\" class=\"fw700\">\n          \n        </ion-text>\n      </h4>\n    </div> -->\n\n    <!-- Login form -->\n    <form [formGroup]=\"signupForm\" class=\"list-form\">\n      <ion-item no-padding class=\"animated fadeInUp\">\n        <ion-label position=\"floating\">Full name</ion-label>\n        <ion-input type=\"text\" formControlName=\"name\" [class.invalid]=\"!signupForm.controls.name.valid && signupForm.controls.name.dirty\"></ion-input>\n      </ion-item>\n      <p ion-text class=\"text08\" *ngIf=\"signupForm.get('name').touched && signupForm.get('name').hasError('required')\">\n        <ion-text color=\"warning\">\n          Required Field\n        </ion-text>\n      </p>\n      \n  \n      <ion-item no-padding class=\"animated fadeInUp\">\n        <ion-label position=\"floating\">Email</ion-label>\n        <ion-input formControlName=\"email\" type=\"email\"></ion-input>\n      </ion-item>\n      <p ion-text class=\"text08\" *ngIf=\"signupForm.get('email').touched && signupForm.get('email').hasError('required')\">\n        <ion-text color=\"warning\">\n          Required Field\n        </ion-text>\n      </p>\n  \n      <ion-item no-padding class=\"animated fadeInUp\">\n        <ion-label position=\"floating\">Gender</ion-label>\n        <ion-select formControlName=\"gender\" placeholder=\"Select Gender\">\n          <ion-select-option value=\"female\">Female</ion-select-option>\n          <ion-select-option value=\"male\">Male</ion-select-option>\n        </ion-select>\n      </ion-item>\n      <p ion-text class=\"text08\" *ngIf=\"signupForm.get('gender').touched && signupForm.get('gender').hasError('required')\">\n        <ion-text color=\"warning\">\n          Required Field\n        </ion-text>\n      </p>\n  \n      <ion-item no-padding class=\"animated fadeInUp\">\n        <ion-label position=\"floating\">DOB</ion-label>\n        <ion-input type=\"date\" formControlName=\"dob\"></ion-input>\n      </ion-item>\n      <p ion-text class=\"text08\" *ngIf=\"signupForm.get('dob').touched && signupForm.get('dob').hasError('required')\">\n        <ion-text color=\"warning\">\n          Required Field\n        </ion-text>\n      </p>\n  \n      <ion-item no-padding class=\"animated fadeInUp\">\n        <ion-label position=\"floating\">Address 1</ion-label>\n        <ion-input type=\"text\" formControlName=\"address1\"></ion-input>\n      </ion-item>\n      <p ion-text class=\"text08\" *ngIf=\"signupForm.get('address1').touched && signupForm.get('address1').hasError('required')\">\n        <ion-text color=\"warning\">\n          Required Field\n        </ion-text>\n      </p>\n  \n      <ion-item no-padding class=\"animated fadeInUp\">\n        <ion-label position=\"floating\">Address 2</ion-label>\n        <ion-input type=\"number\" formControlName=\"address2\"></ion-input>\n      </ion-item>\n\n      <ion-item no-padding class=\"animated fadeInUp\">\n        <ion-label position=\"floating\">State</ion-label>\n        <ion-select formControlName=\"state\" placeholder=\"Select State\" (ionChange)=\"selectState($event)\">\n          <ion-select-option *ngFor=\"let v of stateList\"  value=\"{{v.id}}\">{{v.name}}</ion-select-option>\n        </ion-select>\n      </ion-item>\n      <p ion-text class=\"text08\" *ngIf=\"signupForm.get('state').touched && signupForm.get('state').hasError('required')\">\n        <ion-text color=\"warning\">\n          Required Field\n        </ion-text>\n      </p>\n  \n      <ion-item no-padding class=\"animated fadeInUp\">\n        <ion-label position=\"floating\">City</ion-label>\n        <ion-select formControlName=\"city\" placeholder=\"Select city\">\n          <ion-select-option *ngFor=\"let v of cityList\" value=\"{{v.id}}\">{{v.name}}</ion-select-option>\n        </ion-select>\n      </ion-item>\n      <p ion-text class=\"text08\" *ngIf=\"signupForm.get('city').touched && signupForm.get('city').hasError('required')\">\n        <ion-text color=\"warning\">\n          Required Field\n        </ion-text>\n      </p>\n  \n      <ion-item no-padding class=\"animated fadeInUp\">\n        <ion-label position=\"floating\">Pin Code</ion-label>\n        <ion-input type=\"number\" formControlName=\"pincode\"></ion-input>\n      </ion-item>\n      <p ion-text class=\"text08\" *ngIf=\"signupForm.get('pincode').touched && signupForm.get('pincode').hasError('required')\">\n        <ion-text color=\"warning\">\n          Required Field\n        </ion-text>\n      </p>\n  \n      <ion-item no-padding class=\"animated fadeInUp\">\n        <ion-label position=\"floating\">Profession</ion-label>\n        <ion-input type=\"text\" formControlName=\"profession\"></ion-input>\n      </ion-item>\n      <p ion-text class=\"text08\" *ngIf=\"signupForm.get('profession').touched && signupForm.get('profession').hasError('required')\">\n        <ion-text color=\"warning\">\n          Required Field\n        </ion-text>\n      </p>\n\n      <ion-item no-padding class=\"animated fadeInUp\">\n        <ion-label position=\"floating\">Mobile Number</ion-label>\n        <ion-input formControlName=\"phoneNumber\" type=\"number\"></ion-input>\n      </ion-item>\n      <p ion-text class=\"text08\" *ngIf=\"signupForm.get('phoneNumber').touched && signupForm.get('phoneNumber').hasError('required')\">\n        <ion-text color=\"warning\">\n          Required Field\n        </ion-text>\n      </p>\n      \n\n      <ion-item no-padding class=\"animated fadeInUp\" *ngIf=\"otpSend=='1'\">\n        <ion-label position=\"floating\">OTP</ion-label>\n        <ion-input formControlName=\"otp\" type=\"number\"></ion-input>\n      </ion-item>\n\n      <p text-right tappable class=\"paz\">\n        <ion-text color=\"dark\" (click)=\"getOtp()\">\n          <strong>({{otpSendName}})</strong>\n        </ion-text>\n      </p>\n  \n      <ion-row>\n        \n        <ion-col siz=\"6\">\n          <ion-button icon-left size=\"medium\" expand=\"full\" shape=\"round\" color=\"dark\" (click)=\"login()\">\n            <ion-icon name=\"log-in\"></ion-icon>\n            Login\n          </ion-button>\n        </ion-col>\n        <ion-col siz=\"6\">\n          <ion-button icon-left size=\"medium\" expand=\"full\" shape=\"round\" color=\"dark\" (click)=\"doRegister()\" [disabled]=\"!signupForm.valid\" tappable>\n            \n            SignUp\n          </ion-button>\n        </ion-col>\n      </ion-row>\n    </form>\n\n  </div>\n</ion-content>"
 
 /***/ }),
 
@@ -148,39 +148,43 @@ let RegisterPage = class RegisterPage extends _shared_classes_base_component__WE
         this.tagHide = true;
         this.otpSend = '0';
         this.otpSendName = 'Send OTP';
+        this.countryList = [];
+        this.stateList = [];
+        this.cityList = [];
         this.initBaseComponent();
         this.signupForm = formBuilder.group({
             email: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].email])],
             name: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required])],
-            mobileNumber: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required])],
+            phoneNumber: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required])],
             gender: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required])],
             dob: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required])],
-            address: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required])],
+            address1: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required])],
             address2: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].compose([])],
             state: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required])],
             city: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required])],
-            pinCode: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required])],
+            pincode: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required])],
             profession: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required])]
         });
     }
     ngOnInit() {
+        this.base.api.stateList(101);
     }
     handleApiResponse(data) {
-        this.loading.dismiss();
         if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_6__["sendOTP"]) {
+            this.loading.dismiss();
             const successMessage = data.result && data.result.message ? data.result.message : 'OTP send successully';
-            if (data.result.status === 1) {
+            if (data.result.status === true) {
                 this.signupForm = this.formBuilder.group({
                     email: [this.signupForm.value.email, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].email])],
                     name: [this.signupForm.value.name, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required])],
-                    mobileNumber: [this.signupForm.value.mobileNumber, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required])],
+                    phoneNumber: [this.signupForm.value.phoneNumber, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required])],
                     gender: [this.signupForm.value.gender, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required])],
                     dob: [this.signupForm.value.dob, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required])],
-                    address: [this.signupForm.value.address, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required])],
+                    address1: [this.signupForm.value.address1, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required])],
                     address2: [this.signupForm.value.address2, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].compose([])],
                     state: [this.signupForm.value.state, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required])],
                     city: [this.signupForm.value.city, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required])],
-                    pinCode: [this.signupForm.value.pinCode, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required])],
+                    pincode: [this.signupForm.value.pincode, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required])],
                     profession: [this.signupForm.value.profession, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required])],
                     otp: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required])]
                 });
@@ -189,18 +193,44 @@ let RegisterPage = class RegisterPage extends _shared_classes_base_component__WE
             this.base.shared.Alert.show_alert('Success', successMessage);
         }
         else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_6__["register"]) {
+            this.loading.dismiss();
             const successMessage = data.result && data.result.message ? data.result.message : 'Registration Successfully';
             this.base.shared.Alert.show_alert('Success', successMessage);
+        }
+        else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_6__["countryList"]) {
+            this.countryList = data.result && data.result.data ? data.result.data : [];
+        }
+        else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_6__["stateList"]) {
+            this.stateList = data.result && data.result.data ? data.result.data : [];
+        }
+        else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_6__["cityList"]) {
+            this.cityList = data.result && data.result.data ? data.result.data : [];
         }
     }
     handleApiResponseError(data) {
         console.log('data', data);
-        this.loading.dismiss();
-        const errorMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
-        this.base.shared.Alert.show_alert('Failed!', errorMessage);
+        if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_6__["sendOTP"]) {
+            this.loading.dismiss();
+            const errorMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
+            this.base.shared.Alert.show_alert('Failed!', errorMessage);
+        }
+        else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_6__["register"]) {
+            this.loading.dismiss();
+            const errorMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
+            this.base.shared.Alert.show_alert('Failed!', errorMessage);
+        }
+        else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_6__["countryList"]) {
+            this.countryList = [];
+        }
+        else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_6__["stateList"]) {
+            this.stateList = [];
+        }
+        else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_6__["cityList"]) {
+            this.cityList = [];
+        }
     }
     getOtp() {
-        this.phoneNumber = this.signupForm.value.mobileNumber;
+        this.phoneNumber = this.signupForm.value.phoneNumber;
         if (this.phoneNumber !== null && this.phoneNumber !== '') {
             if (this.phoneNumber.toString().length === 10) {
                 this.loading.present();
@@ -218,12 +248,22 @@ let RegisterPage = class RegisterPage extends _shared_classes_base_component__WE
         this.navCtrl.navigateRoot('/login');
     }
     doRegister() {
-        if (!this.signupForm.valid) {
-            this.base.shared.Alert.show_alert('Failed!', 'Please enter a valid details');
+        if (this.otpSend === '1') {
+            if (!this.signupForm.valid) {
+                this.base.shared.Alert.show_alert('Failed!', 'Please enter a valid details');
+            }
+            else {
+                this.loading.present();
+                this.base.api.register(this.signupForm.value);
+            }
         }
         else {
-            console.log('Form data', this.signupForm.value);
-            this.base.api.register(this.signupForm.value);
+            this.base.shared.Alert.show_alert('Failed!', 'Mobile Number is not verified yet');
+        }
+    }
+    selectState(event) {
+        if (event.target.value) {
+            this.base.api.cityList(event.target.value);
         }
     }
 };

@@ -441,7 +441,7 @@ module.exports = webpackAsyncContext;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-app>\n  <ion-split-pane contentId=\"main-content\">\n    <ion-menu contentId=\"main-content\" type=\"overlay\">\n      <ion-header>\n        <ion-toolbar>\n          <ion-title>Menu</ion-title>\n        </ion-toolbar>\n      </ion-header>\n      <ion-content>\n        <ion-list>\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages\">\n            <ion-item [routerDirection]=\"'root'\" [routerLink]=\"[p.url]\">\n              <ion-icon slot=\"start\" [name]=\"p.icon\"></ion-icon>\n              <ion-label>\n                {{p.title}}\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>\n"
+module.exports = "<ion-app>\n  <ion-split-pane contentId=\"main-content\">\n    <ion-menu contentId=\"main-content\" type=\"overlay\">\n      <ion-header>\n        <ion-toolbar>\n          <ion-title>Menu</ion-title>\n        </ion-toolbar>\n      </ion-header>\n      <ion-content>\n        <ion-list>\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages\">\n            <ion-item [routerDirection]=\"'root'\" [routerLink]=\"[p.url]\">\n              <ion-icon slot=\"start\" [name]=\"p.icon\"></ion-icon>\n              <ion-label>\n                {{p.title}}\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n          <ion-menu-toggle auto-hide=\"false\" *ngIf=\"customerId != 1\">\n            <ion-item (click)=\"login()\">\n              <ion-icon slot=\"start\" name=\"log-out\"></ion-icon>\n              <ion-label>\n                Login\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n          <ion-menu-toggle auto-hide=\"false\" *ngIf=\"customerId == 1\">\n            <ion-item (click)=\"logout()\">\n              <ion-icon slot=\"start\" name=\"log-out\"></ion-icon>\n              <ion-label>\n                Logout\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>\n"
 
 /***/ }),
 
@@ -703,6 +703,154 @@ BaseApiService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         _angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"],
         _shared_loading_service__WEBPACK_IMPORTED_MODULE_8__["LoadingService"]])
 ], BaseApiService);
+
+
+
+/***/ }),
+
+/***/ "./src/app/_shared/_classes/base.component.ts":
+/*!****************************************************!*\
+  !*** ./src/app/_shared/_classes/base.component.ts ***!
+  \****************************************************/
+/*! exports provided: BaseComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BaseComponent", function() { return BaseComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _services_base_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../_services/base.service */ "./src/app/_shared/_services/base.service.ts");
+/* harmony import */ var _constant__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../constant */ "./src/app/_shared/constant.ts");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic-native/network/ngx */ "./node_modules/@ionic-native/network/ngx/index.js");
+/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/storage */ "./node_modules/@ionic/storage/fesm2015/ionic-storage.js");
+/* harmony import */ var _pages_app_update_app_update_page__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../pages/app-update/app-update.page */ "./src/app/pages/app-update/app-update.page.ts");
+/* harmony import */ var _services_router_storage_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../_services/router-storage.service */ "./src/app/_shared/_services/router-storage.service.ts");
+
+
+
+
+
+
+
+
+
+
+let BaseComponent = class BaseComponent {
+    constructor(injector) {
+        this.isUpdateNotofication = 0;
+        this.base = injector.get(_services_base_service__WEBPACK_IMPORTED_MODULE_1__["BaseService"]);
+        this.router = injector.get(_angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]);
+        this.actRoute = injector.get(_angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]);
+        this.mNetwork = injector.get(_ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_6__["Network"]);
+        this.storage = injector.get(_ionic_storage__WEBPACK_IMPORTED_MODULE_7__["Storage"]);
+        this.routStorage = injector.get(_services_router_storage_service__WEBPACK_IMPORTED_MODULE_9__["RouterStorageService"]);
+        this.platform = injector.get(_ionic_angular__WEBPACK_IMPORTED_MODULE_4__["Platform"]);
+    }
+    initBaseComponent() {
+        this.platform.backButton.subscribe(() => {
+            console.log('this.constructor.name', this.constructor.name);
+            if (this.constructor.name === 'HomePage') {
+                this.platform.exitApp();
+            }
+        });
+        this.apiSubscription = this.base.api.result.subscribe((data) => {
+            if (data.length !== 0) {
+                if (data.resultType === _constant__WEBPACK_IMPORTED_MODULE_2__["errorResult"]) {
+                    // If any issue produce due to network or unavailibility of host
+                    // const errorMessage = data.result.message ? data.result.message : 'something went wrong';
+                    const errorMessage = 'Something went wrong please contact with support team';
+                    this.base.shared.Alert.show_alert('Error!', errorMessage);
+                    return true;
+                }
+                else if (data.result === undefined || data.result === null) {
+                    // const errorMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
+                    const errorMessage = 'Something went wrong please contact with support team';
+                    this.base.shared.Alert.show_alert('Error!', errorMessage);
+                    return true;
+                }
+                else {
+                    if (data.result.app_version_details !== undefined && Object.keys(data.result.app_version_details).length > 0) {
+                        if (this.handleAppUpdate(data)) {
+                            return false;
+                        }
+                    }
+                    if ((data.result !== undefined && data.result.status !== true)) {
+                        // If any internal issue or error occour at API which return blank or non JSON value
+                        console.log('Msg Code', data.result);
+                        // if ( data.result.msg_code === 'msg_1008') {
+                        //   this.storage.clear();
+                        //   this.router.navigate(['/login']);
+                        // }
+                        this.handleApiResponseError(data);
+                    }
+                    else {
+                        // if ( data.result.msg_code === 'msg_1008') {
+                        //   this.storage.clear();
+                        //   this.router.navigate(['/login']);
+                        // }
+                        this.handleApiResponse(data);
+                    }
+                }
+            }
+        });
+    }
+    /**
+     * this will handel all api response, must be override on child component
+     *
+     * @param data any
+     */
+    handleApiResponse(data) {
+        console.log('Change Password Response333333333333333', data);
+    }
+    /**
+     * this will handel all api response error, must be override on child component
+     *
+     * @param data any
+     */
+    handleApiResponseError(data) { }
+    /**
+     * this will handel all app update notification
+     *
+     * @param data any
+     */
+    handleAppUpdate(data) {
+        this.routStorage.storage = {
+            app_version_details: data.result.app_version_details
+        };
+        if (data.result.app_version_details.is_force_update === '0') {
+            if (this.isUpdateNotofication === 0) {
+                this.routStorage.storage.is_modal = 1;
+                this.base.shared.Modal.showModal(_pages_app_update_app_update_page__WEBPACK_IMPORTED_MODULE_8__["AppUpdatePage"]);
+                // this.base.shared.Alert.show_alert('Warning!', data.result.app_version_details.update_message);
+                // this.isUpdateNotofication = 1;
+                return false;
+            }
+        }
+        else if (data.result.app_version_details.is_force_update === '1') {
+            this.router.navigate(['/app-update']);
+            return true;
+        }
+    }
+    handleValidationError(data) { }
+    /**
+     * unsubscribe api response subscriber on component destroy
+     */
+    ngOnDestroy() {
+        if (this.apiSubscription !== undefined) {
+            this.apiSubscription.unsubscribe();
+        }
+    }
+};
+BaseComponent.ctorParameters = () => [
+    { type: _angular_core__WEBPACK_IMPORTED_MODULE_3__["Injector"] }
+];
+BaseComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Injectable"])(),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_3__["Injector"]])
+], BaseComponent);
 
 
 
@@ -983,6 +1131,10 @@ let ApiService = class ApiService extends _classes_base_api_service__WEBPACK_IMP
         this.categoryListURL = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'allcategories';
         this.removeCartItemURL = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'removeCartItem';
         this.updateCartItemURL = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'updateCartItem';
+        this.productDetailURL = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'productDetail';
+        this.countryListURL = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'countryList';
+        this.stateListURL = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'stateList';
+        this.cityListURL = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'cityList';
     }
     otpSend(params = {}) {
         this.genericApiCall(this.otpSendUrlForRegister, _constant__WEBPACK_IMPORTED_MODULE_3__["sendOTP"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
@@ -1025,6 +1177,18 @@ let ApiService = class ApiService extends _classes_base_api_service__WEBPACK_IMP
     }
     updateCartItem(params = {}) {
         this.genericApiCall(this.updateCartItemURL, _constant__WEBPACK_IMPORTED_MODULE_3__["updateCartItem"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+    }
+    productDetail(params = {}) {
+        this.genericApiCall(this.productDetailURL, _constant__WEBPACK_IMPORTED_MODULE_3__["productDetail"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+    }
+    cityList(id) {
+        this.genericApiCall(this.cityListURL + '/' + id, _constant__WEBPACK_IMPORTED_MODULE_3__["cityList"], {}, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+    }
+    stateList(id) {
+        this.genericApiCall(this.stateListURL + '/' + id, _constant__WEBPACK_IMPORTED_MODULE_3__["stateList"], {}, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+    }
+    countryList() {
+        this.genericApiCall(this.countryListURL, _constant__WEBPACK_IMPORTED_MODULE_3__["countryList"], {}, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
     }
 };
 ApiService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -1137,7 +1301,7 @@ RouterStorageService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*!*************************************!*\
   !*** ./src/app/_shared/constant.ts ***!
   \*************************************/
-/*! exports provided: API_URL, ORG_ID, CONTACT_HIER_ID, OS_TYPE, PROGRAM_ID, OS_VERSION, APP_VERSION, DEVICE_ID, API_KEY, requestGet, requestPost, requestPut, requestDelete, errorResult, loginResponse, DMS_BASE_URL, sendOTP, logout, register, login, banner, featureProductList, productList, trendsProductList, recentViewProductList, addToCart, cartList, addToWishList, categoryList, removeCartItem, updateCartItem */
+/*! exports provided: API_URL, ORG_ID, CONTACT_HIER_ID, OS_TYPE, PROGRAM_ID, OS_VERSION, APP_VERSION, DEVICE_ID, API_KEY, requestGet, requestPost, requestPut, requestDelete, errorResult, loginResponse, DMS_BASE_URL, sendOTP, logout, register, login, banner, featureProductList, productList, trendsProductList, recentViewProductList, addToCart, cartList, addToWishList, categoryList, removeCartItem, updateCartItem, productDetail, countryList, stateList, cityList */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1173,7 +1337,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "categoryList", function() { return categoryList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeCartItem", function() { return removeCartItem; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateCartItem", function() { return updateCartItem; });
-const API_URL = 'http://minisoftsolution.com/webuy/api/api/';
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "productDetail", function() { return productDetail; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "countryList", function() { return countryList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "stateList", function() { return stateList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cityList", function() { return cityList; });
+const API_URL = 'https://minisoftsolution.com/webuy/api/api/';
 const ORG_ID = '1';
 const CONTACT_HIER_ID = '183';
 const OS_TYPE = 'android';
@@ -1188,7 +1356,7 @@ const requestPut = 'requestPut';
 const requestDelete = 'requestDelete';
 const errorResult = 'errorResponse';
 const loginResponse = 'loginResponse';
-const DMS_BASE_URL = 'http://minisoftsolution.com/webuy/';
+const DMS_BASE_URL = 'https://minisoftsolution.com/webuy/';
 const sendOTP = 'sendOTP';
 const logout = 'logout';
 const register = 'regsiter';
@@ -1204,6 +1372,10 @@ const addToWishList = 'addToWishList';
 const categoryList = 'categoryList';
 const removeCartItem = 'removeCartItem';
 const updateCartItem = 'updateCartItem';
+const productDetail = 'productDetail';
+const countryList = 'countryList';
+const stateList = 'stateList';
+const cityList = 'cityList';
 
 
 /***/ }),
@@ -1299,7 +1471,7 @@ const routes = [
     },
     {
         path: 'login',
-        loadChildren: () => Promise.all(/*! import() | pages-login-login-module */[__webpack_require__.e("default~pages-login-login-module~pages-register-register-module"), __webpack_require__.e("pages-login-login-module")]).then(__webpack_require__.bind(null, /*! ./pages/login/login.module */ "./src/app/pages/login/login.module.ts")).then(m => m.LoginPageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-login-login-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-login-login-module")]).then(__webpack_require__.bind(null, /*! ./pages/login/login.module */ "./src/app/pages/login/login.module.ts")).then(m => m.LoginPageModule)
     },
     {
         path: 'profile',
@@ -1319,11 +1491,15 @@ const routes = [
     },
     {
         path: 'register',
-        loadChildren: () => Promise.all(/*! import() | pages-register-register-module */[__webpack_require__.e("default~pages-login-login-module~pages-register-register-module"), __webpack_require__.e("pages-register-register-module")]).then(__webpack_require__.bind(null, /*! ./pages/register/register.module */ "./src/app/pages/register/register.module.ts")).then(m => m.RegisterPageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-register-register-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-register-register-module")]).then(__webpack_require__.bind(null, /*! ./pages/register/register.module */ "./src/app/pages/register/register.module.ts")).then(m => m.RegisterPageModule)
     },
     {
         path: 'cart',
         loadChildren: () => __webpack_require__.e(/*! import() | pages-cart-cart-module */ "pages-cart-cart-module").then(__webpack_require__.bind(null, /*! ./pages/cart/cart.module */ "./src/app/pages/cart/cart.module.ts")).then(m => m.CartPageModule)
+    },
+    {
+        path: 'productdetail',
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-productdetail-productdetail-module */ "pages-productdetail-productdetail-module").then(__webpack_require__.bind(null, /*! ./pages/productdetail/productdetail.module */ "./src/app/pages/productdetail/productdetail.module.ts")).then(m => m.ProductdetailPageModule)
     }
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -1367,8 +1543,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
 /* harmony import */ var _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic-native/splash-screen/ngx */ "./node_modules/@ionic-native/splash-screen/ngx/index.js");
 /* harmony import */ var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/status-bar/ngx */ "./node_modules/@ionic-native/status-bar/ngx/index.js");
-/* harmony import */ var _shared_services_base_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./_shared/_services/base.service */ "./src/app/_shared/_services/base.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic-native/network/ngx */ "./node_modules/@ionic-native/network/ngx/index.js");
+/* harmony import */ var _shared_classes_base_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./_shared/_classes/base.component */ "./src/app/_shared/_classes/base.component.ts");
+/* harmony import */ var _shared_loading_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./_shared/loading.service */ "./src/app/_shared/loading.service.ts");
 
 
 
@@ -1376,13 +1553,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-let AppComponent = class AppComponent {
-    constructor(platform, base, router, splashScreen, statusBar) {
+
+let AppComponent = class AppComponent extends _shared_classes_base_component__WEBPACK_IMPORTED_MODULE_6__["BaseComponent"] {
+    constructor(platform, splashScreen, statusBar, navCtrl, network, modalCtrl, loading, menu, actionSheetCtrl, popoverCtrl, injector) {
+        super(injector);
         this.platform = platform;
-        this.base = base;
-        this.router = router;
         this.splashScreen = splashScreen;
         this.statusBar = statusBar;
+        this.navCtrl = navCtrl;
+        this.network = network;
+        this.modalCtrl = modalCtrl;
+        this.loading = loading;
+        this.menu = menu;
+        this.actionSheetCtrl = actionSheetCtrl;
+        this.popoverCtrl = popoverCtrl;
+        this.customerId = 0;
+        this.initializeApp();
         this.appPages = [
             {
                 title: 'Home',
@@ -1403,14 +1589,11 @@ let AppComponent = class AppComponent {
                 title: 'Cart',
                 url: '/cart',
                 icon: 'list'
-            },
-            {
-                title: 'Logout',
-                url: '/login',
-                icon: 'log-out'
             }
         ];
-        this.initializeApp();
+        this.base.shared.Lstorage.fetchData('customerId').then(datas => {
+            this.customerId = datas;
+        });
     }
     initializeApp() {
         this.platform.ready().then(() => {
@@ -1418,13 +1601,31 @@ let AppComponent = class AppComponent {
             this.splashScreen.hide();
         });
     }
+    login() {
+        this.router.navigateByUrl('/login', { replaceUrl: true });
+    }
+    logout() {
+        this.base.shared.Lstorage.delData('cartLogin');
+        this.base.shared.Lstorage.delData('cartItemId');
+        this.base.shared.Lstorage.delData('cartItemTitle');
+        this.base.shared.Lstorage.delData('cartItemPrice');
+        this.base.shared.Lstorage.delData('isLogged');
+        this.base.shared.Lstorage.delData('customerId');
+        this.router.navigateByUrl('/login', { replaceUrl: true });
+    }
 };
 AppComponent.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"] },
-    { type: _shared_services_base_service__WEBPACK_IMPORTED_MODULE_5__["BaseService"] },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"] },
     { type: _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__["SplashScreen"] },
-    { type: _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"] }
+    { type: _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"] },
+    { type: _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_5__["Network"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"] },
+    { type: _shared_loading_service__WEBPACK_IMPORTED_MODULE_7__["LoadingService"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["MenuController"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ActionSheetController"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["PopoverController"] },
+    { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Injector"] }
 ];
 AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1433,10 +1634,16 @@ AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         styles: [__webpack_require__(/*! ./app.component.scss */ "./src/app/app.component.scss")]
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"],
-        _shared_services_base_service__WEBPACK_IMPORTED_MODULE_5__["BaseService"],
-        _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"],
         _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__["SplashScreen"],
-        _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"]])
+        _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"],
+        _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_5__["Network"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"],
+        _shared_loading_service__WEBPACK_IMPORTED_MODULE_7__["LoadingService"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["MenuController"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ActionSheetController"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["PopoverController"],
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["Injector"]])
 ], AppComponent);
 
 

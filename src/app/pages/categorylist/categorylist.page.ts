@@ -13,7 +13,7 @@ import { LoadingService } from '../../_shared/loading.service';
 })
 export class CategorylistPage extends BaseComponent implements OnInit {
   public categoryList: any = [];
-  public imgPath: any = 'http://minisoftsolution.com/webuy/uploads/category/';
+  public imgPath: any = 'https://minisoftsolution.com/webuy/uploads/category/';
   constructor(
     public navCtrl: NavController,
     public loadingCtrl: LoadingController,

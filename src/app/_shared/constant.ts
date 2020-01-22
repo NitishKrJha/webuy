@@ -1,4 +1,4 @@
-export const API_URL  = 'http://minisoftsolution.com/webuy/api/api/';
+export const API_URL  = 'https://minisoftsolution.com/webuy/api/api/';
 export const ORG_ID = '1';
 export const CONTACT_HIER_ID = '183';
 export const OS_TYPE = 'android';
@@ -15,7 +15,7 @@ export const requestDelete = 'requestDelete';
 export const errorResult = 'errorResponse';
 
 export const loginResponse = 'loginResponse';
-export const DMS_BASE_URL = 'http://minisoftsolution.com/webuy/';
+export const DMS_BASE_URL = 'https://minisoftsolution.com/webuy/';
 export const sendOTP = 'sendOTP';
 export const logout = 'logout';
 export const register = 'regsiter';
@@ -31,3 +31,7 @@ export const addToWishList = 'addToWishList';
 export const categoryList = 'categoryList';
 export const removeCartItem = 'removeCartItem';
 export const updateCartItem = 'updateCartItem';
+export const productDetail = 'productDetail';
+export const countryList = 'countryList';
+export const stateList = 'stateList';
+export const cityList = 'cityList';
