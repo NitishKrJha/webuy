@@ -70,6 +70,7 @@ export class AppComponent extends BaseComponent {
     ];
     this.base.shared.Lstorage.fetchData('customerId').then(datas => {
       this.customerId = datas;
+      console.log('this.customerId100', this.customerId);
     });
   }
 

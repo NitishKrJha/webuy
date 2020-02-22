@@ -59,8 +59,8 @@
       <ion-item no-padding class="animated fadeInUp">
         <ion-label position="floating">Gender</ion-label>
         <ion-select formControlName="gender" placeholder="Select Gender">
-          <ion-select-option value="female">Female</ion-select-option>
-          <ion-select-option value="male">Male</ion-select-option>
+          <ion-select-option value=2>Female</ion-select-option>
+          <ion-select-option value=1>Male</ion-select-option>
         </ion-select>
       </ion-item>
       <p ion-text class="text08" *ngIf="signupForm.get('gender').touched && signupForm.get('gender').hasError('required')">

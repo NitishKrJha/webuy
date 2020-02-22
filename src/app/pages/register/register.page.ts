@@ -81,6 +81,7 @@ export class RegisterPage extends BaseComponent implements OnInit  {
       this.loading.dismiss();
       const successMessage = data.result && data.result.message ? data.result.message : 'Registration Successfully';
       this.base.shared.Alert.show_alert('Success', successMessage);
+      this.login();
     } else if (data.resultType === con.countryList) {
       this.countryList = data.result && data.result.data ? data.result.data : [];
     } else if (data.resultType === con.stateList) {
