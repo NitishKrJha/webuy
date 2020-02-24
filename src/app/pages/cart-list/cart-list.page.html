@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <ion-back-button text="" icon="ios-arrow-round-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Cart List</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Delivery Address</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      21, Akshya Nagar 1st Block 1st Cross, Rammurthy nagar, Bangalore-560016
+    </ion-card-content>
+    <ion-button expand="block" fill="outline" color="danger">Change Address</ion-button>
+  </ion-card>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <ion-list>
+          <ion-item>
+            <ion-avatar slot="start">
+              <img src="assets/images/pro1.jpg" />
+            </ion-avatar>
+            <ion-label>
+              <p class="fs-14 ellipsis">KTM RC 125</p>
+              <h3 class="fs-16 txt-danger ellipsis">Rs. 125000.00</h3>
+            </ion-label>
+            <div>
+              <input class="form-control" type="number" min="0" value="1">
+            </div>
+            <div class="remove">
+              <ion-icon name="close-circle-outline"></ion-icon>
+            </div>
+          </ion-item>
+          <ion-item>
+            <ion-avatar slot="start">
+              <img src="assets/images/9.jpg" />
+            </ion-avatar>
+            <ion-label>
+              <p class="fs-14 ellipsis">Samsung A10</p>
+              <h3 class="fs-16 txt-danger ellipsis">Rs. 12000.00</h3>
+            </ion-label>
+            <div>
+              <input class="form-control" type="number" min="0" value="1">
+            </div>
+            <div class="remove">
+              <ion-icon name="close-circle-outline"></ion-icon>
+            </div>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-row>
+    <ion-col size="6">
+      <h4 no-margin class="fs-16 fw-600 uppercase mgt-10" text-center>Rs. 137000.00</h4>
+    </ion-col>
+    <ion-col size="6">
+      <ion-button expand="block" color="danger">Place Order</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-footer>

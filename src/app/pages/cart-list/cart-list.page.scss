@@ -1,0 +1,19 @@
+.form-control{
+    width: 60px;
+    height: 40px;
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 4px;
+    text-align: center;
+    margin-right: 10px;
+}
+ion-avatar{
+    --border-radius: 0;
+}
+.remove{
+    position: absolute;
+    color: red;
+    top: 20px;
+    right: 0px;
+    font-size: 20px;
+}
