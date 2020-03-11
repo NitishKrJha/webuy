@@ -13,6 +13,7 @@ export class ApiService extends BaseApiService {
   public bannerUrl = con.API_URL + 'bannerList';
   public featureProductUrl = con.API_URL + 'featureProductList';
   public productUrl = con.API_URL + 'productList';
+  public productDtlUrl = con.API_URL + 'productDetail';
   public trendsProductUrl = con.API_URL + 'trendsProductList';
   public recentViewProductUrl = con.API_URL + 'recentViewProductList';
   public addToCartUrl = con.API_URL + 'add_to_cart';
@@ -24,6 +25,10 @@ export class ApiService extends BaseApiService {
   public countryListURL = con.API_URL + 'countryList';
   public stateListURL = con.API_URL + 'stateList';
   public cityListURL = con.API_URL + 'cityList';
+  public shippingAddressListUrl = con.API_URL + 'shippingAddressList';
+  public deleteShippingAddressUrl = con.API_URL + 'deleteShippingAddress';
+  public setDefaultShippingAddressUrl = con.API_URL + 'setDefaultShippingAddress';
+  public addEditShippingAddressUrl = con.API_URL + 'addEditShippingAddress';
 
   public otpSend(params: any = {}) {
     this.genericApiCall(this.otpSendUrlForRegister, con.sendOTP, params, con.requestPost, true);
@@ -53,6 +58,10 @@ export class ApiService extends BaseApiService {
     this.genericApiCall(this.productUrl, con.productList, params, con.requestPost, true);
   }
 
+  public productDtl(params: any = {}) {
+    this.genericApiCall(this.productDtlUrl, con.productDetail, params, con.requestPost, true);
+  }
+
   public trendsProductList(params: any = {}) {
     this.genericApiCall(this.trendsProductUrl, con.trendsProductList, params, con.requestPost, true);
   }
@@ -63,6 +72,10 @@ export class ApiService extends BaseApiService {
 
   public addToCart(params: any = {}) {
     this.genericApiCall(this.addToCartUrl, con.addToCart, params, con.requestPost, true);
+  }
+
+  public buyNow(params: any = {}) {
+    this.genericApiCall(this.addToCartUrl, con.buyNow, params, con.requestPost, true);
   }
 
   public cartList(params: any = {}) {
@@ -95,5 +108,25 @@ export class ApiService extends BaseApiService {
 
   public countryList() {
     this.genericApiCall(this.countryListURL, con.countryList, {}, con.requestPost, true);
+  }
+
+  public addressList() {
+    this.genericApiCall(this.shippingAddressListUrl, con.addressList, {}, con.requestPost, true);
+  }
+
+  public addAddressList() {
+    this.genericApiCall(this.addEditShippingAddressUrl, con.addAddressList, {}, con.requestPost, true);
+  }
+
+  public updateAddressList() {
+    this.genericApiCall(this.addEditShippingAddressUrl, con.updateAddressList, {}, con.requestPost, true);
+  }
+
+  public removeAddressList() {
+    this.genericApiCall(this.deleteShippingAddressUrl, con.removeAddressList, {}, con.requestPost, true);
+  }
+
+  public setDefualtAddress() {
+    this.genericApiCall(this.setDefaultShippingAddressUrl, con.setDefualtAddress, {}, con.requestPost, true);
   }
 }

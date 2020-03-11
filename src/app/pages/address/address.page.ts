@@ -7,12 +7,12 @@ import * as con from '../../_shared/constant';
 import { LoadingService } from '../../_shared/loading.service';
 
 @Component({
-  selector: 'app-cart',
-  templateUrl: './cart.page.html',
-  styleUrls: ['./cart.page.scss'],
+  selector: 'app-address',
+  templateUrl: './address.page.html',
+  styleUrls: ['./address.page.scss'],
 })
-export class CartPage extends BaseComponent implements OnInit {
-  public cartList: any = [];
+export class AddressPage extends BaseComponent implements OnInit {
+  public addressList: any = [];
   customerId: any = 0;
   constructor(
     public navCtrl: NavController,
@@ -35,25 +35,27 @@ export class CartPage extends BaseComponent implements OnInit {
       if (data) {
         this.customerId = data;
         this.loading.present();
-        this.getCartList();
+        this.getaddressList();
       }
     });
   }
 
-  getCartList() {
-    this.base.api.cartList({ip_address: '192.168.0.1', customer_id: this.customerId});
+  getaddressList() {
+    this.base.api.addressList({ip_address: '192.168.0.1', customer_id: this.customerId});
   }
 
   handleApiResponse(data) {
-    if (data.resultType === con.cartList) {
+    if (data.resultType === con.addressList) {
       this.loading.dismiss();
-      this.cartList = data.result && data.result.data ? data.result.data : [];
-    } else if (data.resultType === con.removeCartItem) {
-      this.getCartList();
+      this.addressList = data.result && data.result.data ? data.result.data : [];
+    } else if (data.resultType === con.removeAddressList) {
+      this.loading.dismiss();
+      this.getaddressList();
       const successMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
       this.base.shared.Alert.show_alert('Success', successMessage);
-    } else if (data.resultType === con.updateCartItem) {
-      this.getCartList();
+    } else if (data.resultType === con.setDefualtAddress) {
+      this.loading.dismiss();
+      this.getaddressList();
       const successMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
       this.base.shared.Alert.show_alert('Success', successMessage);
     }
@@ -62,57 +64,36 @@ export class CartPage extends BaseComponent implements OnInit {
   handleApiResponseError(data) {
     this.loading.dismiss();
     console.log('data', data);
-    if (data.resultType === con.cartList) {
-      this.cartList = [];
-    } else if (data.resultType === con.removeCartItem) {
+    if (data.resultType === con.addressList) {
+      this.addressList = [];
+    } else if (data.resultType === con.removeAddressList) {
       const errorMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
       this.base.shared.Alert.show_alert('Failed!', errorMessage);
-    } else if (data.resultType === con.updateCartItem) {
+    } else if (data.resultType === con.setDefualtAddress) {
       const errorMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
       this.base.shared.Alert.show_alert('Failed!', errorMessage);
     }
   }
 
-  quantityDecreased(id: any, qty: any) {
+  delAddrees(id: any) {
     this.loading.present();
-    const qtys = ((Number(qty) - 1) > 0) ? (Number(qty) - 1) : 0;
-    this.base.api.updateCartItem({
+    this.base.api.removeAddressList({
       customer_id: this.customerId,
-      cart_item_id: id,
-      ip_address: '192.168.0.1',
-      qty: qtys
-    });
-  }
-
-  quantityIncreased(id: any, qty: any) {
-    this.loading.present();
-    this.base.api.updateCartItem({
-      customer_id: this.customerId,
-      cart_item_id: id,
-      ip_address: '192.168.0.1',
-      qty: Number(qty) + 1
-    });
-  }
-
-  removeCart(id: any) {
-    this.loading.present();
-    this.base.api.removeCartItem({
-      customer_id: this.customerId,
-      cart_item_id: id,
+      address_id: id,
       ip_address: '192.168.0.1'
     });
   }
 
-  placeOrder(id: any) {
-    this.base.shared.Alert.show_alert('Success', 'Work in progress');
+  setDefaultAddrees(id: any) {
+    this.loading.present();
+    this.base.api.setDefaultAddrees({
+      customer_id: this.customerId,
+      address_id: id,
+      ip_address: '192.168.0.1'
+    });
   }
 
-  getTotal() {
-    return this.cartList.reduce((i, j) => i + j.sale_price * j.qty, 0);
+  addAddress() {
+    this.navCtrl.navigateRoot('/addeditaddress');
   }
-
-  changeAddress() {
-    this.navCtrl.navigateRoot('/address');
-  }
-
 }

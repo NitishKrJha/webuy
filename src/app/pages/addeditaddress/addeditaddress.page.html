@@ -1,0 +1,133 @@
+<ion-header class="parallax-obj parallax-translate-obj header-transparent">
+  <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+      <ion-back-button text="" icon="ios-arrow-round-back"></ion-back-button>
+      </ion-buttons>
+    <ion-title>
+      Add Edit Address
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button text="" icon="arrow-back"></ion-back-button>
+    </ion-buttons>
+    <!-- <ion-buttons slot="end">
+      <button ion-button small>
+        <ion-icon name="cart" class="cart-number"><ion-badge color="danger">3</ion-badge></ion-icon>
+      </button>
+      <button ion-button (click)="openFilters()">
+        <ion-icon name="funnel">
+        </ion-icon>
+      </button>
+    </ion-buttons> -->
+  </ion-toolbar>
+</ion-header>
+<ion-content padding class="ion-justify-content-center animated fadeIn login auth-page">
+  <div class="theme-bg"></div>
+  <div class="auth-content ion-justify-content-center ion-align-items-center">
+
+    <!-- <div padding-horizontal text-center class="animated fadeInDown">
+      <h4 no-margin>
+        <ion-text color="dark" class="fw700">
+          
+        </ion-text>
+      </h4>
+    </div> -->
+
+    <!-- Login form -->
+    <form [formGroup]="addForm" class="list-form">
+      <ion-item no-padding class="animated fadeInUp">
+        <ion-label position="floating">Full name</ion-label>
+        <ion-input type="text" formControlName="full_name" [class.invalid]="!addForm.controls.name.valid && addForm.controls.name.dirty"></ion-input>
+      </ion-item>
+      <p ion-text class="text08" *ngIf="addForm.get('full_name').touched && addForm.get('full_name').hasError('required')">
+        <ion-text color="warning">
+          Required Field
+        </ion-text>
+      </p>
+      
+  
+      <ion-item no-padding class="animated fadeInUp">
+        <ion-label position="floating">Address 1</ion-label>
+        <ion-input type="text" formControlName="address1"></ion-input>
+      </ion-item>
+      <p ion-text class="text08" *ngIf="addForm.get('address1').touched && addForm.get('address1').hasError('required')">
+        <ion-text color="warning">
+          Required Field
+        </ion-text>
+      </p>
+  
+      <ion-item no-padding class="animated fadeInUp">
+        <ion-label position="floating">Address 2</ion-label>
+        <ion-input type="number" formControlName="address2"></ion-input>
+      </ion-item>
+
+      <ion-item no-padding class="animated fadeInUp">
+        <ion-label position="floating">State</ion-label>
+        <ion-select formControlName="state" placeholder="Select State" (ionChange)="selectState($event)">
+          <ion-select-option *ngFor="let v of stateList"  value="{{v.id}}">{{v.name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <p ion-text class="text08" *ngIf="addForm.get('state').touched && addForm.get('state').hasError('required')">
+        <ion-text color="warning">
+          Required Field
+        </ion-text>
+      </p>
+  
+      <ion-item no-padding class="animated fadeInUp">
+        <ion-label position="floating">City</ion-label>
+        <ion-select formControlName="city" placeholder="Select city">
+          <ion-select-option *ngFor="let v of cityList" value="{{v.id}}">{{v.name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <p ion-text class="text08" *ngIf="addForm.get('city').touched && addForm.get('city').hasError('required')">
+        <ion-text color="warning">
+          Required Field
+        </ion-text>
+      </p>
+  
+      <ion-item no-padding class="animated fadeInUp">
+        <ion-label position="floating">Pin Code</ion-label>
+        <ion-input type="number" formControlName="zipcode"></ion-input>
+      </ion-item>
+      <p ion-text class="text08" *ngIf="addForm.get('zipcode').touched && addForm.get('zipcode').hasError('required')">
+        <ion-text color="warning">
+          Required Field
+        </ion-text>
+      </p>
+
+      <ion-item no-padding class="animated fadeInUp">
+        <ion-label position="floating">Landmark</ion-label>
+        <ion-input type="text" formControlName="landmark"></ion-input>
+      </ion-item>
+      <p ion-text class="text08" *ngIf="addForm.get('landmark').touched && addForm.get('landmark').hasError('required')">
+        <ion-text color="warning">
+          Required Field
+        </ion-text>
+      </p>
+  
+      <ion-item no-padding class="animated fadeInUp">
+        <ion-label position="floating">Alternate Mobile Number</ion-label>
+        <ion-input formControlName="phone_number" type="number"></ion-input>
+      </ion-item>
+      <p ion-text class="text08" *ngIf="addForm.get('phone_number').touched && addForm.get('phone_number').hasError('required')">
+        <ion-text color="warning">
+          Required Field
+        </ion-text>
+      </p>
+      
+
+      
+  
+      <ion-row>
+        
+        <ion-col siz="12">
+          <ion-button icon-left size="medium" expand="full" shape="round" color="dark" (click)="doSave()" [disabled]="!addForm.valid" tappable>
+            
+            SignUp
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+
+  </div>
+</ion-content>

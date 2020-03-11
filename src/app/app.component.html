@@ -32,6 +32,14 @@
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false" *ngIf="customerId > 0">
+            <ion-item (click)="goToaddress()">
+              <ion-icon slot="start" name="log-out"></ion-icon>
+              <ion-label>
+                Address List
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
         </ion-list>
       </ion-content>
     </ion-menu>

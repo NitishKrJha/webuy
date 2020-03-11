@@ -58,6 +58,14 @@ const routes: Routes = [
   {
     path: 'cart-list',
     loadChildren: () => import('./pages/cart-list/cart-list.module').then( m => m.CartListPageModule)
+  },
+  {
+    path: 'address',
+    loadChildren: () => import('./pages/address/address.module').then( m => m.AddressPageModule)
+  },
+  {
+    path: 'addeditaddress',
+    loadChildren: () => import('./pages/addeditaddress/addeditaddress.module').then( m => m.AddeditaddressPageModule)
   }
 ];
 

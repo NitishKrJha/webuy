@@ -13,16 +13,16 @@
 
 <ion-content fullscreen class="ion-padding" scroll-y="false">
   
-  <ion-slides pager="true" class="slide-bg" [options]="slidePerViewOpts">
-    <ion-slide>
+  <ion-slides pager="true" class="slide-bg" [options]="slidePerViewOpts" *ngIf="imgList.length > 0">
+    <!-- <ion-slide>
       <div class="slide">
         <img src="assets/images/pro1.jpg" />
       </div>
-    </ion-slide>
+    </ion-slide> -->
 
-    <ion-slide>
+    <ion-slide *ngFor="let img of imgList | keyvalue; let i = index;">
       <div class="slide">
-        <img src="assets/images/pro1_1.jpg" />
+        <img src="{{imagePath + img.value.path}}" />
       </div>
     </ion-slide>
   </ion-slides>
@@ -30,10 +30,9 @@
   <ion-grid>
     <ion-row>
       <ion-col size="12">
-        <p no-margin class="ellipsis fs-16 txt-danger" text-center>KTM RC 125</p>
-        <h4 no-margin class="ellipsis fs-20 fw-600 spacing1 pdb-2 uppercase" text-center>Rs. 125000.00</h4>
-        <p no-margin class="fs-12" text-center>The KTM 125 FRR was a racing motorcycle made by KTM, which was
-          used in the 125cc class of Grand Prix motorcycle racing from 2003 until 2011.</p>
+        <p no-margin class="ellipsis fs-16 txt-danger" text-center>{{ title }}</p>
+        <h4 no-margin class="ellipsis fs-20 fw-600 spacing1 pdb-2 uppercase" text-center>Rs. {{ salePrice }}</h4>
+        <p no-margin class="fs-12" text-center>{{ description }}</p>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -43,10 +42,10 @@
 <ion-footer>
   <ion-row>
     <ion-col size="6">
-      <ion-button expand="block" fill="outline" color="danger">Add Cart</ion-button>
+      <ion-button expand="block" fill="outline" color="danger" (click)="addToCart(productId,title,salePrice)">Add Cart</ion-button>
     </ion-col>
     <ion-col size="6">
-      <ion-button expand="block" color="danger">Buy Now</ion-button>
+      <ion-button expand="block" color="danger" (click)="buyNow(productId,title,salePrice)">Buy Now</ion-button>
     </ion-col>
   </ion-row>
 </ion-footer>

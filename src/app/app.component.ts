@@ -94,4 +94,8 @@ export class AppComponent extends BaseComponent {
     this.base.shared.Lstorage.delData('customerId');
     this.router.navigateByUrl('/login', { replaceUrl: true }) ;
   }
+
+  goToaddress() {
+    this.router.navigateByUrl('/address') ;
+  }
 }
