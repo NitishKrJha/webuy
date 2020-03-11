@@ -37,7 +37,7 @@ export class ProductdetailPage extends BaseComponent implements OnInit {
       if (this.router.getCurrentNavigation().extras.queryParams) {
         this.qParams = this.router.getCurrentNavigation().extras.queryParams;
         this.productId = this.qParams.productId;
-        this.base.api.productDetail({product_id:this.productId});
+        this.base.api.productDetail({product_id: this.productId});
       }
     });
   }

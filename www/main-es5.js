@@ -447,7 +447,7 @@ module.exports = webpackAsyncContext;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-app>\n  <ion-split-pane contentId=\"main-content\">\n    <ion-menu contentId=\"main-content\" type=\"overlay\">\n      <ion-header>\n        <ion-toolbar>\n          <ion-title>Menu</ion-title>\n        </ion-toolbar>\n      </ion-header>\n      <ion-content>\n        <ion-list>\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages\">\n            <ion-item [routerDirection]=\"'root'\" [routerLink]=\"[p.url]\">\n              <ion-icon slot=\"start\" [name]=\"p.icon\"></ion-icon>\n              <ion-label>\n                {{p.title}}\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n          <ion-menu-toggle auto-hide=\"false\" *ngIf=\"customerId < 1\">\n            <ion-item (click)=\"login()\">\n              <ion-icon slot=\"start\" name=\"log-out\"></ion-icon>\n              <ion-label>\n                Login\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n          <ion-menu-toggle auto-hide=\"false\" *ngIf=\"customerId > 0\">\n            <ion-item (click)=\"logout()\">\n              <ion-icon slot=\"start\" name=\"log-out\"></ion-icon>\n              <ion-label>\n                Logout\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>\n"
+module.exports = "<ion-app>\n  <ion-split-pane contentId=\"main-content\">\n    <ion-menu contentId=\"main-content\" type=\"overlay\">\n      <ion-header>\n        <ion-toolbar>\n          <ion-title>Menu</ion-title>\n        </ion-toolbar>\n      </ion-header>\n      <ion-content>\n        <ion-list>\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages\">\n            <ion-item [routerDirection]=\"'root'\" [routerLink]=\"[p.url]\">\n              <ion-icon slot=\"start\" [name]=\"p.icon\"></ion-icon>\n              <ion-label>\n                {{p.title}}\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n          <ion-menu-toggle auto-hide=\"false\" *ngIf=\"customerId < 1\">\n            <ion-item (click)=\"login()\">\n              <ion-icon slot=\"start\" name=\"log-out\"></ion-icon>\n              <ion-label>\n                Login\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n          <ion-menu-toggle auto-hide=\"false\" *ngIf=\"customerId > 0\">\n            <ion-item (click)=\"logout()\">\n              <ion-icon slot=\"start\" name=\"log-out\"></ion-icon>\n              <ion-label>\n                Logout\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n          <ion-menu-toggle auto-hide=\"false\" *ngIf=\"customerId > 0\">\n            <ion-item (click)=\"goToaddress()\">\n              <ion-icon slot=\"start\" name=\"log-out\"></ion-icon>\n              <ion-label>\n                Address List\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>\n"
 
 /***/ }),
 
@@ -1233,6 +1233,7 @@ var ApiService = /** @class */ (function (_super) {
         _this.bannerUrl = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'bannerList';
         _this.featureProductUrl = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'featureProductList';
         _this.productUrl = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'productList';
+        _this.productDtlUrl = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'productDetail';
         _this.trendsProductUrl = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'trendsProductList';
         _this.recentViewProductUrl = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'recentViewProductList';
         _this.addToCartUrl = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'add_to_cart';
@@ -1244,6 +1245,10 @@ var ApiService = /** @class */ (function (_super) {
         _this.countryListURL = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'countryList';
         _this.stateListURL = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'stateList';
         _this.cityListURL = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'cityList';
+        _this.shippingAddressListUrl = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'shippingAddressList';
+        _this.deleteShippingAddressUrl = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'deleteShippingAddress';
+        _this.setDefaultShippingAddressUrl = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'setDefaultShippingAddress';
+        _this.addEditShippingAddressUrl = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'addEditShippingAddress';
         return _this;
     }
     ApiService.prototype.otpSend = function (params) {
@@ -1274,6 +1279,10 @@ var ApiService = /** @class */ (function (_super) {
         if (params === void 0) { params = {}; }
         this.genericApiCall(this.productUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["productList"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
     };
+    ApiService.prototype.productDtl = function (params) {
+        if (params === void 0) { params = {}; }
+        this.genericApiCall(this.productDtlUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["productDetail"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+    };
     ApiService.prototype.trendsProductList = function (params) {
         if (params === void 0) { params = {}; }
         this.genericApiCall(this.trendsProductUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["trendsProductList"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
@@ -1285,6 +1294,10 @@ var ApiService = /** @class */ (function (_super) {
     ApiService.prototype.addToCart = function (params) {
         if (params === void 0) { params = {}; }
         this.genericApiCall(this.addToCartUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["addToCart"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+    };
+    ApiService.prototype.buyNow = function (params) {
+        if (params === void 0) { params = {}; }
+        this.genericApiCall(this.addToCartUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["buyNow"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
     };
     ApiService.prototype.cartList = function (params) {
         if (params === void 0) { params = {}; }
@@ -1314,6 +1327,21 @@ var ApiService = /** @class */ (function (_super) {
     };
     ApiService.prototype.countryList = function () {
         this.genericApiCall(this.countryListURL, _constant__WEBPACK_IMPORTED_MODULE_3__["countryList"], {}, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+    };
+    ApiService.prototype.addressList = function () {
+        this.genericApiCall(this.shippingAddressListUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["addressList"], {}, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+    };
+    ApiService.prototype.addAddressList = function () {
+        this.genericApiCall(this.addEditShippingAddressUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["addAddressList"], {}, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+    };
+    ApiService.prototype.updateAddressList = function () {
+        this.genericApiCall(this.addEditShippingAddressUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["updateAddressList"], {}, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+    };
+    ApiService.prototype.removeAddressList = function () {
+        this.genericApiCall(this.deleteShippingAddressUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["removeAddressList"], {}, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+    };
+    ApiService.prototype.setDefualtAddress = function () {
+        this.genericApiCall(this.setDefaultShippingAddressUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["setDefualtAddress"], {}, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
     };
     ApiService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])()
@@ -1432,7 +1460,7 @@ var RouterStorageService = /** @class */ (function () {
 /*!*************************************!*\
   !*** ./src/app/_shared/constant.ts ***!
   \*************************************/
-/*! exports provided: API_URL, ORG_ID, CONTACT_HIER_ID, OS_TYPE, PROGRAM_ID, OS_VERSION, APP_VERSION, DEVICE_ID, API_KEY, requestGet, requestPost, requestPut, requestDelete, errorResult, loginResponse, DMS_BASE_URL, sendOTP, logout, register, login, banner, featureProductList, productList, trendsProductList, recentViewProductList, addToCart, cartList, addToWishList, categoryList, removeCartItem, updateCartItem, productDetail, countryList, stateList, cityList */
+/*! exports provided: API_URL, ORG_ID, CONTACT_HIER_ID, OS_TYPE, PROGRAM_ID, OS_VERSION, APP_VERSION, DEVICE_ID, API_KEY, requestGet, requestPost, requestPut, requestDelete, errorResult, loginResponse, DMS_BASE_URL, sendOTP, logout, register, login, banner, featureProductList, productList, trendsProductList, recentViewProductList, addToCart, buyNow, cartList, addToWishList, categoryList, removeCartItem, updateCartItem, productDetail, countryList, stateList, cityList, addressList, addAddressList, updateAddressList, removeAddressList, setDefualtAddress */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1463,6 +1491,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "trendsProductList", function() { return trendsProductList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recentViewProductList", function() { return recentViewProductList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addToCart", function() { return addToCart; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "buyNow", function() { return buyNow; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cartList", function() { return cartList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addToWishList", function() { return addToWishList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "categoryList", function() { return categoryList; });
@@ -1472,6 +1501,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "countryList", function() { return countryList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "stateList", function() { return stateList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cityList", function() { return cityList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addressList", function() { return addressList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addAddressList", function() { return addAddressList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateAddressList", function() { return updateAddressList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeAddressList", function() { return removeAddressList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setDefualtAddress", function() { return setDefualtAddress; });
 var API_URL = 'https://minisoftsolution.com/webuy/api/api/';
 var ORG_ID = '1';
 var CONTACT_HIER_ID = '183';
@@ -1498,6 +1532,7 @@ var productList = 'productList';
 var trendsProductList = 'trendsProductList';
 var recentViewProductList = 'recentViewProductList';
 var addToCart = 'addToCart';
+var buyNow = 'buyNow';
 var cartList = 'cartList';
 var addToWishList = 'addToWishList';
 var categoryList = 'categoryList';
@@ -1507,6 +1542,11 @@ var productDetail = 'productDetail';
 var countryList = 'countryList';
 var stateList = 'stateList';
 var cityList = 'cityList';
+var addressList = 'addressList';
+var addAddressList = 'addAddressList';
+var updateAddressList = 'updateAddressList';
+var removeAddressList = 'removeAddressList';
+var setDefualtAddress = 'setDefualtAddress';
 
 
 /***/ }),
@@ -1645,6 +1685,26 @@ var routes = [
     {
         path: 'productdetail',
         loadChildren: function () { return __webpack_require__.e(/*! import() | pages-productdetail-productdetail-module */ "pages-productdetail-productdetail-module").then(__webpack_require__.bind(null, /*! ./pages/productdetail/productdetail.module */ "./src/app/pages/productdetail/productdetail.module.ts")).then(function (m) { return m.ProductdetailPageModule; }); }
+    },
+    {
+        path: 'folder/:id',
+        loadChildren: function () { return __webpack_require__.e(/*! import() | pages-folder-folder-module */ "pages-folder-folder-module").then(__webpack_require__.bind(null, /*! ./pages/folder/folder.module */ "./src/app/pages/folder/folder.module.ts")).then(function (m) { return m.FolderPageModule; }); }
+    },
+    {
+        path: 'pro-details',
+        loadChildren: function () { return __webpack_require__.e(/*! import() | pages-pro-details-pro-details-module */ "pages-pro-details-pro-details-module").then(__webpack_require__.bind(null, /*! ./pages/pro-details/pro-details.module */ "./src/app/pages/pro-details/pro-details.module.ts")).then(function (m) { return m.ProDetailsPageModule; }); }
+    },
+    {
+        path: 'cart-list',
+        loadChildren: function () { return __webpack_require__.e(/*! import() | pages-cart-list-cart-list-module */ "pages-cart-list-cart-list-module").then(__webpack_require__.bind(null, /*! ./pages/cart-list/cart-list.module */ "./src/app/pages/cart-list/cart-list.module.ts")).then(function (m) { return m.CartListPageModule; }); }
+    },
+    {
+        path: 'address',
+        loadChildren: function () { return __webpack_require__.e(/*! import() | pages-address-address-module */ "pages-address-address-module").then(__webpack_require__.bind(null, /*! ./pages/address/address.module */ "./src/app/pages/address/address.module.ts")).then(function (m) { return m.AddressPageModule; }); }
+    },
+    {
+        path: 'addeditaddress',
+        loadChildren: function () { return __webpack_require__.e(/*! import() | pages-addeditaddress-addeditaddress-module */ "pages-addeditaddress-addeditaddress-module").then(__webpack_require__.bind(null, /*! ./pages/addeditaddress/addeditaddress.module */ "./src/app/pages/addeditaddress/addeditaddress.module.ts")).then(function (m) { return m.AddeditaddressPageModule; }); }
     }
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -1764,6 +1824,9 @@ var AppComponent = /** @class */ (function (_super) {
         this.base.shared.Lstorage.delData('isLogged');
         this.base.shared.Lstorage.delData('customerId');
         this.router.navigateByUrl('/login', { replaceUrl: true });
+    };
+    AppComponent.prototype.goToaddress = function () {
+        this.router.navigateByUrl('/address');
     };
     AppComponent.ctorParameters = function () { return [
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"] },

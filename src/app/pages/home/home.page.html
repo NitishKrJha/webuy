@@ -56,7 +56,7 @@
 	</ion-list>
 	<ion-slides pager="false" class="slide-perview" [options]="slidePerViewOpts">
 		<ion-slide *ngFor="let fProduct of featureProductList | keyvalue; let i = index;">
-			<div class="elmt-slide">
+			<div class="elmt-slide" (click)="viewPr(fProduct.value.product_id)">
 				<div class="thumb-img">
 						<img src="{{fProduct.value.image_path + fProduct.value.img_list[0].path_sm}}">
 				</div>
@@ -83,7 +83,7 @@
 	</ion-list>
 	<ion-slides pager="false" class="slide-perview" [options]="slidePerViewOpts">
 		<ion-slide *ngFor="let item of recentViewProductList | keyvalue; let i = index;">
-			<div class="elmt-slide">
+			<div class="elmt-slide" (click)="viewPr(item.value.product_id)">
 				<div class="thumb-img">
 					<img src="{{item.value.image_path + item.value.img_list[0].path_sm}}">
 				</div>
@@ -110,7 +110,7 @@
 	</ion-list>
 	<ion-slides pager="false" class="slide-perview" [options]="slidePerViewOpts">
 		<ion-slide *ngFor="let item of trendsProductList | keyvalue; let i = index;">
-			<div class="elmt-slide">
+			<div class="elmt-slide" (click)="viewPr(item.value.product_id)">
 				<div class="thumb-img">
 					<img src="{{item.value.image_path + item.value.img_list[0].path_sm}}">
 				</div>
@@ -138,7 +138,7 @@
 	</ion-list>
 	<ion-slides pager="false" class="slide-perview" [options]="slidePerViewOpts">
 		<ion-slide *ngFor="let item of productList | keyvalue; let i = index;">
-			<div class="elmt-slide">
+			<div class="elmt-slide" (click)="viewPr(item.value.product_id)">
 				<div class="thumb-img">
 					<img src="{{item.value.image_path + item.value.img_list[0].path_sm}}">
 				</div>

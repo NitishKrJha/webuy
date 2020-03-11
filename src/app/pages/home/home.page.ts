@@ -137,4 +137,13 @@ export class HomePage extends BaseComponent implements OnInit {
     };
     this.router.navigate(['/productlist'], navigationExtras);
   }
+
+  viewPr(id: any = '') {
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+        product_id : id
+      }
+    };
+    this.router.navigate(['/pro-details'], navigationExtras);
+  }
 }

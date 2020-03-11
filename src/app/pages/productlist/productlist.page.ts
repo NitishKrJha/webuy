@@ -108,4 +108,13 @@ export class ProductlistPage extends BaseComponent implements OnInit {
     });
   }
 
+  viewPr(id: any = '') {
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+        product_id : id
+      }
+    };
+    this.router.navigate(['/pro-details'], navigationExtras);
+  }
+
 }

@@ -17,7 +17,7 @@
 		</ion-searchbar>
 		<div *ngIf="productList.length > 0">
 		<div class="element-gallery pd-5" *ngFor="let item of productList | keyvalue; let i = index;">
-			<div (click)="viewImg('lemon1.png')" class="wrap-element shadow-2">
+			<div (click)="viewPr(item.value.product_id)" class="wrap-element shadow-2">
 				<div class="thumb-view">
 					<img src="{{item.value.image_path + item.value.img_list[0].path_sm}}">
 				</div>
