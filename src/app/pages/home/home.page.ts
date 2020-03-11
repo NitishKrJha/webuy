@@ -141,7 +141,7 @@ export class HomePage extends BaseComponent implements OnInit {
   viewPr(id: any = '') {
     const navigationExtras: NavigationExtras = {
       queryParams: {
-        product_id : id
+        prId : id
       }
     };
     this.router.navigate(['/pro-details'], navigationExtras);

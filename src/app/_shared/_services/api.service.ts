@@ -110,23 +110,23 @@ export class ApiService extends BaseApiService {
     this.genericApiCall(this.countryListURL, con.countryList, {}, con.requestPost, true);
   }
 
-  public addressList() {
-    this.genericApiCall(this.shippingAddressListUrl, con.addressList, {}, con.requestPost, true);
+  public addressList(params: any = {}) {
+    this.genericApiCall(this.shippingAddressListUrl, con.addressList, params, con.requestPost, true);
   }
 
-  public addAddressList() {
-    this.genericApiCall(this.addEditShippingAddressUrl, con.addAddressList, {}, con.requestPost, true);
+  public addAddressList(params: any = {}) {
+    this.genericApiCall(this.addEditShippingAddressUrl, con.addAddressList, params, con.requestPost, true);
   }
 
-  public updateAddressList() {
-    this.genericApiCall(this.addEditShippingAddressUrl, con.updateAddressList, {}, con.requestPost, true);
+  public updateAddressList(params: any = {}) {
+    this.genericApiCall(this.addEditShippingAddressUrl, con.updateAddressList, params, con.requestPost, true);
   }
 
-  public removeAddressList() {
-    this.genericApiCall(this.deleteShippingAddressUrl, con.removeAddressList, {}, con.requestPost, true);
+  public removeAddressList(params: any = {}) {
+    this.genericApiCall(this.deleteShippingAddressUrl, con.removeAddressList, params, con.requestPost, true);
   }
 
-  public setDefualtAddress() {
-    this.genericApiCall(this.setDefaultShippingAddressUrl, con.setDefualtAddress, {}, con.requestPost, true);
+  public setDefualtAddress(params: any = {}) {
+    this.genericApiCall(this.setDefaultShippingAddressUrl, con.setDefualtAddress, params, con.requestPost, true);
   }
 }

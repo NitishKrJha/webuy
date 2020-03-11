@@ -82,7 +82,6 @@ export class ProDetailsPage extends BaseComponent implements OnInit {
     } else {
       this.loading.dismiss();
       const successMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
-      this.base.shared.Alert.show_alert('Success', successMessage);
     }
   }
 

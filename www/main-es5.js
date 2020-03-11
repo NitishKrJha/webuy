@@ -1328,20 +1328,25 @@ var ApiService = /** @class */ (function (_super) {
     ApiService.prototype.countryList = function () {
         this.genericApiCall(this.countryListURL, _constant__WEBPACK_IMPORTED_MODULE_3__["countryList"], {}, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
     };
-    ApiService.prototype.addressList = function () {
-        this.genericApiCall(this.shippingAddressListUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["addressList"], {}, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+    ApiService.prototype.addressList = function (params) {
+        if (params === void 0) { params = {}; }
+        this.genericApiCall(this.shippingAddressListUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["addressList"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
     };
-    ApiService.prototype.addAddressList = function () {
-        this.genericApiCall(this.addEditShippingAddressUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["addAddressList"], {}, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+    ApiService.prototype.addAddressList = function (params) {
+        if (params === void 0) { params = {}; }
+        this.genericApiCall(this.addEditShippingAddressUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["addAddressList"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
     };
-    ApiService.prototype.updateAddressList = function () {
-        this.genericApiCall(this.addEditShippingAddressUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["updateAddressList"], {}, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+    ApiService.prototype.updateAddressList = function (params) {
+        if (params === void 0) { params = {}; }
+        this.genericApiCall(this.addEditShippingAddressUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["updateAddressList"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
     };
-    ApiService.prototype.removeAddressList = function () {
-        this.genericApiCall(this.deleteShippingAddressUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["removeAddressList"], {}, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+    ApiService.prototype.removeAddressList = function (params) {
+        if (params === void 0) { params = {}; }
+        this.genericApiCall(this.deleteShippingAddressUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["removeAddressList"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
     };
-    ApiService.prototype.setDefualtAddress = function () {
-        this.genericApiCall(this.setDefaultShippingAddressUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["setDefualtAddress"], {}, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+    ApiService.prototype.setDefualtAddress = function (params) {
+        if (params === void 0) { params = {}; }
+        this.genericApiCall(this.setDefaultShippingAddressUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["setDefualtAddress"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
     };
     ApiService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])()
@@ -1704,7 +1709,7 @@ var routes = [
     },
     {
         path: 'addeditaddress',
-        loadChildren: function () { return __webpack_require__.e(/*! import() | pages-addeditaddress-addeditaddress-module */ "pages-addeditaddress-addeditaddress-module").then(__webpack_require__.bind(null, /*! ./pages/addeditaddress/addeditaddress.module */ "./src/app/pages/addeditaddress/addeditaddress.module.ts")).then(function (m) { return m.AddeditaddressPageModule; }); }
+        loadChildren: function () { return Promise.all(/*! import() | pages-addeditaddress-addeditaddress-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-addeditaddress-addeditaddress-module")]).then(__webpack_require__.bind(null, /*! ./pages/addeditaddress/addeditaddress.module */ "./src/app/pages/addeditaddress/addeditaddress.module.ts")).then(function (m) { return m.AddeditaddressPageModule; }); }
     }
 ];
 var AppRoutingModule = /** @class */ (function () {

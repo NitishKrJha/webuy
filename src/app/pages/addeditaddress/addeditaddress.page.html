@@ -37,7 +37,7 @@
     <form [formGroup]="addForm" class="list-form">
       <ion-item no-padding class="animated fadeInUp">
         <ion-label position="floating">Full name</ion-label>
-        <ion-input type="text" formControlName="full_name" [class.invalid]="!addForm.controls.name.valid && addForm.controls.name.dirty"></ion-input>
+        <ion-input type="text" formControlName="full_name" [class.invalid]="!addForm.controls.full_name.valid && addForm.controls.full_name.dirty"></ion-input>
       </ion-item>
       <p ion-text class="text08" *ngIf="addForm.get('full_name').touched && addForm.get('full_name').hasError('required')">
         <ion-text color="warning">
@@ -59,6 +59,7 @@
       <ion-item no-padding class="animated fadeInUp">
         <ion-label position="floating">Address 2</ion-label>
         <ion-input type="number" formControlName="address2"></ion-input>
+        <ion-input type="hidden" formControlName="customer_id" [(ngModel)]="customer_id"></ion-input>
       </ion-item>
 
       <ion-item no-padding class="animated fadeInUp">
@@ -123,7 +124,7 @@
         <ion-col siz="12">
           <ion-button icon-left size="medium" expand="full" shape="round" color="dark" (click)="doSave()" [disabled]="!addForm.valid" tappable>
             
-            SignUp
+            Save
           </ion-button>
         </ion-col>
       </ion-row>

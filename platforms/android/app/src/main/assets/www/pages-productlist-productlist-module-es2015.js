@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<ion-header class=\"parallax-obj parallax-translate-obj header-transparent\">\n\t<ion-toolbar>\n\t  <ion-buttons slot=\"start\">\n\t\t\t\t<ion-menu-button></ion-menu-button>\n\t\t<ion-back-button text=\"\" icon=\"ios-arrow-round-back\"></ion-back-button>\n\t  </ion-buttons>\n\t  <ion-title>Product List</ion-title>\n\t</ion-toolbar>\n  </ion-header>\n  \n  <ion-content fullscreen common-parallax [scrollEvents]=\"true\">\n\t\t\n\t\n\t<div class=\"wrap-gallery-info pd-10\">\n\t  <ion-searchbar show-cancel-button cancel-button-text=\"Really Long Cancel\" color=\"danger\">\n\t\t</ion-searchbar>\n\t\t<div *ngIf=\"productList.length > 0\">\n\t\t<div class=\"element-gallery pd-5\" *ngFor=\"let item of productList | keyvalue; let i = index;\">\n\t\t\t<div (click)=\"viewImg('lemon1.png')\" class=\"wrap-element shadow-2\">\n\t\t\t\t<div class=\"thumb-view\">\n\t\t\t\t\t<img src=\"{{item.value.image_path + item.value.img_list[0].path_sm}}\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"pd-10 txt-info txt-danger\">\n\t\t\t\t\t<h4 no-margin class=\"ellipsis fs-12 fw-600 spacing1 pdb-2 uppercase\" text-center>Rs. {{item.value.sale_price}}</h4>\n\t\t\t\t\t<p no-margin class=\"ellipsis fs-12\" text-center>{{item.value.title}}</p>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div  class=\"wrap-element shadow-2\">\n\t\t\t\t<ion-button expand=\"block\" color=\"danger\" (click)=\"addToCart(item.value.product_id,item.value.title,item.value.sale_price)\">Add Cart</ion-button>\n\t\t\t</div>\n\t\t</div>\n\t\t</div>\n\t</div>\n  \n  </ion-content>\n  "
+module.exports = "\n<ion-header class=\"parallax-obj parallax-translate-obj header-transparent\">\n\t<ion-toolbar>\n\t  <ion-buttons slot=\"start\">\n\t\t\t\t<ion-menu-button></ion-menu-button>\n\t\t<ion-back-button text=\"\" icon=\"ios-arrow-round-back\"></ion-back-button>\n\t  </ion-buttons>\n\t  <ion-title>Product List</ion-title>\n\t</ion-toolbar>\n  </ion-header>\n  \n  <ion-content fullscreen common-parallax [scrollEvents]=\"true\">\n\t\t\n\t\n\t<div class=\"wrap-gallery-info pd-10\">\n\t  <ion-searchbar show-cancel-button cancel-button-text=\"Really Long Cancel\" color=\"danger\">\n\t\t</ion-searchbar>\n\t\t<div *ngIf=\"productList.length > 0\">\n\t\t<div class=\"element-gallery pd-5\" *ngFor=\"let item of productList | keyvalue; let i = index;\">\n\t\t\t<div (click)=\"viewPr(item.value.product_id)\" class=\"wrap-element shadow-2\">\n\t\t\t\t<div class=\"thumb-view\">\n\t\t\t\t\t<img src=\"{{item.value.image_path + item.value.img_list[0].path_sm}}\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"pd-10 txt-info txt-danger\">\n\t\t\t\t\t<h4 no-margin class=\"ellipsis fs-12 fw-600 spacing1 pdb-2 uppercase\" text-center>Rs. {{item.value.sale_price}}</h4>\n\t\t\t\t\t<p no-margin class=\"ellipsis fs-12\" text-center>{{item.value.title}}</p>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div  class=\"wrap-element shadow-2\">\n\t\t\t\t<ion-button expand=\"block\" color=\"danger\" (click)=\"addToCart(item.value.product_id,item.value.title,item.value.sale_price)\">Add Cart</ion-button>\n\t\t\t</div>\n\t\t</div>\n\t\t</div>\n\t</div>\n  \n  </ion-content>\n  "
 
 /***/ }),
 
@@ -227,6 +227,14 @@ let ProductlistPage = class ProductlistPage extends _shared_classes_base_compone
                 this.navCtrl.navigateRoot('/login');
             }
         });
+    }
+    viewPr(id = '') {
+        const navigationExtras = {
+            queryParams: {
+                prId: id
+            }
+        };
+        this.router.navigate(['/pro-details'], navigationExtras);
     }
 };
 ProductlistPage.ctorParameters = () => [

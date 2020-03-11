@@ -1201,20 +1201,20 @@ let ApiService = class ApiService extends _classes_base_api_service__WEBPACK_IMP
     countryList() {
         this.genericApiCall(this.countryListURL, _constant__WEBPACK_IMPORTED_MODULE_3__["countryList"], {}, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
     }
-    addressList() {
-        this.genericApiCall(this.shippingAddressListUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["addressList"], {}, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+    addressList(params = {}) {
+        this.genericApiCall(this.shippingAddressListUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["addressList"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
     }
-    addAddressList() {
-        this.genericApiCall(this.addEditShippingAddressUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["addAddressList"], {}, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+    addAddressList(params = {}) {
+        this.genericApiCall(this.addEditShippingAddressUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["addAddressList"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
     }
-    updateAddressList() {
-        this.genericApiCall(this.addEditShippingAddressUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["updateAddressList"], {}, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+    updateAddressList(params = {}) {
+        this.genericApiCall(this.addEditShippingAddressUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["updateAddressList"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
     }
-    removeAddressList() {
-        this.genericApiCall(this.deleteShippingAddressUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["removeAddressList"], {}, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+    removeAddressList(params = {}) {
+        this.genericApiCall(this.deleteShippingAddressUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["removeAddressList"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
     }
-    setDefualtAddress() {
-        this.genericApiCall(this.setDefaultShippingAddressUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["setDefualtAddress"], {}, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+    setDefualtAddress(params = {}) {
+        this.genericApiCall(this.setDefaultShippingAddressUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["setDefualtAddress"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
     }
 };
 ApiService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -1557,7 +1557,7 @@ const routes = [
     },
     {
         path: 'addeditaddress',
-        loadChildren: () => __webpack_require__.e(/*! import() | pages-addeditaddress-addeditaddress-module */ "pages-addeditaddress-addeditaddress-module").then(__webpack_require__.bind(null, /*! ./pages/addeditaddress/addeditaddress.module */ "./src/app/pages/addeditaddress/addeditaddress.module.ts")).then(m => m.AddeditaddressPageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-addeditaddress-addeditaddress-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-addeditaddress-addeditaddress-module")]).then(__webpack_require__.bind(null, /*! ./pages/addeditaddress/addeditaddress.module */ "./src/app/pages/addeditaddress/addeditaddress.module.ts")).then(m => m.AddeditaddressPageModule)
     }
 ];
 let AppRoutingModule = class AppRoutingModule {

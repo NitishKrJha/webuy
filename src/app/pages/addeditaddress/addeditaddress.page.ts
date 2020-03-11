@@ -21,6 +21,7 @@ export class AddeditaddressPage extends BaseComponent implements OnInit  {
   stateList: any = [];
   cityList: any = [];
   customerId: any = [];
+  customer_id: any = [];
   constructor(
     public navCtrl: NavController,
     public loadingCtrl: LoadingController,
@@ -36,11 +37,7 @@ export class AddeditaddressPage extends BaseComponent implements OnInit  {
   ) {
     super(injector);
     this.initBaseComponent();
-    this.base.shared.Lstorage.fetchData('customerId').then(data => {
-      if (data) {
-        this.customerId = data;
-      }
-    });
+    
     this.addForm = formBuilder.group({
       full_name: ['', Validators.compose([Validators.required])],
       phone_number: ['', Validators.compose([Validators.required])],
@@ -50,7 +47,7 @@ export class AddeditaddressPage extends BaseComponent implements OnInit  {
       state: ['', Validators.compose([Validators.required])],
       city: ['', Validators.compose([Validators.required])],
       zipcode: ['', Validators.compose([Validators.required])],
-      customerId: [this.customerId]
+      customer_id: [this.customer_id, Validators.compose([Validators.required])]
     });
   }
 
