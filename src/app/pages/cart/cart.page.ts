@@ -13,7 +13,10 @@ import { LoadingService } from '../../_shared/loading.service';
 })
 export class CartPage extends BaseComponent implements OnInit {
   public cartList: any = [];
+  public defaultAddress: any = [];
   customerId: any = 0;
+  addressId: any = 0;
+  phoneNumber: any = '';
   constructor(
     public navCtrl: NavController,
     public loadingCtrl: LoadingController,
@@ -38,6 +41,11 @@ export class CartPage extends BaseComponent implements OnInit {
         this.getCartList();
       }
     });
+    this.base.shared.Lstorage.fetchData('phoneNumber').then(data => {
+      if (data) {
+        this.phoneNumber = data;
+      }
+    });
   }
 
   getCartList() {
@@ -48,11 +56,17 @@ export class CartPage extends BaseComponent implements OnInit {
     if (data.resultType === con.cartList) {
       this.loading.dismiss();
       this.cartList = data.result && data.result.data ? data.result.data : [];
+      this.defaultAddress = data.result && data.result.defaultAddress ? data.result.defaultAddress : [];
+      this.addressId = data.result && data.result.defaultAddress.address_id ? data.result.defaultAddress.address_id : 0;
     } else if (data.resultType === con.removeCartItem) {
       this.getCartList();
       const successMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
       this.base.shared.Alert.show_alert('Success', successMessage);
     } else if (data.resultType === con.updateCartItem) {
+      this.getCartList();
+      const successMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
+      this.base.shared.Alert.show_alert('Success', successMessage);
+    } else if (data.resultType === con.placeOrder) {
       this.getCartList();
       const successMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
       this.base.shared.Alert.show_alert('Success', successMessage);
@@ -64,10 +78,15 @@ export class CartPage extends BaseComponent implements OnInit {
     console.log('data', data);
     if (data.resultType === con.cartList) {
       this.cartList = [];
+      this.defaultAddress = [];
     } else if (data.resultType === con.removeCartItem) {
       const errorMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
       this.base.shared.Alert.show_alert('Failed!', errorMessage);
     } else if (data.resultType === con.updateCartItem) {
+      const errorMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
+      this.base.shared.Alert.show_alert('Failed!', errorMessage);
+    } else if (data.resultType === con.placeOrder) {
+      this.getCartList();
       const errorMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
       this.base.shared.Alert.show_alert('Failed!', errorMessage);
     }
@@ -104,7 +123,19 @@ export class CartPage extends BaseComponent implements OnInit {
   }
 
   placeOrder(id: any) {
-    this.base.shared.Alert.show_alert('Success', 'Work in progress');
+    if (this.addressId === 0) {
+      this.base.shared.Alert.show_alert('Error', 'Set Default Address First');
+    } else {
+      this.loading.present();
+      this.base.api.placeOrder({
+        customer_id: this.customerId,
+        shipping_address: this.addressId,
+        phone: this.phoneNumber,
+        amount: this.cartList.reduce((i, j) => i + j.sale_price * j.qty, 0),
+        payment_method: 'Cash',
+        ip_address: '192.168.0.1'
+      });
+    }
   }
 
   getTotal() {
@@ -112,6 +143,7 @@ export class CartPage extends BaseComponent implements OnInit {
   }
 
   changeAddress() {
+    this.base.shared.Lstorage.setData('addressForCart', 1);
     this.navCtrl.navigateRoot('/address');
   }
 

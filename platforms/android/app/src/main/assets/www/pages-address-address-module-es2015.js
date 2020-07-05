@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n      <ion-back-button text=\"\" icon=\"ios-arrow-round-back\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Address</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <div *ngIf=\"addressList.length > 0\">\n    <ion-card *ngFor=\"let list of addressList\">\n      <ion-card-header>\n        <ion-card-subtitle>{{ list.full_name }}</ion-card-subtitle>\n      </ion-card-header>\n      <ion-card-content>\n        {{ list.address1 + \" \" + list.address2 + \" \" + list.city + \" , \" + list.state + \" , \" + list.country + \" , Pincode: \" + list.zipcode }}\n      </ion-card-content>\n      <ion-button expand=\"block\" fill=\"outline\" color=\"danger\" (click)=\"setDefaultAddrees(list.address_id)\">Make Default</ion-button>\n      <ion-button expand=\"block\" fill=\"outline\" color=\"danger\" (click)=\"delAddrees(list.address_id)\">Remove</ion-button>\n    </ion-card>\n  </div>\n  <!-- <div *ngIf=\"addressList.length === 0\">\n    No Data Found\n  </div> -->\n  \n</ion-content>\n\n<ion-footer>\n  <ion-row>\n    <ion-col size=\"12\">\n      <ion-button expand=\"block\" color=\"danger\" (click)=\"addAddress()\">Add Address</ion-button>\n    </ion-col>\n  </ion-row>\n</ion-footer>\n"
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n      <ion-back-button text=\"\" icon=\"ios-arrow-round-back\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Address</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <div *ngIf=\"addressList.length > 0\">\n    <ion-card *ngFor=\"let list of addressList\">\n      <ion-card-header>\n        <ion-card-subtitle>{{ list.full_name }}</ion-card-subtitle>\n      </ion-card-header>\n      <ion-card-content>\n        {{ list.address1 + \" \" + list.address2 + \" \" + list.city + \" , \" + list.state + \" , \" + list.country + \" , Pincode: \" + list.zipcode }}\n      </ion-card-content>\n      <ion-button *ngIf=\"list.status=='0'\" expand=\"block\" fill=\"outline\" color=\"danger\" (click)=\"setDefaultAddrees(list.address_id)\">Make Default</ion-button>\n      <ion-button expand=\"block\" *ngIf=\"list.status=='0'\" fill=\"outline\" color=\"danger\" (click)=\"delAddrees(list.address_id)\">Remove</ion-button>\n    </ion-card>\n  </div>\n  <!-- <div *ngIf=\"addressList.length === 0\">\n    No Data Found\n  </div> -->\n  \n</ion-content>\n\n<ion-footer>\n  <ion-row>\n    <ion-col size=\"12\">\n      <ion-button expand=\"block\" color=\"danger\" (click)=\"addAddress()\">Add Address</ion-button>\n    </ion-col>\n  </ion-row>\n</ion-footer>\n"
 
 /***/ }),
 
@@ -139,7 +139,11 @@ let AddressPage = class AddressPage extends _shared_classes_base_component__WEBP
         this.loading = loading;
         this.addressList = [];
         this.customerId = 0;
+        this.addressForCart = 0;
         this.initBaseComponent();
+        this.base.shared.Lstorage.fetchData('addressForCart').then(datas => {
+            this.addressForCart = datas;
+        });
     }
     ngOnInit() {
         this.base.shared.Lstorage.fetchData('customerId').then(data => {
@@ -164,11 +168,17 @@ let AddressPage = class AddressPage extends _shared_classes_base_component__WEBP
             const successMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
             this.base.shared.Alert.show_alert('Success', successMessage);
         }
-        else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_5__["setDefualtAddress"]) {
-            this.loading.dismiss();
-            this.getaddressList();
-            const successMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
-            this.base.shared.Alert.show_alert('Success', successMessage);
+        else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_5__["setDefaultAddrees"]) {
+            if (this.addressForCart === 1) {
+                this.base.shared.Lstorage.delData('addressForCart');
+                this.navCtrl.navigateRoot('/cart');
+            }
+            else {
+                this.loading.dismiss();
+                this.getaddressList();
+                const successMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
+                this.base.shared.Alert.show_alert('Success', successMessage);
+            }
         }
     }
     handleApiResponseError(data) {
@@ -181,7 +191,7 @@ let AddressPage = class AddressPage extends _shared_classes_base_component__WEBP
             const errorMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
             this.base.shared.Alert.show_alert('Failed!', errorMessage);
         }
-        else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_5__["setDefualtAddress"]) {
+        else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_5__["setDefaultAddrees"]) {
             const errorMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
             this.base.shared.Alert.show_alert('Failed!', errorMessage);
         }

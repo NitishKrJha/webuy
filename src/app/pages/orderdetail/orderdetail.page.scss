@@ -1,0 +1,33 @@
+.cart-icon {
+    font-size: 50px;
+  }
+  
+  .cart-length {
+    color: var(--ion-color-primary);
+    position: absolute;
+    top: 18px;
+    left: 25px;
+    font-weight: 600;
+    font-size: 1em;
+    min-width: 25px;
+    z-index: 10;
+  }
+  .slide-bg{
+    background: #eee;
+    padding: 2px;
+    overflow: hidden;
+}
+.qty{
+    position: absolute;
+    top: -8px;
+    left: 8px;
+    background: red;
+    font-size: 10px;
+    padding: 0 2px;
+    color: #fff;
+    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+    text-align: center;
+    line-height: 16px;
+}

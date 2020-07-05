@@ -447,7 +447,7 @@ module.exports = webpackAsyncContext;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-app>\n  <ion-split-pane contentId=\"main-content\">\n    <ion-menu contentId=\"main-content\" type=\"overlay\">\n      <ion-header>\n        <ion-toolbar>\n          <ion-title>Menu</ion-title>\n        </ion-toolbar>\n      </ion-header>\n      <ion-content>\n        <ion-list>\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages\">\n            <ion-item [routerDirection]=\"'root'\" [routerLink]=\"[p.url]\">\n              <ion-icon slot=\"start\" [name]=\"p.icon\"></ion-icon>\n              <ion-label>\n                {{p.title}}\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n          <ion-menu-toggle auto-hide=\"false\" *ngIf=\"customerId < 1\">\n            <ion-item (click)=\"login()\">\n              <ion-icon slot=\"start\" name=\"log-out\"></ion-icon>\n              <ion-label>\n                Login\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n          <ion-menu-toggle auto-hide=\"false\" *ngIf=\"customerId > 0\">\n            <ion-item (click)=\"logout()\">\n              <ion-icon slot=\"start\" name=\"log-out\"></ion-icon>\n              <ion-label>\n                Logout\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n          <ion-menu-toggle auto-hide=\"false\" *ngIf=\"customerId > 0\">\n            <ion-item (click)=\"goToaddress()\">\n              <ion-icon slot=\"start\" name=\"log-out\"></ion-icon>\n              <ion-label>\n                Address List\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>\n"
+module.exports = "<ion-app>\n  <ion-split-pane contentId=\"main-content\">\n    <ion-menu contentId=\"main-content\" type=\"overlay\">\n      <ion-header>\n        <ion-toolbar>\n          <ion-title>Menu</ion-title>\n        </ion-toolbar>\n      </ion-header>\n      <ion-content>\n        <ion-list>\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages\">\n            <ion-item [routerDirection]=\"'root'\" [routerLink]=\"[p.url]\">\n              <ion-icon slot=\"start\" [name]=\"p.icon\"></ion-icon>\n              <ion-label>\n                {{p.title}}\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n          <ion-menu-toggle auto-hide=\"false\" *ngIf=\"customerId < 1\">\n            <ion-item (click)=\"login()\">\n              <ion-icon slot=\"start\" name=\"log-out\"></ion-icon>\n              <ion-label>\n                Login\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n          <ion-menu-toggle auto-hide=\"false\" *ngIf=\"customerId > 0\">\n            <ion-item (click)=\"goCart()\">\n              <ion-icon slot=\"start\" name=\"card\"></ion-icon>\n              <ion-label>\n                Cart\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n          <ion-menu-toggle auto-hide=\"false\" *ngIf=\"customerId > 0\">\n            <ion-item (click)=\"goToaddress()\">\n              <ion-icon slot=\"start\" name=\"card\"></ion-icon>\n              <ion-label>\n                Address List\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n          <ion-menu-toggle auto-hide=\"false\" *ngIf=\"customerId > 0\">\n            <ion-item (click)=\"logout()\">\n              <ion-icon slot=\"start\" name=\"log-out\"></ion-icon>\n              <ion-label>\n                Logout\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>\n"
 
 /***/ }),
 
@@ -1249,6 +1249,7 @@ var ApiService = /** @class */ (function (_super) {
         _this.deleteShippingAddressUrl = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'deleteShippingAddress';
         _this.setDefaultShippingAddressUrl = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'setDefaultShippingAddress';
         _this.addEditShippingAddressUrl = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'addEditShippingAddress';
+        _this.placeOrderUrl = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'placeOrder';
         return _this;
     }
     ApiService.prototype.otpSend = function (params) {
@@ -1294,6 +1295,10 @@ var ApiService = /** @class */ (function (_super) {
     ApiService.prototype.addToCart = function (params) {
         if (params === void 0) { params = {}; }
         this.genericApiCall(this.addToCartUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["addToCart"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+    };
+    ApiService.prototype.placeOrder = function (params) {
+        if (params === void 0) { params = {}; }
+        this.genericApiCall(this.placeOrderUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["placeOrder"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
     };
     ApiService.prototype.buyNow = function (params) {
         if (params === void 0) { params = {}; }
@@ -1344,9 +1349,9 @@ var ApiService = /** @class */ (function (_super) {
         if (params === void 0) { params = {}; }
         this.genericApiCall(this.deleteShippingAddressUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["removeAddressList"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
     };
-    ApiService.prototype.setDefualtAddress = function (params) {
+    ApiService.prototype.setDefaultAddrees = function (params) {
         if (params === void 0) { params = {}; }
-        this.genericApiCall(this.setDefaultShippingAddressUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["setDefualtAddress"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+        this.genericApiCall(this.setDefaultShippingAddressUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["setDefaultAddrees"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
     };
     ApiService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])()
@@ -1465,7 +1470,7 @@ var RouterStorageService = /** @class */ (function () {
 /*!*************************************!*\
   !*** ./src/app/_shared/constant.ts ***!
   \*************************************/
-/*! exports provided: API_URL, ORG_ID, CONTACT_HIER_ID, OS_TYPE, PROGRAM_ID, OS_VERSION, APP_VERSION, DEVICE_ID, API_KEY, requestGet, requestPost, requestPut, requestDelete, errorResult, loginResponse, DMS_BASE_URL, sendOTP, logout, register, login, banner, featureProductList, productList, trendsProductList, recentViewProductList, addToCart, buyNow, cartList, addToWishList, categoryList, removeCartItem, updateCartItem, productDetail, countryList, stateList, cityList, addressList, addAddressList, updateAddressList, removeAddressList, setDefualtAddress */
+/*! exports provided: API_URL, ORG_ID, CONTACT_HIER_ID, OS_TYPE, PROGRAM_ID, OS_VERSION, APP_VERSION, DEVICE_ID, API_KEY, requestGet, requestPost, requestPut, requestDelete, errorResult, loginResponse, DMS_BASE_URL, sendOTP, logout, register, login, banner, featureProductList, productList, trendsProductList, recentViewProductList, addToCart, buyNow, cartList, addToWishList, categoryList, removeCartItem, updateCartItem, productDetail, countryList, stateList, cityList, addressList, addAddressList, updateAddressList, removeAddressList, setDefaultAddrees, placeOrder */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1510,7 +1515,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addAddressList", function() { return addAddressList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateAddressList", function() { return updateAddressList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeAddressList", function() { return removeAddressList; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setDefualtAddress", function() { return setDefualtAddress; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setDefaultAddrees", function() { return setDefaultAddrees; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "placeOrder", function() { return placeOrder; });
 var API_URL = 'https://minisoftsolution.com/webuy/api/api/';
 var ORG_ID = '1';
 var CONTACT_HIER_ID = '183';
@@ -1551,7 +1557,8 @@ var addressList = 'addressList';
 var addAddressList = 'addAddressList';
 var updateAddressList = 'updateAddressList';
 var removeAddressList = 'removeAddressList';
-var setDefualtAddress = 'setDefualtAddress';
+var setDefaultAddrees = 'setDefaultAddrees';
+var placeOrder = 'placeOrder';
 
 
 /***/ }),
@@ -1769,7 +1776,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var AppComponent = /** @class */ (function (_super) {
     tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](AppComponent, _super);
-    function AppComponent(platform, splashScreen, statusBar, navCtrl, network, modalCtrl, loading, menu, actionSheetCtrl, popoverCtrl, injector) {
+    function AppComponent(platform, splashScreen, statusBar, navCtrl, network, modalCtrl, loading, events, menu, actionSheetCtrl, popoverCtrl, injector) {
         var _this = _super.call(this, injector) || this;
         _this.platform = platform;
         _this.splashScreen = splashScreen;
@@ -1778,6 +1785,7 @@ var AppComponent = /** @class */ (function (_super) {
         _this.network = network;
         _this.modalCtrl = modalCtrl;
         _this.loading = loading;
+        _this.events = events;
         _this.menu = menu;
         _this.actionSheetCtrl = actionSheetCtrl;
         _this.popoverCtrl = popoverCtrl;
@@ -1798,16 +1806,14 @@ var AppComponent = /** @class */ (function (_super) {
                 title: 'Item',
                 url: '/productlist',
                 icon: 'list'
-            },
-            {
-                title: 'Cart',
-                url: '/cart',
-                icon: 'list'
             }
         ];
         _this.base.shared.Lstorage.fetchData('customerId').then(function (datas) {
             _this.customerId = datas;
             console.log('this.customerId100', _this.customerId);
+        });
+        _this.events.subscribe('userLogged', function (data) {
+            _this.customerId = data.customer_id;
         });
         return _this;
     }
@@ -1833,6 +1839,9 @@ var AppComponent = /** @class */ (function (_super) {
     AppComponent.prototype.goToaddress = function () {
         this.router.navigateByUrl('/address');
     };
+    AppComponent.prototype.goCart = function () {
+        this.router.navigateByUrl('/cart');
+    };
     AppComponent.ctorParameters = function () { return [
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"] },
         { type: _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__["SplashScreen"] },
@@ -1841,6 +1850,7 @@ var AppComponent = /** @class */ (function (_super) {
         { type: _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_5__["Network"] },
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"] },
         { type: _shared_loading_service__WEBPACK_IMPORTED_MODULE_7__["LoadingService"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Events"] },
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["MenuController"] },
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ActionSheetController"] },
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["PopoverController"] },
@@ -1859,6 +1869,7 @@ var AppComponent = /** @class */ (function (_super) {
             _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_5__["Network"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"],
             _shared_loading_service__WEBPACK_IMPORTED_MODULE_7__["LoadingService"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Events"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["MenuController"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ActionSheetController"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["PopoverController"],

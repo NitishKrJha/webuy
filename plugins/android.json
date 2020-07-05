@@ -7,32 +7,32 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "io.ionic.starter"
-    },
-    "cordova-plugin-statusbar": {
-      "PACKAGE_NAME": "io.ionic.starter"
-    },
     "cordova-plugin-device": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "webuy.app.in"
     },
-    "cordova-plugin-splashscreen": {
-      "PACKAGE_NAME": "io.ionic.starter"
+    "cordova-plugin-ionic-keyboard": {
+      "PACKAGE_NAME": "webuy.app.in"
     },
     "cordova-plugin-ionic-webview": {
       "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+",
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "webuy.app.in"
     },
-    "cordova-plugin-ionic-keyboard": {
-      "PACKAGE_NAME": "io.ionic.starter"
+    "cordova-plugin-market": {
+      "PACKAGE_NAME": "webuy.app.in"
     },
     "cordova-plugin-network-information": {
       "PACKAGE_NAME": "webuy.app.in"
     },
-    "cordova-sqlite-storage": {
+    "cordova-plugin-splashscreen": {
       "PACKAGE_NAME": "webuy.app.in"
     },
-    "cordova-plugin-market": {
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "webuy.app.in"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "webuy.app.in"
+    },
+    "cordova-sqlite-storage": {
       "PACKAGE_NAME": "webuy.app.in"
     }
   },

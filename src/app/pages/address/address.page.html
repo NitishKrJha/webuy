@@ -17,8 +17,8 @@
       <ion-card-content>
         {{ list.address1 + " " + list.address2 + " " + list.city + " , " + list.state + " , " + list.country + " , Pincode: " + list.zipcode }}
       </ion-card-content>
-      <ion-button expand="block" fill="outline" color="danger" (click)="setDefaultAddrees(list.address_id)">Make Default</ion-button>
-      <ion-button expand="block" fill="outline" color="danger" (click)="delAddrees(list.address_id)">Remove</ion-button>
+      <ion-button *ngIf="list.status=='0'" expand="block" fill="outline" color="danger" (click)="setDefaultAddrees(list.address_id)">Make Default</ion-button>
+      <ion-button expand="block" *ngIf="list.status=='0'" fill="outline" color="danger" (click)="delAddrees(list.address_id)">Remove</ion-button>
     </ion-card>
   </div>
   <!-- <div *ngIf="addressList.length === 0">

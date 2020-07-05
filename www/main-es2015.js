@@ -441,7 +441,7 @@ module.exports = webpackAsyncContext;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-app>\n  <ion-split-pane contentId=\"main-content\">\n    <ion-menu contentId=\"main-content\" type=\"overlay\">\n      <ion-header>\n        <ion-toolbar>\n          <ion-title>Menu</ion-title>\n        </ion-toolbar>\n      </ion-header>\n      <ion-content>\n        <ion-list>\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages\">\n            <ion-item [routerDirection]=\"'root'\" [routerLink]=\"[p.url]\">\n              <ion-icon slot=\"start\" [name]=\"p.icon\"></ion-icon>\n              <ion-label>\n                {{p.title}}\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n          <ion-menu-toggle auto-hide=\"false\" *ngIf=\"customerId < 1\">\n            <ion-item (click)=\"login()\">\n              <ion-icon slot=\"start\" name=\"log-out\"></ion-icon>\n              <ion-label>\n                Login\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n          <ion-menu-toggle auto-hide=\"false\" *ngIf=\"customerId > 0\">\n            <ion-item (click)=\"logout()\">\n              <ion-icon slot=\"start\" name=\"log-out\"></ion-icon>\n              <ion-label>\n                Logout\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n          <ion-menu-toggle auto-hide=\"false\" *ngIf=\"customerId > 0\">\n            <ion-item (click)=\"goToaddress()\">\n              <ion-icon slot=\"start\" name=\"log-out\"></ion-icon>\n              <ion-label>\n                Address List\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>\n"
+module.exports = "<ion-app>\n  <ion-split-pane contentId=\"main-content\">\n    <ion-menu contentId=\"main-content\" type=\"overlay\">\n      <ion-header>\n        <ion-toolbar>\n          <ion-title>Menu</ion-title>\n        </ion-toolbar>\n      </ion-header>\n      <ion-content>\n        <ion-list>\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages\">\n            <ion-item [routerDirection]=\"'root'\" [routerLink]=\"[p.url]\">\n              <ion-icon slot=\"start\" [name]=\"p.icon\"></ion-icon>\n              <ion-label>\n                {{p.title}}\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n          <ion-menu-toggle auto-hide=\"false\" *ngIf=\"customerId < 1\">\n            <ion-item (click)=\"login()\">\n              <ion-icon slot=\"start\" name=\"log-out\"></ion-icon>\n              <ion-label>\n                Login\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n          <ion-menu-toggle auto-hide=\"false\" *ngIf=\"customerId > 0\">\n            <ion-item (click)=\"goCart()\">\n              <ion-icon slot=\"start\" name=\"card\"></ion-icon>\n              <ion-label>\n                Cart\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n          <ion-menu-toggle auto-hide=\"false\" *ngIf=\"customerId > 0\">\n            <ion-item (click)=\"goToaddress()\">\n              <ion-icon slot=\"start\" name=\"card\"></ion-icon>\n              <ion-label>\n                Address List\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n          <ion-menu-toggle auto-hide=\"false\" *ngIf=\"customerId > 0\">\n            <ion-item (click)=\"logout()\">\n              <ion-icon slot=\"start\" name=\"log-out\"></ion-icon>\n              <ion-label>\n                Logout\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>\n"
 
 /***/ }),
 
@@ -1140,6 +1140,7 @@ let ApiService = class ApiService extends _classes_base_api_service__WEBPACK_IMP
         this.deleteShippingAddressUrl = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'deleteShippingAddress';
         this.setDefaultShippingAddressUrl = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'setDefaultShippingAddress';
         this.addEditShippingAddressUrl = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'addEditShippingAddress';
+        this.placeOrderUrl = _constant__WEBPACK_IMPORTED_MODULE_3__["API_URL"] + 'placeOrder';
     }
     otpSend(params = {}) {
         this.genericApiCall(this.otpSendUrlForRegister, _constant__WEBPACK_IMPORTED_MODULE_3__["sendOTP"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
@@ -1173,6 +1174,9 @@ let ApiService = class ApiService extends _classes_base_api_service__WEBPACK_IMP
     }
     addToCart(params = {}) {
         this.genericApiCall(this.addToCartUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["addToCart"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+    }
+    placeOrder(params = {}) {
+        this.genericApiCall(this.placeOrderUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["placeOrder"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
     }
     buyNow(params = {}) {
         this.genericApiCall(this.addToCartUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["buyNow"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
@@ -1213,8 +1217,8 @@ let ApiService = class ApiService extends _classes_base_api_service__WEBPACK_IMP
     removeAddressList(params = {}) {
         this.genericApiCall(this.deleteShippingAddressUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["removeAddressList"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
     }
-    setDefualtAddress(params = {}) {
-        this.genericApiCall(this.setDefaultShippingAddressUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["setDefualtAddress"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
+    setDefaultAddrees(params = {}) {
+        this.genericApiCall(this.setDefaultShippingAddressUrl, _constant__WEBPACK_IMPORTED_MODULE_3__["setDefaultAddrees"], params, _constant__WEBPACK_IMPORTED_MODULE_3__["requestPost"], true);
     }
 };
 ApiService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -1327,7 +1331,7 @@ RouterStorageService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*!*************************************!*\
   !*** ./src/app/_shared/constant.ts ***!
   \*************************************/
-/*! exports provided: API_URL, ORG_ID, CONTACT_HIER_ID, OS_TYPE, PROGRAM_ID, OS_VERSION, APP_VERSION, DEVICE_ID, API_KEY, requestGet, requestPost, requestPut, requestDelete, errorResult, loginResponse, DMS_BASE_URL, sendOTP, logout, register, login, banner, featureProductList, productList, trendsProductList, recentViewProductList, addToCart, buyNow, cartList, addToWishList, categoryList, removeCartItem, updateCartItem, productDetail, countryList, stateList, cityList, addressList, addAddressList, updateAddressList, removeAddressList, setDefualtAddress */
+/*! exports provided: API_URL, ORG_ID, CONTACT_HIER_ID, OS_TYPE, PROGRAM_ID, OS_VERSION, APP_VERSION, DEVICE_ID, API_KEY, requestGet, requestPost, requestPut, requestDelete, errorResult, loginResponse, DMS_BASE_URL, sendOTP, logout, register, login, banner, featureProductList, productList, trendsProductList, recentViewProductList, addToCart, buyNow, cartList, addToWishList, categoryList, removeCartItem, updateCartItem, productDetail, countryList, stateList, cityList, addressList, addAddressList, updateAddressList, removeAddressList, setDefaultAddrees, placeOrder */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1372,7 +1376,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addAddressList", function() { return addAddressList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateAddressList", function() { return updateAddressList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeAddressList", function() { return removeAddressList; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setDefualtAddress", function() { return setDefualtAddress; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setDefaultAddrees", function() { return setDefaultAddrees; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "placeOrder", function() { return placeOrder; });
 const API_URL = 'https://minisoftsolution.com/webuy/api/api/';
 const ORG_ID = '1';
 const CONTACT_HIER_ID = '183';
@@ -1413,7 +1418,8 @@ const addressList = 'addressList';
 const addAddressList = 'addAddressList';
 const updateAddressList = 'updateAddressList';
 const removeAddressList = 'removeAddressList';
-const setDefualtAddress = 'setDefualtAddress';
+const setDefaultAddrees = 'setDefaultAddrees';
+const placeOrder = 'placeOrder';
 
 
 /***/ }),
@@ -1613,7 +1619,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let AppComponent = class AppComponent extends _shared_classes_base_component__WEBPACK_IMPORTED_MODULE_6__["BaseComponent"] {
-    constructor(platform, splashScreen, statusBar, navCtrl, network, modalCtrl, loading, menu, actionSheetCtrl, popoverCtrl, injector) {
+    constructor(platform, splashScreen, statusBar, navCtrl, network, modalCtrl, loading, events, menu, actionSheetCtrl, popoverCtrl, injector) {
         super(injector);
         this.platform = platform;
         this.splashScreen = splashScreen;
@@ -1622,6 +1628,7 @@ let AppComponent = class AppComponent extends _shared_classes_base_component__WE
         this.network = network;
         this.modalCtrl = modalCtrl;
         this.loading = loading;
+        this.events = events;
         this.menu = menu;
         this.actionSheetCtrl = actionSheetCtrl;
         this.popoverCtrl = popoverCtrl;
@@ -1642,16 +1649,14 @@ let AppComponent = class AppComponent extends _shared_classes_base_component__WE
                 title: 'Item',
                 url: '/productlist',
                 icon: 'list'
-            },
-            {
-                title: 'Cart',
-                url: '/cart',
-                icon: 'list'
             }
         ];
         this.base.shared.Lstorage.fetchData('customerId').then(datas => {
             this.customerId = datas;
             console.log('this.customerId100', this.customerId);
+        });
+        this.events.subscribe('userLogged', (data) => {
+            this.customerId = data.customer_id;
         });
     }
     initializeApp() {
@@ -1675,6 +1680,9 @@ let AppComponent = class AppComponent extends _shared_classes_base_component__WE
     goToaddress() {
         this.router.navigateByUrl('/address');
     }
+    goCart() {
+        this.router.navigateByUrl('/cart');
+    }
 };
 AppComponent.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"] },
@@ -1684,6 +1692,7 @@ AppComponent.ctorParameters = () => [
     { type: _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_5__["Network"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"] },
     { type: _shared_loading_service__WEBPACK_IMPORTED_MODULE_7__["LoadingService"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Events"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["MenuController"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ActionSheetController"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["PopoverController"] },
@@ -1702,6 +1711,7 @@ AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_5__["Network"],
         _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"],
         _shared_loading_service__WEBPACK_IMPORTED_MODULE_7__["LoadingService"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Events"],
         _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["MenuController"],
         _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ActionSheetController"],
         _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["PopoverController"],

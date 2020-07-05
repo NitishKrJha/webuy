@@ -7,6 +7,7 @@ import {
   ActionSheetController,
   PopoverController,
   MenuController,
+  Events,
   IonRouterOutlet } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
@@ -39,6 +40,7 @@ export class AppComponent extends BaseComponent {
     public network: Network,
     public modalCtrl: ModalController,
     public loading: LoadingService,
+    public events: Events,
     public menu: MenuController,
     public actionSheetCtrl: ActionSheetController,
     public popoverCtrl: PopoverController,
@@ -61,16 +63,14 @@ export class AppComponent extends BaseComponent {
         title: 'Item',
         url: '/productlist',
         icon: 'list'
-      },
-      {
-        title: 'Cart',
-        url: '/cart',
-        icon: 'list'
       }
     ];
     this.base.shared.Lstorage.fetchData('customerId').then(datas => {
       this.customerId = datas;
       console.log('this.customerId100', this.customerId);
+    });
+    this.events.subscribe('userLogged', (data) => {
+      this.customerId = data.customer_id;
     });
   }
 
@@ -97,5 +97,13 @@ export class AppComponent extends BaseComponent {
 
   goToaddress() {
     this.router.navigateByUrl('/address') ;
+  }
+
+  goCart() {
+    this.router.navigateByUrl('/cart') ;
+  }
+
+  goTorderList() {
+    this.router.navigateByUrl('/orderlist') ;
   }
 }

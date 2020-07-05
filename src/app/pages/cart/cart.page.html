@@ -26,10 +26,11 @@
     <ion-card-header>
       <ion-card-subtitle>Delivery Address</ion-card-subtitle>
     </ion-card-header>
-    <ion-card-content>
-      21, Akshya Nagar 1st Block 1st Cross, Rammurthy nagar, Bangalore-560016
+    <ion-card-content *ngIf="defaultAddress.length !== 0">
+      {{defaultAddress.address1 + ' ' + defaultAddress.address2 + ' ' + defaultAddress.city + ' ' + defaultAddress.zipcode }}
     </ion-card-content>
-    <ion-button expand="block" fill="outline" color="danger" (click)="changeAddress()">Change Address</ion-button>
+    <ion-button *ngIf="defaultAddress.length !== 0" expand="block" fill="outline" color="danger" (click)="changeAddress()">Change Address</ion-button>
+    <ion-button *ngIf="defaultAddress.length == 0" expand="block" fill="outline" color="danger" (click)="changeAddress()">Add Address</ion-button>
   </ion-card>
   <div class="ion-padding" *ngIf="cartList">
 

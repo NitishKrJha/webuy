@@ -66,6 +66,14 @@ const routes: Routes = [
   {
     path: 'addeditaddress',
     loadChildren: () => import('./pages/addeditaddress/addeditaddress.module').then( m => m.AddeditaddressPageModule)
+  },
+  {
+    path: 'orderlist',
+    loadChildren: () => import('./pages/orderlist/orderlist.module').then( m => m.OrderlistPageModule)
+  },
+  {
+    path: 'orderdetail',
+    loadChildren: () => import('./pages/orderdetail/orderdetail.module').then( m => m.OrderdetailPageModule)
   }
 ];
 

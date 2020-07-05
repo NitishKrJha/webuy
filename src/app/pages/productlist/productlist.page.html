@@ -12,10 +12,10 @@
   <ion-content fullscreen common-parallax [scrollEvents]="true">
 		
 	
-	<div class="wrap-gallery-info pd-10">
+	<div class="wrap-gallery-info pd-10" *ngIf="productList.length > 0">
 	  <ion-searchbar show-cancel-button cancel-button-text="Really Long Cancel" color="danger">
 		</ion-searchbar>
-		<div *ngIf="productList.length > 0">
+		<div >
 		<div class="element-gallery pd-5" *ngFor="let item of productList | keyvalue; let i = index;">
 			<div (click)="viewPr(item.value.product_id)" class="wrap-element shadow-2">
 				<div class="thumb-view">
@@ -32,6 +32,10 @@
 		</div>
 		</div>
 	</div>
+
+	<div *ngIf="productList.length === 0">
+    <img src="assets/images/no_records.png" no-padding class="imgcenter">
+  </div>
   
   </ion-content>
   

@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header class=\"parallax-obj parallax-translate-obj header-transparent\">\n  <ion-toolbar color=\"primary\">\n      <ion-buttons slot=\"start\">\n          <ion-menu-button></ion-menu-button>\n      <ion-back-button text=\"\" icon=\"ios-arrow-round-back\"></ion-back-button>\n      </ion-buttons>\n    <ion-title>\n      Cart List\n    </ion-title>\n    <ion-buttons slot=\"start\">\n      <ion-back-button text=\"\" icon=\"arrow-back\"></ion-back-button>\n    </ion-buttons>\n    <!-- <ion-buttons slot=\"end\">\n      <button ion-button small>\n        <ion-icon name=\"cart\" class=\"cart-number\"><ion-badge color=\"danger\">3</ion-badge></ion-icon>\n      </button>\n      <button ion-button (click)=\"openFilters()\">\n        <ion-icon name=\"funnel\">\n        </ion-icon>\n      </button>\n    </ion-buttons> -->\n  </ion-toolbar>\n</ion-header>\n<ion-content fullscreen>\n  <ion-card>\n    <ion-card-header>\n      <ion-card-subtitle>Delivery Address</ion-card-subtitle>\n    </ion-card-header>\n    <ion-card-content>\n      21, Akshya Nagar 1st Block 1st Cross, Rammurthy nagar, Bangalore-560016\n    </ion-card-content>\n    <ion-button expand=\"block\" fill=\"outline\" color=\"danger\" (click)=\"changeAddress()\">Change Address</ion-button>\n  </ion-card>\n  <div class=\"ion-padding\" *ngIf=\"cartList\">\n\n    <ion-list>\n      <ion-item *ngFor=\"let p of cartList\" class=\"ion-text-wrap\">\n        <ion-grid>\n          <ion-row class=\"ion-align-items-center\">\n            <ion-col size=\"2\" class=\"ion-align-self-center\">\n              <ion-button color=\"medium\" fill=\"clear\" (click) = \"quantityDecreased(p.id,p.qty)\">\n                <ion-icon name=\"remove-circle\" slot=\"icon-only\"></ion-icon>\n              </ion-button>\n            </ion-col>\n\n            <ion-col size=\"2\" class=\"ion-align-self-center\">\n              {{p.qty}}\n            </ion-col>\n\n            <ion-col size=\"2\" class=\"ion-align-self-center\">\n              <ion-button color=\"medium\" fill=\"clear\" (click) = \"quantityIncreased(p.id,p.qty)\">\n                <ion-icon name=\"add-circle\" slot=\"icon-only\"></ion-icon>\n              </ion-button>\n            </ion-col>\n\n            <ion-col size=\"2\" offset=\"4\">\n              <ion-button color=\"medium\" fill=\"clear\" (click) = \"removeCart(p.id)\">\n                <ion-icon name=\"close-circle\" slot=\"icon-only\"></ion-icon>\n              </ion-button>\n            </ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col size=\"9\">\n              <b>{{ p.name }}</b>\n            </ion-col>\n            <ion-col size=\"3\" class=\"ion-text-end\">\n              Rs. {{p.sale_price }}\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-item>\n      <ion-item>\n        <ion-grid>\n          <ion-row>\n            <ion-col size=\"6\">\n              Total :\n            </ion-col>\n            <ion-col size=\"6\" class=\"ion-text-end\">\n             Rs. {{ getTotal() }}\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-item>\n    </ion-list>\n\n    <!-- <ion-button expand=\"full\" (click)=\"placeOrder('cartId')\">\n      Checkout\n    </ion-button> -->\n  </div>\n\n\n</ion-content>\n\n<ion-footer>\n  <ion-row>\n    <ion-col size=\"6\">\n      <h4 no-margin class=\"fs-16 fw-600 uppercase mgt-10\" text-center>Rs. {{ getTotal() }}</h4>\n    </ion-col>\n    <ion-col size=\"6\">\n      <ion-button expand=\"block\" color=\"danger\" (click)=\"placeOrder('cartId')\">Place Order</ion-button>\n    </ion-col>\n  </ion-row>\n</ion-footer>"
+module.exports = "<ion-header class=\"parallax-obj parallax-translate-obj header-transparent\">\n  <ion-toolbar color=\"primary\">\n      <ion-buttons slot=\"start\">\n          <ion-menu-button></ion-menu-button>\n      <ion-back-button text=\"\" icon=\"ios-arrow-round-back\"></ion-back-button>\n      </ion-buttons>\n    <ion-title>\n      Cart List\n    </ion-title>\n    <ion-buttons slot=\"start\">\n      <ion-back-button text=\"\" icon=\"arrow-back\"></ion-back-button>\n    </ion-buttons>\n    <!-- <ion-buttons slot=\"end\">\n      <button ion-button small>\n        <ion-icon name=\"cart\" class=\"cart-number\"><ion-badge color=\"danger\">3</ion-badge></ion-icon>\n      </button>\n      <button ion-button (click)=\"openFilters()\">\n        <ion-icon name=\"funnel\">\n        </ion-icon>\n      </button>\n    </ion-buttons> -->\n  </ion-toolbar>\n</ion-header>\n<ion-content fullscreen>\n  <ion-card>\n    <ion-card-header>\n      <ion-card-subtitle>Delivery Address</ion-card-subtitle>\n    </ion-card-header>\n    <ion-card-content *ngIf=\"defaultAddress.length !== 0\">\n      {{defaultAddress.address1 + ' ' + defaultAddress.address2 + ' ' + defaultAddress.city + ' ' + defaultAddress.zipcode }}\n    </ion-card-content>\n    <ion-button *ngIf=\"defaultAddress.length !== 0\" expand=\"block\" fill=\"outline\" color=\"danger\" (click)=\"changeAddress()\">Change Address</ion-button>\n    <ion-button *ngIf=\"defaultAddress.length == 0\" expand=\"block\" fill=\"outline\" color=\"danger\" (click)=\"changeAddress()\">Add Address</ion-button>\n  </ion-card>\n  <div class=\"ion-padding\" *ngIf=\"cartList\">\n\n    <ion-list>\n      <ion-item *ngFor=\"let p of cartList\" class=\"ion-text-wrap\">\n        <ion-grid>\n          <ion-row class=\"ion-align-items-center\">\n            <ion-col size=\"2\" class=\"ion-align-self-center\">\n              <ion-button color=\"medium\" fill=\"clear\" (click) = \"quantityDecreased(p.id,p.qty)\">\n                <ion-icon name=\"remove-circle\" slot=\"icon-only\"></ion-icon>\n              </ion-button>\n            </ion-col>\n\n            <ion-col size=\"2\" class=\"ion-align-self-center\">\n              {{p.qty}}\n            </ion-col>\n\n            <ion-col size=\"2\" class=\"ion-align-self-center\">\n              <ion-button color=\"medium\" fill=\"clear\" (click) = \"quantityIncreased(p.id,p.qty)\">\n                <ion-icon name=\"add-circle\" slot=\"icon-only\"></ion-icon>\n              </ion-button>\n            </ion-col>\n\n            <ion-col size=\"2\" offset=\"4\">\n              <ion-button color=\"medium\" fill=\"clear\" (click) = \"removeCart(p.id)\">\n                <ion-icon name=\"close-circle\" slot=\"icon-only\"></ion-icon>\n              </ion-button>\n            </ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col size=\"9\">\n              <b>{{ p.name }}</b>\n            </ion-col>\n            <ion-col size=\"3\" class=\"ion-text-end\">\n              Rs. {{p.sale_price }}\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-item>\n      <ion-item>\n        <ion-grid>\n          <ion-row>\n            <ion-col size=\"6\">\n              Total :\n            </ion-col>\n            <ion-col size=\"6\" class=\"ion-text-end\">\n             Rs. {{ getTotal() }}\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-item>\n    </ion-list>\n\n    <!-- <ion-button expand=\"full\" (click)=\"placeOrder('cartId')\">\n      Checkout\n    </ion-button> -->\n  </div>\n\n\n</ion-content>\n\n<ion-footer>\n  <ion-row>\n    <ion-col size=\"6\">\n      <h4 no-margin class=\"fs-16 fw-600 uppercase mgt-10\" text-center>Rs. {{ getTotal() }}</h4>\n    </ion-col>\n    <ion-col size=\"6\">\n      <ion-button expand=\"block\" color=\"danger\" (click)=\"placeOrder('cartId')\">Place Order</ion-button>\n    </ion-col>\n  </ion-row>\n</ion-footer>"
 
 /***/ }),
 
@@ -145,7 +145,10 @@ var CartPage = /** @class */ (function (_super) {
         _this.route = route;
         _this.loading = loading;
         _this.cartList = [];
+        _this.defaultAddress = [];
         _this.customerId = 0;
+        _this.addressId = 0;
+        _this.phoneNumber = '';
         _this.initBaseComponent();
         return _this;
     }
@@ -158,6 +161,11 @@ var CartPage = /** @class */ (function (_super) {
                 _this.getCartList();
             }
         });
+        this.base.shared.Lstorage.fetchData('phoneNumber').then(function (data) {
+            if (data) {
+                _this.phoneNumber = data;
+            }
+        });
     };
     CartPage.prototype.getCartList = function () {
         this.base.api.cartList({ ip_address: '192.168.0.1', customer_id: this.customerId });
@@ -166,6 +174,8 @@ var CartPage = /** @class */ (function (_super) {
         if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_5__["cartList"]) {
             this.loading.dismiss();
             this.cartList = data.result && data.result.data ? data.result.data : [];
+            this.defaultAddress = data.result && data.result.defaultAddress ? data.result.defaultAddress : [];
+            this.addressId = data.result && data.result.defaultAddress.address_id ? data.result.defaultAddress.address_id : 0;
         }
         else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_5__["removeCartItem"]) {
             this.getCartList();
@@ -173,6 +183,11 @@ var CartPage = /** @class */ (function (_super) {
             this.base.shared.Alert.show_alert('Success', successMessage);
         }
         else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_5__["updateCartItem"]) {
+            this.getCartList();
+            var successMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
+            this.base.shared.Alert.show_alert('Success', successMessage);
+        }
+        else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_5__["placeOrder"]) {
             this.getCartList();
             var successMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
             this.base.shared.Alert.show_alert('Success', successMessage);
@@ -183,12 +198,18 @@ var CartPage = /** @class */ (function (_super) {
         console.log('data', data);
         if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_5__["cartList"]) {
             this.cartList = [];
+            this.defaultAddress = [];
         }
         else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_5__["removeCartItem"]) {
             var errorMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
             this.base.shared.Alert.show_alert('Failed!', errorMessage);
         }
         else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_5__["updateCartItem"]) {
+            var errorMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
+            this.base.shared.Alert.show_alert('Failed!', errorMessage);
+        }
+        else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_5__["placeOrder"]) {
+            this.getCartList();
             var errorMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
             this.base.shared.Alert.show_alert('Failed!', errorMessage);
         }
@@ -221,12 +242,26 @@ var CartPage = /** @class */ (function (_super) {
         });
     };
     CartPage.prototype.placeOrder = function (id) {
-        this.base.shared.Alert.show_alert('Success', 'Work in progress');
+        if (this.addressId === 0) {
+            this.base.shared.Alert.show_alert('Error', 'Set Default Address First');
+        }
+        else {
+            this.loading.present();
+            this.base.api.placeOrder({
+                customer_id: this.customerId,
+                shipping_address: this.addressId,
+                phone: this.phoneNumber,
+                amount: this.cartList.reduce(function (i, j) { return i + j.sale_price * j.qty; }, 0),
+                payment_method: 'Cash',
+                ip_address: '192.168.0.1'
+            });
+        }
     };
     CartPage.prototype.getTotal = function () {
         return this.cartList.reduce(function (i, j) { return i + j.sale_price * j.qty; }, 0);
     };
     CartPage.prototype.changeAddress = function () {
+        this.base.shared.Lstorage.setData('addressForCart', 1);
         this.navCtrl.navigateRoot('/address');
     };
     CartPage.ctorParameters = function () { return [

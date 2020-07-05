@@ -14,6 +14,7 @@ import { LoadingService } from '../../_shared/loading.service';
 export class AddressPage extends BaseComponent implements OnInit {
   public addressList: any = [];
   customerId: any = 0;
+  addressForCart: any = 0;
   constructor(
     public navCtrl: NavController,
     public loadingCtrl: LoadingController,
@@ -28,6 +29,10 @@ export class AddressPage extends BaseComponent implements OnInit {
   ) {
     super(injector);
     this.initBaseComponent();
+
+    this.base.shared.Lstorage.fetchData('addressForCart').then(datas => {
+      this.addressForCart = datas;
+    });
   }
 
   ngOnInit() {
@@ -53,11 +58,16 @@ export class AddressPage extends BaseComponent implements OnInit {
       this.getaddressList();
       const successMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
       this.base.shared.Alert.show_alert('Success', successMessage);
-    } else if (data.resultType === con.setDefualtAddress) {
-      this.loading.dismiss();
-      this.getaddressList();
-      const successMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
-      this.base.shared.Alert.show_alert('Success', successMessage);
+    } else if (data.resultType === con.setDefaultAddrees) {
+      if (this.addressForCart === 1) {
+        this.base.shared.Lstorage.delData('addressForCart');
+        this.navCtrl.navigateRoot('/cart');
+      } else {
+        this.loading.dismiss();
+        this.getaddressList();
+        const successMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
+        this.base.shared.Alert.show_alert('Success', successMessage);
+      }
     }
   }
 
@@ -69,7 +79,7 @@ export class AddressPage extends BaseComponent implements OnInit {
     } else if (data.resultType === con.removeAddressList) {
       const errorMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
       this.base.shared.Alert.show_alert('Failed!', errorMessage);
-    } else if (data.resultType === con.setDefualtAddress) {
+    } else if (data.resultType === con.setDefaultAddrees) {
       const errorMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
       this.base.shared.Alert.show_alert('Failed!', errorMessage);
     }

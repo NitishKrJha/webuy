@@ -20,8 +20,8 @@ export class AddeditaddressPage extends BaseComponent implements OnInit  {
   countryList: any = [];
   stateList: any = [];
   cityList: any = [];
-  customerId: any = [];
-  customer_id: any = [];
+  customerId: any = '';
+  addressForCart: any = 0;
   constructor(
     public navCtrl: NavController,
     public loadingCtrl: LoadingController,
@@ -37,7 +37,9 @@ export class AddeditaddressPage extends BaseComponent implements OnInit  {
   ) {
     super(injector);
     this.initBaseComponent();
-    
+    this.base.shared.Lstorage.fetchData('addressForCart').then(datas => {
+      this.addressForCart = datas;
+    });
     this.addForm = formBuilder.group({
       full_name: ['', Validators.compose([Validators.required])],
       phone_number: ['', Validators.compose([Validators.required])],
@@ -47,20 +49,30 @@ export class AddeditaddressPage extends BaseComponent implements OnInit  {
       state: ['', Validators.compose([Validators.required])],
       city: ['', Validators.compose([Validators.required])],
       zipcode: ['', Validators.compose([Validators.required])],
-      customer_id: [this.customer_id, Validators.compose([Validators.required])]
+      customerId: [this.customerId, Validators.compose([])]
     });
   }
 
   ngOnInit() {
     this.base.api.stateList(101);
+    this.base.shared.Lstorage.fetchData('customerId').then(data => {
+      if (data) {
+        this.customerId = data;
+      }
+    });
   }
 
   handleApiResponse(data) {
     if (data.resultType === con.addAddressList) {
       this.loading.dismiss();
-      const successMessage = data.result && data.result.message ? data.result.message : 'Registration Successfully';
-      this.base.shared.Alert.show_alert('Success', successMessage);
-      this.navCtrl.navigateRoot('/address');
+      if (this.addressForCart === 1) {
+        this.base.shared.Lstorage.delData('addressForCart');
+        this.navCtrl.navigateRoot('/cart');
+      } else {
+        const successMessage = data.result && data.result.message ? data.result.message : 'Registration Successfully';
+        this.base.shared.Alert.show_alert('Success', successMessage);
+        this.navCtrl.navigateRoot('/address');
+      }
     } else if (data.resultType === con.countryList) {
       this.countryList = data.result && data.result.data ? data.result.data : [];
     } else if (data.resultType === con.stateList) {
@@ -87,6 +99,7 @@ export class AddeditaddressPage extends BaseComponent implements OnInit  {
 
   doSave() {
     this.loading.present();
+    this.addForm.value.customerId = this.customerId;
     this.base.api.addAddressList(this.addForm.value);
   }
 

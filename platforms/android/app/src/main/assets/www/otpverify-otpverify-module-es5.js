@@ -189,6 +189,7 @@ var OtpverifyPage = /** @class */ (function (_super) {
             this.base.shared.Lstorage.setData('isLogged', 1);
             this.base.shared.Lstorage.setData('phoneNumber', data.result.data.phone);
             this.base.shared.Lstorage.setData('customerId', data.result.data.customer_id);
+            this.events.publish('userLogged', data.result.data);
             if (this.cartLogin === 1) {
                 this.base.shared.Lstorage.delData('cartLogin');
                 this.base.shared.Lstorage.delData('cartItemId');
@@ -222,7 +223,7 @@ var OtpverifyPage = /** @class */ (function (_super) {
         else if (data.resultType === _shared_constant__WEBPACK_IMPORTED_MODULE_6__["addToCart"]) {
             var errorMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
             this.base.shared.Alert.show_alert('Failed!', errorMessage);
-            this.router.navigateByUrl('/home', { replaceUrl: true });
+            this.router.navigateByUrl('/cart', { replaceUrl: true });
         }
     };
     OtpverifyPage.prototype.verifyOtp = function () {

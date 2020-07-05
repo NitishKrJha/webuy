@@ -25,18 +25,34 @@
             </ion-item>
           </ion-menu-toggle>
           <ion-menu-toggle auto-hide="false" *ngIf="customerId > 0">
-            <ion-item (click)="logout()">
-              <ion-icon slot="start" name="log-out"></ion-icon>
+            <ion-item (click)="goCart()">
+              <ion-icon slot="start" name="card"></ion-icon>
               <ion-label>
-                Logout
+                Cart
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
           <ion-menu-toggle auto-hide="false" *ngIf="customerId > 0">
             <ion-item (click)="goToaddress()">
-              <ion-icon slot="start" name="log-out"></ion-icon>
+              <ion-icon slot="start" name="card"></ion-icon>
               <ion-label>
                 Address List
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false" *ngIf="customerId > 0">
+            <ion-item (click)="goTorderList()">
+              <ion-icon slot="start" name="list-box"></ion-icon>
+              <ion-label>
+                Order List
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false" *ngIf="customerId > 0">
+            <ion-item (click)="logout()">
+              <ion-icon slot="start" name="log-out"></ion-icon>
+              <ion-label>
+                Logout
               </ion-label>
             </ion-item>
           </ion-menu-toggle>

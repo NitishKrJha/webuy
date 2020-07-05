@@ -74,6 +74,7 @@ export class OtpverifyPage extends BaseComponent implements OnInit {
       this.base.shared.Lstorage.setData('isLogged', 1);
       this.base.shared.Lstorage.setData('phoneNumber', data.result.data.phone);
       this.base.shared.Lstorage.setData('customerId', data.result.data.customer_id);
+      this.events.publish('userLogged', data.result.data);
       if (this.cartLogin === 1) {
         this.base.shared.Lstorage.delData('cartLogin');
         this.base.shared.Lstorage.delData('cartItemId');
@@ -105,7 +106,7 @@ export class OtpverifyPage extends BaseComponent implements OnInit {
     } else if (data.resultType === con.addToCart) {
       const errorMessage = data.result && data.result.message ? data.result.message : 'something went wrong';
       this.base.shared.Alert.show_alert('Failed!', errorMessage);
-      this.router.navigateByUrl('/home', { replaceUrl: true }) ;
+      this.router.navigateByUrl('/cart', { replaceUrl: true }) ;
     }
   }
 

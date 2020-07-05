@@ -29,6 +29,9 @@ export class ApiService extends BaseApiService {
   public deleteShippingAddressUrl = con.API_URL + 'deleteShippingAddress';
   public setDefaultShippingAddressUrl = con.API_URL + 'setDefaultShippingAddress';
   public addEditShippingAddressUrl = con.API_URL + 'addEditShippingAddress';
+  public placeOrderUrl = con.API_URL + 'placeOrder';
+  public orderListURL = con.API_URL + 'orderList';
+  public orderDetailsURL = con.API_URL + 'orderDetails';
 
   public otpSend(params: any = {}) {
     this.genericApiCall(this.otpSendUrlForRegister, con.sendOTP, params, con.requestPost, true);
@@ -72,6 +75,10 @@ export class ApiService extends BaseApiService {
 
   public addToCart(params: any = {}) {
     this.genericApiCall(this.addToCartUrl, con.addToCart, params, con.requestPost, true);
+  }
+
+  public placeOrder(params: any = {}) {
+    this.genericApiCall(this.placeOrderUrl, con.placeOrder, params, con.requestPost, true);
   }
 
   public buyNow(params: any = {}) {
@@ -126,7 +133,15 @@ export class ApiService extends BaseApiService {
     this.genericApiCall(this.deleteShippingAddressUrl, con.removeAddressList, params, con.requestPost, true);
   }
 
-  public setDefualtAddress(params: any = {}) {
-    this.genericApiCall(this.setDefaultShippingAddressUrl, con.setDefualtAddress, params, con.requestPost, true);
+  public setDefaultAddrees(params: any = {}) {
+    this.genericApiCall(this.setDefaultShippingAddressUrl, con.setDefaultAddrees, params, con.requestPost, true);
+  }
+
+  public orderList(params: any = {}) {
+    this.genericApiCall(this.orderListURL, con.orderList, params, con.requestPost, true);
+  }
+
+  public orderDetails(params: any = {}) {
+    this.genericApiCall(this.orderDetailsURL, con.orderDetails, params, con.requestPost, true);
   }
 }
